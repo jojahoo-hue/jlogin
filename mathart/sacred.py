@@ -113,7 +113,82 @@ def wheel_base12_mask(size: int = 700, cs: int = 3, line_width: int = 6,
     return mask
 
 
+def _circle(mask, cx, cy, r, width, segments: int = 200):
+    ts = np.linspace(0, 2 * np.pi, segments)
+    pts = [(cx + r * np.cos(t), cy + r * np.sin(t)) for t in ts]
+    _polyline(mask, pts, width)
+
+
+def flower_of_life_mask(size: int = 700, line_width: int = 4,
+                        with_border: bool = True) -> np.ndarray:
+    """Classic Flower of Life: 19 overlapping circles on a triangular lattice."""
+    mask = _blank(size)
+    cx = cy = size / 2
+    R = 0.15 * size
+    centers = []
+    for q in range(-2, 3):
+        for r in range(-2, 3):
+            x = R * (q + r * 0.5)
+            y = R * (r * np.sqrt(3) / 2)
+            if x * x + y * y <= (2 * R) ** 2 + 1e-6:
+                centers.append((cx + x, cy + y))
+    for x, y in centers:
+        _circle(mask, x, y, R, line_width)
+    if with_border:
+        _circle(mask, cx, cy, 3 * R, line_width)
+        _circle(mask, cx, cy, 3 * R + line_width * 1.6, line_width)
+    return mask
+
+
+def metatron_cube_mask(size: int = 700, line_width: int = 3) -> np.ndarray:
+    """Fruit of Life (13 circles) with every centre joined — Metatron's Cube."""
+    mask = _blank(size)
+    cx = cy = size / 2
+    d = 0.18 * size
+    centers = [(cx, cy)]
+    for k in range(6):
+        a = k * np.pi / 3
+        centers.append((cx + d * np.cos(a), cy + d * np.sin(a)))
+        centers.append((cx + 2 * d * np.cos(a), cy + 2 * d * np.sin(a)))
+    # connect every pair of centres (the "cube")
+    for i in range(len(centers)):
+        for j in range(i + 1, len(centers)):
+            _seg(mask, *centers[i], *centers[j], max(1, line_width - 1))
+    # the 13 circles on top
+    for x, y in centers:
+        _circle(mask, x, y, d * 0.5, line_width)
+    return mask
+
+
+def mandala_mask(size: int = 700, petals: int = 12, line_width: int = 4,
+                 rings: int = 3) -> np.ndarray:
+    """Radial mandala: concentric rings + rose petals + spokes (N-fold)."""
+    mask = _blank(size)
+    cx = cy = size / 2
+    Rmax = 0.42 * size
+    # concentric guide rings
+    for i in range(1, rings + 1):
+        _circle(mask, cx, cy, Rmax * i / (rings + 1), max(2, line_width - 1))
+    # rose curves r = R(1 + 0.3 cos(petals*theta)) at two scales
+    for scale in (0.62, 0.95):
+        pts = []
+        for t in np.linspace(0, 2 * np.pi, 720):
+            r = Rmax * scale * (0.7 + 0.3 * np.cos(petals * t))
+            pts.append((cx + r * np.cos(t), cy + r * np.sin(t)))
+        _polyline(mask, pts, line_width)
+    # spokes
+    for k in range(petals):
+        a = k * 2 * np.pi / petals
+        _seg(mask, cx, cy, cx + Rmax * np.cos(a), cy + Rmax * np.sin(a),
+             max(1, line_width - 2))
+    _circle(mask, cx, cy, Rmax, line_width)
+    return mask
+
+
 GENERATORS = {
     "wheel": wheel_base12_mask,
     "seal": rose_seal_mask,
+    "flower": flower_of_life_mask,
+    "metatron": metatron_cube_mask,
+    "mandala": mandala_mask,
 }

@@ -125,6 +125,17 @@ def test_sacred_wheel_mask_nonempty():
     assert "<path" in svg and svg.count("M") >= 1
 
 
+def test_sacred_generators_nonempty():
+    import xml.dom.minidom as M
+    from mathart import sacred as sc, stencil as st
+    for name in ("flower", "metatron", "mandala"):
+        m = sc.GENERATORS[name](size=300)
+        assert m.any() and not m.all(), f"{name}: strokes and gaps"
+        svg = st.silhouette_svg(m)
+        M.parseString(svg)                         # well-formed XML
+        assert svg.count("M") >= 2, f"{name}: multiple contours"
+
+
 if __name__ == "__main__":
     for name, obj in list(globals().items()):
         if name.startswith("test_") and callable(obj):
