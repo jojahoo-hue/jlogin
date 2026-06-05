@@ -9,6 +9,10 @@ description: >
   or creatures, or works "in the style of Hamid Naderi Yeganeh". Trigger on
   requests like "make math art", "draw an X from equations", "render a formula
   as an image", "reproduce this Yeganeh piece", or "add a new work to mathart".
+  Also covers sacred-geometry / numerology visuals: turning a word's numeric
+  values (V.N, V.S, C.S) into a base-12 wheel of glyphs or a seamless meditative
+  p5.js loop. Trigger on "roue base 12", "géométrie sacrée", "sacred wheel",
+  "seamless meditation loop", "sceau", "glyph wheel from a number".
 ---
 
 # mathart — formula-driven generative art
@@ -76,6 +80,47 @@ The engine is built for drop-in transcription:
    worked example, including how it flags which sub-terms were legible.
 Watch for `e^(-e^(...))` (DOUBLE exponential) vs `e^(...)`; misreading this is
 the most common transcription error.
+
+## Family 3 — sacred geometry & numerology visuals (p5.js, animated)
+
+A separate visual track: turn a **number** (often the numerology of a word) into a
+**base-12 wheel** or a **seamless meditative loop**. Unlike the Python families
+above, these are animated and live in `assets/` as p5.js sketches you paste into
+[editor.p5js.org](https://editor.p5js.org). The Python engine renders still
+images; use this track when the user wants motion, breathing rhythm, or a ritual
+seal driven by a number.
+
+### From a number to a wheel
+A word can be reduced to numbers (e.g. `V.N` = sum of letter values, `V.S =
+A(A+1)/2`, `C.S` = digital root). Those numbers drive the geometry:
+- **12 glyphs** in a ring (base 12 = Dikenga's 4 directions × 3 times); each glyph
+  is a small segment/angle (`segment`, `angle L`, `chevron`, `hook`).
+- **C.S drives the inner rhythm.** If `C.S = 3`, each breath lights **4 glyphs**
+  (quadripole: 0–3, 4–7, 8–11) so 3 breaths sweep all 12. If `C.S = 9`, nine
+  internal phases modulate the central seal.
+- A **central seal** is a 3-turn rose curve, `r(a) = base·(1 + a_struct·sin(4a+φ)
+  + a_cycle·sin(12a−φ) + 0.08a)`, with a faint 4-line quadrature for the 4 planes.
+
+### Seamless timing (so the loop never jumps)
+- **75 BPM** → 12 beats per loop; beat phase = `2π·12·u`.
+- Loop = **9.6 s** (12 × 0.8 s) at **30 fps = 288 frames**, with `u = frame/288`.
+- Every oscillator uses integer multiples of `2π·u`, so frame 0 and frame 288 match.
+
+### Templates (in `assets/`)
+- `assets/roue_base12_glyphes.js` — 12-glyph wheel + central seal + breathing
+  quadripole (`CS = 3`). Edit `CS`, `GLYPH_TYPES`, `GLYPH_TWIST` for the real word.
+- `assets/sceau_cs9_loop.js` — central seal alone + 9 internal phases (`CS = 9`,
+  calibrated for the worked example "LOGIN").
+
+### Export to MP4
+Uncomment the `saveCanvas(...)` + `noLoop()` lines (288 PNGs), then:
+```bash
+ffmpeg -framerate 30 -i frame_%04d.png -c:v libx264 -pix_fmt yuv420p -crf 18 out.mp4
+```
+
+> The numerology *calculation* itself (letter→number table, V.N/Z.M/V.S/Àn/C.S)
+> belongs to the writing skill `redaction-initiatique`; this skill consumes the
+> resulting numbers and renders them.
 
 ## Performance & gotchas
 - ALWAYS vectorize: evaluate fields on the whole `(X,Y)` grid; never loop pixels.
