@@ -128,7 +128,8 @@ def test_sacred_wheel_mask_nonempty():
 def test_sacred_generators_nonempty():
     import xml.dom.minidom as M
     from mathart import sacred as sc, stencil as st
-    for name in ("flower", "metatron", "mandala"):
+    for name in ("flower", "metatron", "mandala",
+                 "spiral", "enneagram", "sri-yantra"):
         m = sc.GENERATORS[name](size=300)
         assert m.any() and not m.all(), f"{name}: strokes and gaps"
         svg = st.silhouette_svg(m)

@@ -68,6 +68,9 @@ def main(argv=None):
     g.add_argument("--cs", type=int, default=3, help="Code Secret (wheel)")
     g.add_argument("--size", type=int, default=700)
     g.add_argument("--line-width", type=int, default=6)
+    g.add_argument("--petals", type=int, default=12, help="[mandala] N-fold")
+    g.add_argument("--rings", type=int, default=3,
+                   help="[mandala] concentric rings")
     add_stencil_opts(g)
 
     args = parser.parse_args(argv)
@@ -103,10 +106,13 @@ def main(argv=None):
     if args.cmd == "sacred":
         from .sacred import GENERATORS
         gen = GENERATORS[args.design]
+        kwargs = {"size": args.size, "line_width": args.line_width}
         if args.design == "wheel":
-            mask = gen(size=args.size, cs=args.cs, line_width=args.line_width)
-        else:
-            mask = gen(size=args.size, line_width=args.line_width)
+            kwargs["cs"] = args.cs
+        elif args.design == "mandala":
+            kwargs["petals"] = args.petals
+            kwargs["rings"] = args.rings
+        mask = gen(**kwargs)
         svg = _to_svg(mask, args.mode, args)
         path = _write_svg(svg, args.out, f"{args.design}-{args.mode}")
         print(f"saved {path}")

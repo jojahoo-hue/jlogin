@@ -185,10 +185,107 @@ def mandala_mask(size: int = 700, petals: int = 12, line_width: int = 4,
     return mask
 
 
+def _triangle(mask, cx, cy, r, rot, width):
+    """Equilateral triangle inscribed in radius `r`, rotated by `rot` rad."""
+    pts = [(cx + r * np.cos(rot + k * 2 * np.pi / 3),
+            cy + r * np.sin(rot + k * 2 * np.pi / 3)) for k in range(3)]
+    _polyline(mask, pts + [pts[0]], width)
+
+
+def golden_spiral_mask(size: int = 700, line_width: int = 4,
+                       turns: float = 3.5, with_rects: bool = True) -> np.ndarray:
+    """Logarithmic (golden) spiral r=a·φ^(2θ/π) + nested golden rectangles."""
+    mask = _blank(size)
+    cx = cy = size / 2
+    phi = (1 + np.sqrt(5)) / 2
+    b = np.log(phi) / (np.pi / 2)          # growth per quarter turn = φ
+    a_max = 2 * np.pi * turns
+    base = 0.42 * size / np.exp(b * a_max)  # outer end lands at 0.42·size
+    pts = []
+    a = 0.0
+    while a <= a_max:
+        r = base * np.exp(b * a)
+        pts.append((cx + r * np.cos(a), cy + r * np.sin(a)))
+        a += 0.03
+    _polyline(mask, pts, line_width)
+    if with_rects:
+        # nested golden rectangles whose corners ride the spiral (quarter steps)
+        rpts = []
+        a = 0.0
+        while a <= a_max:
+            r = base * np.exp(b * a)
+            rpts.append((cx + r * np.cos(a), cy + r * np.sin(a)))
+            a += np.pi / 2
+        _polyline(mask, rpts, max(1, line_width - 1))
+    return mask
+
+
+def enneagram_mask(size: int = 700, line_width: int = 4) -> np.ndarray:
+    """Classic enneagram: outer circle, 3-6-9 triangle, 1-4-2-8-5-7 web."""
+    mask = _blank(size)
+    cx = cy = size / 2
+    R = 0.4 * size
+    _circle(mask, cx, cy, R, max(2, line_width - 1))
+
+    def P(i):  # point i in 1..9, point 9 at top, clockwise
+        ang = -np.pi / 2 + (i % 9) * 2 * np.pi / 9
+        return (cx + R * np.cos(ang), cy + R * np.sin(ang))
+
+    triangle = [P(9), P(3), P(6), P(9)]
+    _polyline(mask, triangle, line_width)
+    web = [P(1), P(4), P(2), P(8), P(5), P(7), P(1)]
+    _polyline(mask, web, line_width)
+    return mask
+
+
+def sri_yantra_mask(size: int = 760, line_width: int = 3) -> np.ndarray:
+    """Stylised Sri Yantra: 9 interlocking triangles, lotus petals, bhupura."""
+    mask = _blank(size)
+    cx = cy = size / 2
+    R = 0.26 * size
+    # 4 upward (Shiva) + 5 downward (Shakti) triangles at descending scales
+    up = [1.00, 0.74, 0.50, 0.28]
+    dn = [1.06, 0.84, 0.62, 0.40, 0.20]
+    for s in up:
+        _triangle(mask, cx, cy, R * s, -np.pi / 2, line_width)
+    for s in dn:
+        _triangle(mask, cx, cy, R * s, np.pi / 2, line_width)
+    # central bindu dot
+    rr = max(2, line_width)
+    mask[int(cy - rr):int(cy + rr + 1), int(cx - rr):int(cx + rr + 1)] = True
+    # two lotus rings (8 + 16 petals) as small arcs/circles
+    for n, rad in ((8, 1.18), (16, 1.40)):
+        rr2 = R * rad
+        for k in range(n):
+            a = k * 2 * np.pi / n
+            px, py = cx + rr2 * np.cos(a), cy + rr2 * np.sin(a)
+            _circle(mask, px, py, 0.045 * size, max(2, line_width - 1), 40)
+    # bhupura: outer square frame with T-gates
+    s2 = R * 1.62
+    sq = [(cx - s2, cy - s2), (cx + s2, cy - s2),
+          (cx + s2, cy + s2), (cx - s2, cy + s2), (cx - s2, cy - s2)]
+    _polyline(mask, sq, line_width)
+    for dx, dy in ((0, -1), (0, 1), (-1, 0), (1, 0)):
+        mx, my = cx + dx * s2, cy + dy * s2
+        gate = 0.08 * size
+        if dx == 0:
+            _polyline(mask, [(mx - gate, my), (mx - gate, my + dy * gate),
+                             (mx + gate, my + dy * gate), (mx + gate, my)],
+                      line_width)
+        else:
+            _polyline(mask, [(mx, my - gate), (mx + dx * gate, my - gate),
+                             (mx + dx * gate, my + gate), (mx, my + gate)],
+                      line_width)
+    return mask
+
+
 GENERATORS = {
     "wheel": wheel_base12_mask,
     "seal": rose_seal_mask,
     "flower": flower_of_life_mask,
     "metatron": metatron_cube_mask,
     "mandala": mandala_mask,
+    "spiral": golden_spiral_mask,
+    "enneagram": enneagram_mask,
+    "sri-yantra": sri_yantra_mask,
 }

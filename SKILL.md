@@ -151,14 +151,20 @@ The work is rendered, then thresholded (`--threshold`, `--invert`) to a mask.
 ```bash
 python -m mathart.cli sacred wheel --cs 3 --mode silhouette --out gallery/stencils
 python -m mathart.cli sacred seal  --mode negative
-python -m mathart.cli sacred flower   --mode silhouette   # Flower of Life
-python -m mathart.cli sacred metatron --mode silhouette   # Metatron's Cube
-python -m mathart.cli sacred mandala  --mode silhouette   # N-fold mandala
+python -m mathart.cli sacred flower    --mode silhouette  # Flower of Life
+python -m mathart.cli sacred metatron  --mode silhouette  # Metatron's Cube
+python -m mathart.cli sacred mandala   --petals 8 --rings 4   # N-fold mandala
+python -m mathart.cli sacred spiral    --mode silhouette  # golden spiral
+python -m mathart.cli sacred enneagram --mode silhouette  # 9-point enneagram
+python -m mathart.cli sacred sri-yantra --mode silhouette # Sri Yantra
 ```
 `mathart.sacred` draws each design as thick strokes → mask → same pipeline.
 Generators (`mathart.sacred.GENERATORS`): `wheel` (base-12 glyph wheel), `seal`
 (rose seal), `flower` (19-circle Flower of Life), `metatron` (Fruit of Life +
-joined centres), `mandala` (concentric rings + rose petals + spokes). Drive
+joined centres), `mandala` (concentric rings + rose petals + spokes; tune
+`--petals`/`--rings`), `spiral` (logarithmic golden spiral φ + nested
+rectangles), `enneagram` (circle + 3-6-9 triangle + 1-4-2-8-5-7 web),
+`sri-yantra` (9 interlocking triangles + lotus petals + bhupura gates). Drive
 `--cs` from the word's Code Secret; `--line-width` sets the paintable band
 thickness.
 
