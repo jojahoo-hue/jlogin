@@ -60,7 +60,31 @@ def main(argv=None):
                    help="dark<thr = motif")
     s.add_argument("--invert", action="store_true")
     s.add_argument("--width", type=int, default=600)
+    s.add_argument("--reduce", choices=["threshold", "posterize", "edges"],
+                   default="threshold",
+                   help="how to turn the render into a mask")
+    s.add_argument("--levels", type=int, default=3,
+                   help="[posterize] number of tone bands")
+    s.add_argument("--edge-threshold", type=float, default=0.18,
+                   help="[edges] gradient cutoff (0..1)")
     add_stencil_opts(s)
+
+    p = sub.add_parser("plot", help="matplotlib graphical scribe -> SVG stencil")
+    from .plot import PLOTS
+    p.add_argument("design", choices=sorted(PLOTS))
+    p.add_argument("--size", type=int, default=700)
+    p.add_argument("--line-width", type=float, default=1.6)
+    add_stencil_opts(p)
+
+    ai = sub.add_parser("aigen",
+                        help="Nano Banana (Gemini) prompt -> SVG stencil")
+    ai.add_argument("prompt", help="text description of the motif")
+    ai.add_argument("--reduce", choices=["posterize", "edges"],
+                    default="posterize")
+    ai.add_argument("--levels", type=int, default=2)
+    ai.add_argument("--edge-threshold", type=float, default=0.18)
+    ai.add_argument("--name", default="aigen", help="output file stem")
+    add_stencil_opts(ai)
 
     g = sub.add_parser("sacred", help="parametric sacred-geometry SVG stencil")
     from .sacred import GENERATORS
@@ -96,10 +120,44 @@ def main(argv=None):
     if args.cmd == "stencil":
         from . import stencil as st
         img = REGISTRY[args.work](width=args.width)
-        mask = st.mask_from_image(img, threshold=args.threshold,
-                                  invert=args.invert)
+        if args.reduce == "posterize":
+            masks = st.posterize_masks(img, levels=args.levels,
+                                       invert=args.invert)
+            for i, mask in enumerate(masks):
+                svg = _to_svg(mask, args.mode, args)
+                stem = f"{args.work}-{args.mode}-L{i}"
+                print(f"saved {_write_svg(svg, args.out, stem)}")
+            return
+        if args.reduce == "edges":
+            mask = st.edge_mask(img, threshold=args.edge_threshold,
+                                thickness=2)
+        else:
+            mask = st.mask_from_image(img, threshold=args.threshold,
+                                      invert=args.invert)
         svg = _to_svg(mask, args.mode, args)
         path = _write_svg(svg, args.out, f"{args.work}-{args.mode}")
+        print(f"saved {path}")
+        return
+
+    if args.cmd == "plot":
+        from .plot import PLOTS
+        mask = PLOTS[args.design](size=args.size, line_width=args.line_width)
+        svg = _to_svg(mask, args.mode, args)
+        path = _write_svg(svg, args.out, f"{args.design}-{args.mode}")
+        print(f"saved {path}")
+        return
+
+    if args.cmd == "aigen":
+        from . import aigen
+        if not aigen.available():
+            parser.error(
+                "Nano Banana is dormant: set GEMINI_API_KEY (or GOOGLE_API_KEY) "
+                "and `pip install google-genai` to enable it.")
+        mask = aigen.mask_from_prompt(args.prompt, reduce=args.reduce,
+                                      levels=args.levels,
+                                      edge_threshold=args.edge_threshold)
+        svg = _to_svg(mask, args.mode, args)
+        path = _write_svg(svg, args.out, f"{args.name}-{args.mode}")
         print(f"saved {path}")
         return
 

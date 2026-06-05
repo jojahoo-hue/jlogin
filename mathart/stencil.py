@@ -288,3 +288,60 @@ def mask_from_image(img, threshold: int = 128, invert: bool = False) -> np.ndarr
     arr = np.asarray(img.convert("L"), dtype=np.uint8)
     mask = arr < threshold
     return ~mask if invert else mask
+
+
+# ------------------------------------------------- complex-image reductions ---
+# Turn a photographic / AI-generated raster into cuttable masks. A flat
+# `threshold` only works on already-binary art; these two handle tone and line.
+
+def posterize_masks(img, levels: int = 3, invert: bool = False):
+    """Quantise luminance into `levels` tone bands -> one mask per dark band.
+
+    Returns a list of boolean masks ordered darkest-first (each a cut layer for
+    a multi-tone stencil). The lightest band (≈ paper/background) is dropped.
+    """
+    levels = max(2, int(levels))
+    arr = np.asarray(img.convert("L"), dtype=np.float64) / 255.0
+    if invert:
+        arr = 1.0 - arr
+    q = np.clip((arr * levels).astype(int), 0, levels - 1)  # 0..levels-1
+    masks = []
+    for band in range(levels - 1):              # drop the lightest band
+        masks.append(q <= band)                 # cumulative: darker ⊆ lighter
+    return masks
+
+
+def _sobel(gray: np.ndarray) -> np.ndarray:
+    kx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]], dtype=np.float64)
+    ky = kx.T
+
+    def conv(k):
+        p = np.pad(gray, 1, mode="edge")
+        out = np.zeros_like(gray)
+        for di in range(3):
+            for dj in range(3):
+                out += k[di, dj] * p[di:di + gray.shape[0],
+                                     dj:dj + gray.shape[1]]
+        return out
+
+    return np.hypot(conv(kx), conv(ky))
+
+
+def edge_mask(img, threshold: float = 0.18, thickness: int = 1) -> np.ndarray:
+    """Sobel edge magnitude -> boolean line-art mask (good for tracing stencils).
+
+    `threshold` is on the normalised gradient (0..1); `thickness` dilates the
+    edges so thin lines survive as a paintable band.
+    """
+    gray = np.asarray(img.convert("L"), dtype=np.float64) / 255.0
+    mag = _sobel(gray)
+    mag /= (mag.max() + 1e-9)
+    edges = mag > threshold
+    for _ in range(max(0, int(thickness) - 1)):
+        e = edges.copy()
+        e[1:, :] |= edges[:-1, :]
+        e[:-1, :] |= edges[1:, :]
+        e[:, 1:] |= edges[:, :-1]
+        e[:, :-1] |= edges[:, 1:]
+        edges = e
+    return edges

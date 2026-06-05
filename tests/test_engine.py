@@ -137,6 +137,54 @@ def test_sacred_generators_nonempty():
         assert svg.count("M") >= 2, f"{name}: multiple contours"
 
 
+def test_posterize_and_edge_reductions():
+    from PIL import Image
+    from mathart import stencil as st
+    # vertical gradient 0..255 -> posterize gives nested dark bands
+    grad = np.tile(np.linspace(0, 255, 64).astype(np.uint8), (64, 1))
+    img = Image.fromarray(grad)
+    masks = st.posterize_masks(img, levels=3)
+    assert len(masks) == 2, "levels-1 dark bands"
+    assert masks[0].sum() <= masks[1].sum(), "darker band ⊆ lighter band"
+    # edges of a filled square = its border (non-empty, not the whole image)
+    sq = np.zeros((40, 40), np.uint8); sq[10:30, 10:30] = 255
+    e = st.edge_mask(Image.fromarray(sq), threshold=0.1, thickness=1)
+    assert e.any() and not e.all()
+
+
+def test_plot_generators_if_available():
+    try:
+        from mathart import plot as pl
+        if not pl._HAVE_MPL:
+            return                              # matplotlib not installed: skip
+    except Exception:
+        return
+    from mathart import stencil as st
+    for name in pl.PLOTS:
+        m = pl.PLOTS[name](size=200)
+        assert m.shape == (200, 200), name
+        assert m.any() and not m.all(), name
+        assert st.silhouette_svg(m).count("M") >= 1, name
+
+
+def test_aigen_is_dormant_without_key():
+    import os
+    from mathart import aigen
+    saved = {k: os.environ.pop(k, None)
+             for k in ("GEMINI_API_KEY", "GOOGLE_API_KEY")}
+    try:
+        assert aigen.available() is False
+        try:
+            aigen.generate_image("anything")
+            assert False, "should raise without a key"
+        except RuntimeError:
+            pass
+    finally:
+        for k, v in saved.items():
+            if v is not None:
+                os.environ[k] = v
+
+
 if __name__ == "__main__":
     for name, obj in list(globals().items()):
         if name.startswith("test_") and callable(obj):

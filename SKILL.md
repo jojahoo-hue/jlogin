@@ -16,6 +16,12 @@ description: >
   Can also export any motif as a Cricut-ready SVG stencil — silhouette or true
   negative stencil with auto bridges — for cutting paint stencils ("pochoir").
   Trigger on "Cricut", "pochoir", "stencil", "SVG to cut", "vectorise to SVG".
+  Richer graphical "scribes" via matplotlib (harmonograph, spirograph, Lissajous,
+  polar rose, phyllotaxis) and an optional Nano Banana / Gemini image bridge feed
+  the same pochoir pipeline, with posterize / edge-detection reductions for
+  turning photos or AI renders into cuttable masks. Trigger on "harmonograph",
+  "spirograph", "Lissajous", "scribe graphique", "nano banana", "Gemini image",
+  "postérisation", "détection de contours", "image vers pochoir".
 ---
 
 # mathart — formula-driven generative art
@@ -167,6 +173,47 @@ rectangles), `enneagram` (circle + 3-6-9 triangle + 1-4-2-8-5-7 web),
 `sri-yantra` (9 interlocking triangles + lotus petals + bhupura gates). Drive
 `--cs` from the word's Code Secret; `--line-width` sets the paintable band
 thickness.
+
+### Graphical scribes (matplotlib — richer parametric line-art)
+For dense, organic curves beyond the hand-rasterised strokes, `mathart.plot`
+borrows matplotlib's anti-aliased renderer and hands back the **same mask** the
+stencil pipeline consumes. Optional extra: `pip install matplotlib` (or
+`pip install -e .[plot]`).
+```bash
+python -m mathart.cli plot harmonograph --mode silhouette --out gallery/scribes
+python -m mathart.cli plot spirograph --mode negative
+```
+Generators (`mathart.plot.PLOTS`): `harmonograph` (damped two-pendulum ribbon),
+`spirograph` (hypotrochoid rosette), `lissajous` (stacked phase-drift curves),
+`rose` (polar/Maurer rose), `phyllotaxis` (golden-angle sunflower dots). Each
+returns a boolean mask, so `--mode silhouette|negative` and all stencil knobs
+apply unchanged.
+
+### Reducing a complex raster to a cuttable mask
+A flat threshold only works on already-binary art. For photos or illustrative
+renders, two extra reductions feed the same vectoriser (`--reduce` on `stencil`):
+- **posterize** (`--reduce posterize --levels N`): quantise luminance into N tone
+  bands; writes one SVG **per dark band** (`…-L0`, `…-L1`, …) = a multi-layer
+  stencil to paint tone-on-tone.
+- **edges** (`--reduce edges --edge-threshold 0.18`): Sobel line-art for a
+  tracing stencil.
+```bash
+python -m mathart.cli stencil forest --reduce posterize --levels 3
+python -m mathart.cli stencil horse  --reduce edges
+```
+
+### Nano Banana (Gemini) — illustrative motifs from a prompt (DORMANT)
+`mathart.aigen` asks Google's *Gemini 2.5 Flash Image* ("Nano Banana") for a
+high-contrast silhouette, then reduces it (posterize/edges) → mask → SVG. It is
+**inactive by default**: it only fires when both `GEMINI_API_KEY` (or
+`GOOGLE_API_KEY`) is set in the environment **and** `pip install google-genai`
+is present — otherwise it raises a clear message. The key is read from the env
+ONLY; never hard-code it. Prompt for "solid black silhouette on plain white, no
+gradient" so the reduction yields one crisp cut layer.
+```bash
+export GEMINI_API_KEY=…        # never commit this
+python -m mathart.cli aigen "a crane in flight" --reduce posterize --levels 2
+```
 
 ### Knobs & gotchas
 - `--max-side` (default 360) = vectorise resolution; higher = smoother + heavier

@@ -11,6 +11,8 @@ dependencies = ["numpy>=1.24", "pillow>=9.0"]
 
 [project.optional-dependencies]
 dev = ["pytest"]
+plot = ["matplotlib>=3.5"]          # mathart.plot graphical scribes
+aigen = ["google-genai>=0.3"]       # mathart.aigen Nano Banana (Gemini) bridge
 
 [project.scripts]
 mathart = "mathart.cli:main"
