@@ -185,7 +185,9 @@ python -m mathart.cli plot spirograph --mode negative
 ```
 Generators (`mathart.plot.PLOTS`): `harmonograph` (damped two-pendulum ribbon),
 `spirograph` (hypotrochoid rosette), `lissajous` (stacked phase-drift curves),
-`rose` (polar/Maurer rose), `phyllotaxis` (golden-angle sunflower dots). Each
+`rose` (polar/Maurer rose), `phyllotaxis` (golden-angle sunflower dots),
+`superformula` (Gielis nested star/petal), `streamlines` (flowing vector-field
+lines, woodgrain-like) and `attractor` (De Jong strange-attractor cloud). Each
 returns a boolean mask, so `--mode silhouette|negative` and all stencil knobs
 apply unchanged.
 

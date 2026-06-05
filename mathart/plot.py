@@ -134,10 +134,63 @@ def phyllotaxis_mask(size: int = 700, line_width: float = 0.0,
     return _fig_to_mask(fig, size)
 
 
+def superformula_mask(size: int = 700, line_width: float = 1.8,
+                      m: float = 7, n1: float = 3.0, n2: float = 4.0,
+                      n3: float = 10.0, layers: int = 4,
+                      steps: int = 4000) -> np.ndarray:
+    """Gielis superformula — organic nested star/petal shapes."""
+    _require_mpl()
+    t = np.linspace(0, 2 * np.pi, steps)
+    fig, ax = _new_fig(size)
+    for i in range(layers):
+        r = (np.abs(np.cos(m * t / 4)) ** n2
+             + np.abs(np.sin(m * t / 4)) ** n3) ** (-1 / n1)
+        r = r / (np.abs(r).max() + 1e-9) * (1 - 0.16 * i)
+        ax.plot(r * np.cos(t), r * np.sin(t), color="black", lw=line_width)
+    return _fig_to_mask(fig, size)
+
+
+def streamlines_mask(size: int = 700, line_width: float = 1.0,
+                     a: float = 1.3, b: float = 2.0,
+                     density: float = 1.6, grid: int = 220) -> np.ndarray:
+    """Streamlines of a curl-like vector field — flowing MATLAB-style scribe."""
+    _require_mpl()
+    g = np.linspace(-1, 1, grid)
+    X, Y = np.meshgrid(g, g)
+    U = np.sin(a * np.pi * Y) + 0.6 * np.cos(b * np.pi * X)
+    V = np.sin(b * np.pi * X) - 0.6 * np.cos(a * np.pi * Y)
+    fig, ax = _new_fig(size)
+    ax.streamplot(X, Y, U, V, color="black", linewidth=line_width,
+                  density=density, arrowstyle="-")
+    return _fig_to_mask(fig, size)
+
+
+def attractor_mask(size: int = 700, line_width: float = 0.0,
+                   a: float = 1.641, b: float = 1.902,
+                   c: float = 0.316, d: float = 1.525,
+                   n: int = 120000) -> np.ndarray:
+    """De Jong strange attractor — dense organic point cloud."""
+    _require_mpl()
+    x = y = 0.1
+    xs = np.empty(n)
+    ys = np.empty(n)
+    for i in range(n):
+        x, y = (np.sin(a * y) - np.cos(b * x),
+                np.sin(c * x) - np.cos(d * y))
+        xs[i], ys[i] = x, y
+    m = max(np.abs(xs).max(), np.abs(ys).max()) + 1e-9
+    fig, ax = _new_fig(size)
+    ax.scatter(xs / m, ys / m, s=0.05, c="black", marker=".", linewidths=0)
+    return _fig_to_mask(fig, size)
+
+
 PLOTS = {
     "harmonograph": harmonograph_mask,
     "spirograph": spirograph_mask,
     "lissajous": lissajous_mask,
     "rose": rose_mask,
     "phyllotaxis": phyllotaxis_mask,
+    "superformula": superformula_mask,
+    "streamlines": streamlines_mask,
+    "attractor": attractor_mask,
 }
