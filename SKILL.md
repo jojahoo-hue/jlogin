@@ -13,6 +13,9 @@ description: >
   values (V.N, V.S, C.S) into a base-12 wheel of glyphs or a seamless meditative
   p5.js loop. Trigger on "roue base 12", "géométrie sacrée", "sacred wheel",
   "seamless meditation loop", "sceau", "glyph wheel from a number".
+  Can also export any motif as a Cricut-ready SVG stencil — silhouette or true
+  negative stencil with auto bridges — for cutting paint stencils ("pochoir").
+  Trigger on "Cricut", "pochoir", "stencil", "SVG to cut", "vectorise to SVG".
 ---
 
 # mathart — formula-driven generative art
@@ -121,6 +124,53 @@ ffmpeg -framerate 30 -i frame_%04d.png -c:v libx264 -pix_fmt yuv420p -crf 18 out
 > The numerology *calculation* itself (letter→number table, V.N/Z.M/V.S/Àn/C.S)
 > belongs to the writing skill `redaction-initiatique`; this skill consumes the
 > resulting numbers and renders them.
+
+## Cricut stencil export (SVG, to cut a paint stencil)
+
+Turn any motif into a **vector SVG** Cricut Design Space can cut. Everything goes
+through a boolean **mask** → a shared vectoriser (marching squares + Douglas–
+Peucker), so the path stays light. Units are **neutral** (`viewBox` only); set the
+real size on import. Output is one `<path fill-rule="evenodd">` = one cut layer.
+
+Two modes:
+- **silhouette** — the motif's own outline (counters handled by evenodd). Cut the
+  shape itself (mask, magnet, applique).
+- **negative** — a full frame minus the motif, with **auto bridges**: islands
+  (the inside of an "O", a sun disk, gaps between a horse's legs) are tied back to
+  the frame so the stencil stays in one piece. This is the real *pochoir* you
+  paint through.
+
+### From a registered work
+```bash
+python -m mathart.cli stencil horse --mode negative --out gallery/stencils
+python -m mathart.cli stencil horse --mode silhouette --threshold 128 --invert
+```
+The work is rendered, then thresholded (`--threshold`, `--invert`) to a mask.
+
+### From parametric sacred geometry (clean vectors)
+```bash
+python -m mathart.cli sacred wheel --cs 3 --mode silhouette --out gallery/stencils
+python -m mathart.cli sacred seal  --mode negative
+```
+`mathart.sacred` draws the base-12 wheel / rose seal as thick strokes → mask →
+same pipeline. Drive `--cs` from the word's Code Secret; `--line-width` sets the
+paintable band thickness.
+
+### Knobs & gotchas
+- `--max-side` (default 360) = vectorise resolution; higher = smoother + heavier
+  path. 300–500 is the Cricut sweet spot.
+- `--frame-margin` / `--bridge-width` tune the negative stencil's frame and ties.
+  If a stencil falls apart, increase `--bridge-width`; if bridges look clumsy,
+  lower it. The motif is auto-padded so it never fuses with the frame.
+- **Stroke width matters for paint**: very thin lines won't survive as a stencil —
+  keep bands ≥ a few mm once sized. Prefer the `sacred` generators (filled bands)
+  over hairline strokes for cuttable geometry.
+- Always open the SVG (or its preview) before cutting; confirm the negative
+  stencil is a single connected piece (`mathart.stencil._add_bridges` guarantees
+  one body, but a too-thin bridge can pinch off after simplification).
+- API: `from mathart import stencil; stencil.silhouette_svg(mask)` /
+  `stencil.negative_svg(mask, frame_margin=..., bridge_width=...)`;
+  `stencil.mask_from_image(img, threshold, invert)` to mask any rendered work.
 
 ## Performance & gotchas
 - ALWAYS vectorize: evaluate fields on the whole `(X,Y)` grid; never loop pixels.
