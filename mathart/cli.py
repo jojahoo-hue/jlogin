@@ -86,6 +86,35 @@ def main(argv=None):
     ai.add_argument("--name", default="aigen", help="output file stem")
     add_stencil_opts(ai)
 
+    tr = sub.add_parser(
+        "trace", help="image -> Fourier formula -> regenerated SVG stencil")
+    tr.add_argument("image", help="path to the input image")
+    tr.add_argument("--reduce", choices=["silhouette", "edges", "posterize"],
+                    default="silhouette")
+    tr.add_argument("--threshold", type=int, default=128)
+    tr.add_argument("--invert", action="store_true")
+    tr.add_argument("--levels", type=int, default=3,
+                    help="[posterize] tone bands")
+    tr.add_argument("--harmonics", type=int, default=60,
+                    help="number of Fourier harmonics (fidelity)")
+    tr.add_argument("--size", type=int, default=700, help="output canvas px")
+    tr.add_argument("--line-width", type=int, default=4)
+    tr.add_argument("--name", default=None, help="output file stem")
+    tr.add_argument("--save-formula", action="store_true",
+                    help="also write the formula as JSON")
+    # series knobs
+    tr.add_argument("--stylize", type=int, default=None,
+                    help="re-render with this many harmonics (abstraction)")
+    tr.add_argument("--kaleidoscope", type=int, default=None,
+                    help="overlay N rotated copies (rosette)")
+    tr.add_argument("--modulate", type=float, default=None,
+                    help="organic jitter amount, e.g. 0.06")
+    tr.add_argument("--morph-with", default=None,
+                    help="second image to interpolate toward")
+    tr.add_argument("--morph-t", type=float, default=0.5,
+                    help="[morph] interpolation 0..1")
+    add_stencil_opts(tr)
+
     g = sub.add_parser("sacred", help="parametric sacred-geometry SVG stencil")
     from .sacred import GENERATORS
     g.add_argument("design", choices=sorted(GENERATORS))
@@ -158,6 +187,49 @@ def main(argv=None):
                                       edge_threshold=args.edge_threshold)
         svg = _to_svg(mask, args.mode, args)
         path = _write_svg(svg, args.out, f"{args.name}-{args.mode}")
+        print(f"saved {path}")
+        return
+
+    if args.cmd == "trace":
+        import os as _os
+        from PIL import Image
+        from . import trace as tr
+        img = Image.open(args.image)
+        formula = tr.image_to_formula(
+            img, reduce=args.reduce, n_harmonics=args.harmonics,
+            max_side=args.max_side, threshold=args.threshold,
+            invert=args.invert, levels=args.levels)
+        if not formula["contours"]:
+            parser.error("no contour found — try --invert or another --reduce")
+        print(tr.formula_equation(formula))
+        stem = args.name or _os.path.splitext(_os.path.basename(args.image))[0]
+        # series variations (composable)
+        if args.morph_with:
+            other = tr.image_to_formula(
+                Image.open(args.morph_with), reduce=args.reduce,
+                n_harmonics=args.harmonics, max_side=args.max_side,
+                threshold=args.threshold, invert=args.invert,
+                levels=args.levels)
+            formula = tr.morph(formula, other, args.morph_t)
+            stem += f"-morph{args.morph_t:g}"
+        if args.stylize is not None:
+            formula = tr.stylize(formula, args.stylize)
+            stem += f"-h{args.stylize}"
+        if args.kaleidoscope:
+            formula = tr.kaleidoscope(formula, args.kaleidoscope)
+            stem += f"-kal{args.kaleidoscope}"
+        if args.modulate is not None:
+            formula = tr.modulate(formula, amp=args.modulate)
+            stem += "-mod"
+        if args.save_formula:
+            _os.makedirs(args.out, exist_ok=True)
+            jp = _os.path.join(args.out, f"{stem}.json")
+            tr.save_formula(formula, jp)
+            print(f"saved {jp}")
+        mask = tr.formula_to_mask(formula, size=args.size,
+                                  line_width=args.line_width)
+        svg = _to_svg(mask, args.mode, args)
+        path = _write_svg(svg, args.out, f"{stem}-{args.mode}")
         print(f"saved {path}")
         return
 

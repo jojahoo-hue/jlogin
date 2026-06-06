@@ -22,6 +22,11 @@ description: >
   turning photos or AI renders into cuttable masks. Trigger on "harmonograph",
   "spirograph", "Lissajous", "scribe graphique", "nano banana", "Gemini image",
   "postérisation", "détection de contours", "image vers pochoir".
+  Can also REVERSE an image into a mathematical formula (complex Fourier series /
+  epicycles) and regenerate it, to vary or morph a motif into a whole series of
+  paintings/stencils on one theme. Trigger on "image vers formule", "image to
+  formula", "reverse a shape", "Fourier de contour", "épicycles", "tracer une
+  image", "trace", "décliner une série", "morphing de formes".
 ---
 
 # mathart — formula-driven generative art
@@ -130,6 +135,30 @@ ffmpeg -framerate 30 -i frame_%04d.png -c:v libx264 -pix_fmt yuv420p -crf 18 out
 > The numerology *calculation* itself (letter→number table, V.N/Z.M/V.S/Àn/C.S)
 > belongs to the writing skill `redaction-initiatique`; this skill consumes the
 > resulting numbers and renders them.
+
+## Family 4 — image → formula → image (Fourier epicycles)
+
+The reverse direction: feed a **raster image**, recover a closed-form
+parametric **formula** that reproduces its outline, regenerate it, and cut it.
+`mathart.trace` extracts contours (reusing the stencil vectoriser) and fits each
+closed loop with a complex Fourier series `z(t) = Σ cₙ·e^(i·n·t)` — the
+coefficients *are* the formula (storable as JSON, lossless round-trip).
+
+```bash
+python -m mathart.cli trace photo.png --harmonics 70 --save-formula
+python -m mathart.cli trace photo.png --stylize 8        # abstraction
+python -m mathart.cli trace photo.png --kaleidoscope 6   # rosette
+python -m mathart.cli trace a.png --morph-with b.png --morph-t 0.5
+```
+Why it matters — a **series on one theme**: raise/lower `--harmonics` for
+fidelity↔abstraction, `--kaleidoscope N` for an N-fold ornament, `--morph-with`
+to interpolate two traced images into a transforming sequence, `--modulate` for
+organic one-offs. Input reduction reuses `--reduce silhouette|edges|posterize`.
+API: `trace.image_to_formula(img,…)` → dict, `trace.formula_to_mask(formula,…)`
+→ mask → same SVG pochoir pipeline; `stylize`/`kaleidoscope`/`morph`/`modulate`
+transform the coefficient set. Gotcha: shapes touching the image edge are padded
+with a false border so the contour closes into one ordered loop (else the fit is
+garbage).
 
 ## Cricut stencil export (SVG, to cut a paint stencil)
 

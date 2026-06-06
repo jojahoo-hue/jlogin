@@ -167,6 +167,42 @@ def test_plot_generators_if_available():
         assert st.silhouette_svg(m).count("M") >= 1, name
 
 
+def test_trace_image_to_formula_roundtrip():
+    import json
+    from mathart import trace as tr
+    from mathart.works import REGISTRY
+    img = REGISTRY["horse"](width=240)
+    f = tr.image_to_formula(img, n_harmonics=40, max_side=180)
+    assert f["contours"], "recovered at least one contour"
+    m = tr.formula_to_mask(f, size=240, line_width=3)
+    assert m.any() and not m.all(), "regenerated outline is non-empty"
+    # JSON is the storable formula and reloads identically
+    back = json.loads(json.dumps(f))
+    m2 = tr.formula_to_mask(back, size=240, line_width=3)
+    assert (m == m2).all(), "JSON round-trip is lossless"
+
+
+def test_trace_series_variations():
+    import numpy as _np
+    from mathart import trace as tr
+    from mathart.works import REGISTRY
+    a = tr.image_to_formula(REGISTRY["horse"](width=200), n_harmonics=50)
+    b = tr.image_to_formula(REGISTRY["forest"](width=200), n_harmonics=50)
+    # stylise drops harmonics
+    s = tr.stylize(a, 8)
+    assert max(abs(int(n)) for c in s["contours"] for n in c["freqs"]) <= 8
+    # kaleidoscope multiplies contour count by the fold number
+    k = tr.kaleidoscope(a, 6)
+    assert len(k["contours"]) == 6 * len(a["contours"])
+    # morph endpoints recover the inputs (t=0 -> a, t=1 -> b)
+    m0 = tr.morph(a, b, 0.0)
+    c0 = _np.array([complex(*z) for z in m0["contours"][0]["coeffs"]])
+    fr = _np.array(m0["contours"][0]["freqs"])
+    a0 = {int(n): complex(*z)
+          for n, z in zip(a["contours"][0]["freqs"], a["contours"][0]["coeffs"])}
+    assert all(abs(c0[i] - a0.get(int(fr[i]), 0j)) < 1e-9 for i in range(len(fr)))
+
+
 def test_aigen_is_dormant_without_key():
     import os
     from mathart import aigen
