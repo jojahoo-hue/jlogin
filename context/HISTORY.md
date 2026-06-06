@@ -7,6 +7,19 @@
 
 ## 2026-06-06
 
+### Mise à jour de session — Configuration Jarvis et intégration Notion
+
+- Jarvis Starter Kit déployé sur le dépôt `jojahoo-hue/jlogin`, branche `claude/prime-tDwAc`
+- Intégration Notion configurée : MCP Notion dans `.claude/settings.json`, commande `/sync-notion`, script Python `scripts/sync-notion.py`
+- Contrainte identifiée : le cloud Claude Code bloque `api.notion.com`, la sync Notion doit tourner depuis le Mac local
+- Décision retenue : sync Notion via script Python sur Mac puis push git (Option A)
+- Action de sécurité en attente : régénérer le token Notion exposé accidentellement dans le chat
+- Claude Code (Jarvis) adopté comme assistant principal en remplacement de ChatGPT
+
+---
+
+## 2026-06-06
+
 ### Installation initiale du Jarvis
 
 - Workspace personnalisé pour Njaho, basé à Fort-de-France, Martinique

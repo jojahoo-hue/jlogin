@@ -86,6 +86,7 @@ Responsable d'exploitation et responsable du service des formations dans un opé
 - Excel / Power BI (données et reporting)
 - SharePoint
 - ServiceNow (ticketing IT)
+- Claude Code / Jarvis (assistant principal, remplace ChatGPT — dépôt jojahoo-hue/jlogin)
 - ChatGPT (en cours de migration vers Claude)
 - Hostinger (hébergement web)
 - WordPress (sites web)
