@@ -1,0 +1,33 @@
+{
+  "last_sync": null,
+  "sources": [
+    {
+      "id": "REMPLACER_PAR_ID_PAGE_NOTION",
+      "type": "chatgpt_archives",
+      "label": "Archives conversations ChatGPT",
+      "destination": "context/import/notion-chatgpt-archives.md",
+      "description": "Pages Notion contenant les conversations ChatGPT archivées"
+    },
+    {
+      "id": "REMPLACER_PAR_ID_BASE_DE_DONNEES",
+      "type": "resumes",
+      "label": "Résumés de sessions",
+      "destination": "context/import/notion-resumes.md",
+      "description": "Base de données Notion avec les résumés de sessions de travail"
+    },
+    {
+      "id": "REMPLACER_PAR_ID_PAGE_TRANSCRIPTIONS",
+      "type": "transcriptions",
+      "label": "Transcriptions",
+      "destination": "context/import/notion-transcriptions.md",
+      "description": "Transcriptions de réunions, formations, initiations archivées dans Notion"
+    },
+    {
+      "id": "REMPLACER_PAR_ID_PAGE_PROJETS",
+      "type": "projets",
+      "label": "Projets Dozzy et autres",
+      "destination": "context/import/notion-projets.md",
+      "description": "Pages de projets actifs dans Notion, notamment le projet Dozzy"
+    }
+  ]
+}
