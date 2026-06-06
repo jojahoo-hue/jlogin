@@ -1,0 +1,71 @@
+LOOM STÉPHANE  D.
+
+Date et heure : 2026-06-06 09:19:08
+Lieu : [Insérer le lieu]
+Instructeur : [Insérer le nom]
+## Résumé
+Cette présentation synthétise un bootcamp de cinq semaines consacré à la création d’un « second cerveau » avec l’IA. L’instructeur, Stéphane, expose son architecture personnalisée (basée sur IPSRA, étendue), sa stack technique multiplateforme (Mac, Linux, Windows), et les outils qu’il a développés pour accroître sa productivité et son apprentissage. Les points clés incluent l’utilisation d’un chatbot IA nommé Jarvis, qui communique vocalement, des routines quotidiennes de coaching de vie, des automatisations (crons) pour des tâches en arrière-plan, et un système avancé de digestion et de mémorisation de livres qui a multiplié par 20 sa vitesse de lecture. Le projet illustre comment un système d’IA personnalisé peut agir comme coach, assistant et outil d’apprentissage, avec pour seule limite la capacité à se concentrer sur des projets spécifiques au milieu d’une multitude d’idées.
+## Points de connaissance
+### 1. Concept et architecture du second cerveau
+- **Définition du second cerveau**
+  - Ce n’est pas un simple « dépotoir » d’informations, mais une architecture structurée conçue pour que l’IA connaisse l’utilisateur mieux que lui-même.
+  - L’objectif est de créer un ruissellement de connaissances unique.
+- **Architecture IPSRA étendue**
+  - L’architecture de base est IPSRA : Inbox, Projets, Sphères (casquettes), Ressources, Archives (originellement « Areas »).
+  - Deux sections ajoutées : « Process » et « Garden ».
+  - Le « Garden » (jardin) sert à développer des concepts intemporels.
+- **Contexte global et personnalisation**
+  - Une part cruciale du système consiste à fournir un contexte global riche à l’IA, incluant les préférences et la personnalité de l’utilisateur.
+  - Cela permet à l’IA d’agir comme un véritable coach de vie.
+### 2. Stack technique et outils développés
+- **Environnement technique**
+  - Infrastructure multiplateforme fonctionnant sur Mac, Linux et Windows.
+  - Combinaison de solutions cloud (Cloud Code) et open source (Open Code) avec des MCP (probablement « Make Community Plugins » pour Obsidian).
+- **Bot IA « Jarvis »**
+  - Bot Telegram nommé Jarvis, développé pour interagir avec l’utilisateur.
+  - Caractéristique clé : communication vocale (texte-vers-parole), fonctionnalité non native de Cloud Code.
+  - Jarvis accompagne l’utilisateur partout, permettant de travailler et d’interagir en mobilité (balade, sport).
+  - Interactions via messages vocaux échangés entre l’utilisateur et le bot.
+- **Automatisation via des crons**
+  - 19 opérations automatiques (crons) s’exécutant à différentes fréquences (chaque minute, toutes les deux heures, quotidiennement).
+  - Tâches incluant des sujets de recherche autonomes. Le bot consomme et optimise les « tokens » de son forfait pour avancer sur une feuille de route prédéfinie.
+- **SuperWhisper pour la digestion des réunions**
+  - Outil traitant automatiquement les enregistrements audio (réunions, comptes rendus de chantier, etc.) de plus de cinq minutes.
+  - Processus automatisé : prise de l’audio, transcription, mise en forme, résumé, et envoi du résultat dans l’inbox pour traitement, exécuté toutes les deux heures.
+- **Synchronisation GitHub**
+  - Système de synchronisation performant avec GitHub pour assurer la cohérence des données entre Mac, Linux et Windows.
+### 3. Routines de productivité et d’apprentissage
+- **Routines quotidiennes**
+  - Routines matinales (`/welcome`) et de fin de journée (`/done`).
+  - Le matin : définition des intentions, révision du contexte de la veille, établissement de la to-do list.
+  - Le soir : bilan de la journée, enregistrement des accomplissements dans la note quotidienne (`daily note`), créant une mémoire continue.
+- **Technique Pomodoro assistée par IA**
+  - Rappels envoyés toutes les 25 minutes (Pomodoro) via Telegram.
+  - Aident à faire des pauses et à se recentrer sur les priorités du créneau en cours (travail, famille, focus, sport).
+- **Gestion des projets et des « casquettes de vie »**
+  - Projets en cours listés, avec le risque de dispersion en menant trop de projets en parallèle.
+  - Les « casquettes de vie » aident à organiser les facettes : apprenant, créateur de contenu, entrepreneur, investisseur, père, salarié, sportif.
+- **Pipeline de digestion de livres**
+  - Processus complet pour lire et mémoriser le contenu des livres.
+  - Étapes : extraction du texte depuis des e-pubs, création de notes littéraires, identification des concepts, création de « Map of Content » (MOC).
+  - Suivi de lecture pour créer des « decks » et des flashcards de mémorisation.
+- **Cas pratique : lecture accélérée de « The Mom Test »**
+  - Passage de 20 mots/minute à 430 mots/minute pour un livre en anglais.
+  - Méthode : Readwise Reader pour combiner lecture du texte et écoute de l’audio, en accélérant progressivement l’audio (jusqu’à x3).
+  - Résultat : livre terminé en six sessions de 25 minutes, avec bonne compréhension et gain de vitesse x20 par rapport à une lecture passive.
+  - Le contenu est décomposé en concepts dans le « garden » et transformé en flashcards pour révision régulière.
+### 4. Projets futurs et vision
+- **Développement de compétences (Skills)**
+  - Transformer les connaissances des meilleurs livres en « skills » programmées dans l’IA.
+  - Challenge personnel : digérer 365 livres en 365 jours pour constituer des compétences de haut niveau sur diverses thématiques.
+- **Projet « Family Brain »**
+  - Nouvelle idée émergée le 5 juin 2026, suite à une discussion sur la charge mentale avec sa femme, Sophie.
+  - Créer un assistant IA partagé pour le couple afin d’améliorer la communication et la gestion du planning familial.
+  - Procédure d’onboarding créée par l’IA pour sa femme, non technique, afin qu’elle obtienne son bot en quelques clics.
+## Questions
+- [Insérer une question/confusion]
+## Devoirs
+- [ ] 1. Se focaliser sur un nombre limité de projets pour éviter la dispersion et les mener à terme.
+- [ ] 2. Améliorer la discipline pour traiter régulièrement le contenu de l’inbox (boîte de réception).
+- [ ] 3. Poursuivre le challenge de digérer 365 livres en 365 jours pour développer de nouvelles compétences pour l’IA.
+- [ ] 4. Finaliser et tester le projet « Family Brain » en faisant suivre l’onboarding à sa femme, Sophie.
