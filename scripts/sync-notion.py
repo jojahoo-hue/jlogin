@@ -83,6 +83,42 @@ def get_database_content(db_id: str) -> str:
         return f"[Erreur lecture base {db_id}: {e}]"
 
 
+def get_plaud_transcriptions(db_id: str, last_sync: str | None) -> str:
+    """Récupère les transcriptions Plaud depuis Notion, triées par date, nouvelles en premier."""
+    try:
+        filter_params = {}
+        if last_sync:
+            filter_params = {
+                "filter": {
+                    "timestamp": "last_edited_time",
+                    "last_edited_time": {"after": last_sync}
+                }
+            }
+        results = notion.databases.query(
+            database_id=db_id,
+            sorts=[{"timestamp": "created_time", "direction": "descending"}],
+            **filter_params
+        )
+        pages = results.get("results", [])
+        if not pages:
+            return "[Aucune nouvelle transcription Plaud depuis la dernière sync]"
+
+        sections = []
+        for page in pages:
+            props = page.get("properties", {})
+            title_prop = next((v for v in props.values() if v.get("type") == "title"), None)
+            title = "".join(t.get("plain_text", "") for t in title_prop.get("title", [])) if title_prop else "Sans titre"
+            created = page.get("created_time", "")[:10]
+            page_id = page.get("id", "")
+
+            content = get_page_content(page_id)
+            sections.append(f"## {title} ({created})\n\n{content}")
+
+        return "\n\n---\n\n".join(sections)
+    except Exception as e:
+        return f"[Erreur lecture transcriptions Plaud {db_id}: {e}]"
+
+
 def write_destination(destination: Path, label: str, content: str):
     """Écrit le contenu dans le fichier de destination."""
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -136,8 +172,10 @@ def main():
         print(f"  Lecture : {source['label']}")
         source_type = source.get("type", "")
 
-        if source_type in ("resumes",):
+        if source_type == "resumes":
             content = get_database_content(page_id)
+        elif source_type == "transcriptions_plaud":
+            content = get_plaud_transcriptions(page_id, config.get("last_sync"))
         else:
             content = get_page_content(page_id)
 

@@ -16,11 +16,11 @@
       "description": "Base de données Notion avec les résumés de sessions de travail"
     },
     {
-      "id": "REMPLACER_PAR_ID_PAGE_TRANSCRIPTIONS",
-      "type": "transcriptions",
-      "label": "Transcriptions",
-      "destination": "context/import/notion-transcriptions.md",
-      "description": "Transcriptions de réunions, formations, initiations archivées dans Notion"
+      "id": "REMPLACER_PAR_ID_PAGE_TRANSCRIPTIONS_PLAUD",
+      "type": "transcriptions_plaud",
+      "label": "Transcriptions Plaud",
+      "destination": "context/import/plaud-transcriptions.md",
+      "description": "Transcriptions exportées automatiquement depuis l'app Plaud vers Notion"
     },
     {
       "id": "REMPLACER_PAR_ID_PAGE_PROJETS",
