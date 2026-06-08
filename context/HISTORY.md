@@ -14,6 +14,9 @@
 - Constat : le MCP Notion fonctionne désormais directement depuis le cloud Claude Code (le blocage `api.notion.com` noté le 2026-06-06 n'est plus d'actualité dans cette session)
 - Premier sync vers `context/import/notion-chatgpt-archives.md` : index thématique d'environ 34 conversations récentes (dominante Kôngo/spiritualité, développement personnel, apprentissage)
 - Limite : la recherche MCP est sémantique et plafonnée, non exhaustive. Script `scripts/sync-notion.py` corrigé pour traiter `chatgpt_archives` comme une base de données (pagination complète + extraits de contenu) pour un export intégral local
+- Automatisation : sync incrémental ajouté en étape 0 de la commande `/morning`
+- Ajout du mode `/sync-notion --full` : balayage sémantique multi-requêtes (best-effort) pour rattraper les conversations manquées par l'incrémental. Premier passage : index élargi à une centaine de conversations (ajout des familles télécom/pro, rituels, QCM, mémoire absentes au départ)
+- Doublons réels détectés dans la base Notion (« Courrier à ZTE programmation » ×3, « Maîtriser mémoire hologène » ×2), à nettoyer côté Notion
 - Rappel sécurité toujours en attente : régénérer le token Notion exposé le 2026-06-06
 
 ---
