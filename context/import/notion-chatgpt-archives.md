@@ -43,6 +43,13 @@ Bloc dominant des archives. Reflète l'axe recherche sur les civilisations afric
 - [Pilier vs Pont](https://app.notion.com/p/37992f894f8c81ab89bed8f6f278f6ff)
 - [Limite vs Seuil](https://app.notion.com/p/37992f894f8c8143bf0df56d1eaf5ed3)
 - [Gestion des lignes de temps](https://app.notion.com/p/37992f894f8c81948920c459a4c09d84)
+- [Interprétation symbolique Kôngo](https://app.notion.com/p/37992f894f8c81f4938bd0ee37d38af0)
+- [Interprétation symbolique langage](https://app.notion.com/p/37992f894f8c814a95e9f5fd6f6fcc7a)
+- [Signification des mots Kongo](https://app.notion.com/p/37992f894f8c814fa8e2efebbc939a6e)
+- [Corps et voies Kongo](https://app.notion.com/p/37992f894f8c81798e45f89328d0fa56)
+- [Activation pendule Thoth Kongo](https://app.notion.com/p/37992f894f8c81f89d83f4bce0d08915)
+- [Interprétation vampirisme subtil](https://app.notion.com/p/37992f894f8c815596cbc38b01fa6f4e)
+- [Voir sa propre aura](https://app.notion.com/p/37992f894f8c811f8f3adc57a6096819)
 
 ## Développement personnel et gestion émotionnelle
 
@@ -51,6 +58,10 @@ Bloc dominant des archives. Reflète l'axe recherche sur les civilisations afric
 - [Gestion émotionnelle au travail](https://app.notion.com/p/37992f894f8c813683f7c66ea98de625)
 - [Évolution relationnelle personnelle](https://app.notion.com/p/37992f894f8c81298d3afffbaffa581d)
 - [Mémoire spatiale et émotion](https://app.notion.com/p/37992f894f8c8168abdadaa5cf2d2b63)
+- [Interprétation d'une rupture](https://app.notion.com/p/37992f894f8c8102a99be12894698265)
+- [Planification et nettoyage cellulaire](https://app.notion.com/p/37992f894f8c81a49a1ad634a179b075)
+- [Clôture cyclique consciente](https://app.notion.com/p/37992f894f8c8176883be24e07eb59fc)
+- [Mise à jour intérieure](https://app.notion.com/p/37992f894f8c81049eb5c04e13997d42)
 
 ## Apprentissage et neurosciences
 
@@ -58,6 +69,7 @@ Axe prioritaire d'aide (cf. CONTEXT.md).
 
 - [Méthode calcul mental](https://app.notion.com/p/37992f894f8c81389c74d6750cbb3545)
 - [Qcm Mbu 300 Questions Csv](https://app.notion.com/p/37992f894f8c815caf41fadfdcc438b4)
+- [Qcm Ki Mahungu](https://app.notion.com/p/37992f894f8c81db8492ea1d2f50495c)
 
 ## Quotidien et divers
 
