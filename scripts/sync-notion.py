@@ -119,6 +119,93 @@ def get_plaud_transcriptions(db_id: str, last_sync: str | None) -> str:
         return f"[Erreur lecture transcriptions Plaud {db_id}: {e}]"
 
 
+def get_chatgpt_archives(db_id: str, last_sync: str | None, excerpt_chars: int = 4000) -> str:
+    """Récupère les conversations ChatGPT depuis la base Notion alimentée par
+    l'extension Chrome 'ChatGPT Chats Manager'. Pagine toute la base, trie par
+    date de conversation décroissante, et pour chaque entrée extrait métadonnées
+    (titre, date, tags, projet, URL) plus un extrait du contenu."""
+    try:
+        filter_params = {}
+        if last_sync:
+            filter_params = {
+                "filter": {
+                    "timestamp": "last_edited_time",
+                    "last_edited_time": {"after": last_sync},
+                }
+            }
+
+        pages = []
+        cursor = None
+        while True:
+            kwargs = dict(
+                database_id=db_id,
+                sorts=[{"timestamp": "created_time", "direction": "descending"}],
+                **filter_params,
+            )
+            if cursor:
+                kwargs["start_cursor"] = cursor
+            results = notion.databases.query(**kwargs)
+            pages.extend(results.get("results", []))
+            if not results.get("has_more"):
+                break
+            cursor = results.get("next_cursor")
+
+        if not pages:
+            return "[Aucune nouvelle conversation ChatGPT depuis la dernière sync]"
+
+        sections = []
+        for page in pages:
+            props = page.get("properties", {})
+
+            title_prop = next((v for v in props.values() if v.get("type") == "title"), None)
+            title = "".join(t.get("plain_text", "") for t in title_prop.get("title", [])) if title_prop else "Sans titre"
+
+            chat_time = ""
+            ct = props.get("ChatTime", {})
+            if ct.get("type") == "date" and ct.get("date"):
+                chat_time = ct["date"].get("start", "")[:10]
+
+            project = ""
+            pn = props.get("ProjectName", {})
+            if pn.get("type") in ("rich_text", "text"):
+                project = "".join(t.get("plain_text", "") for t in pn.get(pn["type"], []))
+
+            tags = []
+            tg = props.get("Tags", {})
+            if tg.get("type") == "multi_select":
+                tags = [o.get("name", "") for o in tg.get("multi_select", [])]
+
+            url = ""
+            up = props.get("URL", {})
+            if up.get("type") == "url":
+                url = up.get("url") or ""
+
+            header = f"## {title}"
+            meta = []
+            if chat_time:
+                meta.append(f"Date : {chat_time}")
+            if project:
+                meta.append(f"Projet : {project}")
+            if tags:
+                meta.append(f"Tags : {', '.join(tags)}")
+            if url:
+                meta.append(f"Source : {url}")
+
+            content = get_page_content(page.get("id", ""))
+            if excerpt_chars and len(content) > excerpt_chars:
+                content = content[:excerpt_chars].rstrip() + "\n\n[... contenu tronqué, voir la page Notion ...]"
+
+            block = header + "\n\n"
+            if meta:
+                block += "> " + " | ".join(meta) + "\n\n"
+            block += content
+            sections.append(block)
+
+        return "\n\n---\n\n".join(sections)
+    except Exception as e:
+        return f"[Erreur lecture archives ChatGPT {db_id}: {e}]"
+
+
 def write_destination(destination: Path, label: str, content: str):
     """Écrit le contenu dans le fichier de destination."""
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -176,6 +263,8 @@ def main():
             content = get_database_content(page_id)
         elif source_type == "transcriptions_plaud":
             content = get_plaud_transcriptions(page_id, config.get("last_sync"))
+        elif source_type == "chatgpt_archives":
+            content = get_chatgpt_archives(page_id, config.get("last_sync"))
         else:
             content = get_page_content(page_id)
 

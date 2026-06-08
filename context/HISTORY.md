@@ -5,6 +5,19 @@
 
 ---
 
+## 2026-06-08
+
+### Synchronisation Notion — Archives ChatGPT
+
+- Identification de la base Notion « ChatGPT conversations » (id `2d892f89-4f8c-81f7-89f8-e1fcfcb851cd`), alimentée par l'extension Chrome « ChatGPT Chats Manager » (Save ChatGPT to Notion) depuis le Mac
+- `notion-config.json` configuré : source `chatgpt_archives` reliée à la base et à son data source `2d892f89-4f8c-8131-bcc9-000bfd3f3bda`
+- Constat : le MCP Notion fonctionne désormais directement depuis le cloud Claude Code (le blocage `api.notion.com` noté le 2026-06-06 n'est plus d'actualité dans cette session)
+- Premier sync vers `context/import/notion-chatgpt-archives.md` : index thématique d'environ 34 conversations récentes (dominante Kôngo/spiritualité, développement personnel, apprentissage)
+- Limite : la recherche MCP est sémantique et plafonnée, non exhaustive. Script `scripts/sync-notion.py` corrigé pour traiter `chatgpt_archives` comme une base de données (pagination complète + extraits de contenu) pour un export intégral local
+- Rappel sécurité toujours en attente : régénérer le token Notion exposé le 2026-06-06
+
+---
+
 ## 2026-06-06
 
 ### Mise à jour de session — Configuration Jarvis et intégration Notion
