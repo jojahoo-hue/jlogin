@@ -2,9 +2,9 @@
   "last_sync": null,
   "sources": [
     {
-      "id": "2d892f894f8c81029126cf222d713d58",
+      "id": "2d892f894f8c81f789f8e1fcfcb851cd",
       "type": "chatgpt_archives",
-      "label": "ChatGPT Chats Manager",
+      "label": "ChatGPT conversations (base de données)",
       "destination": "context/import/notion-chatgpt-archives.md",
       "description": "Base de données Notion des conversations ChatGPT archivées"
     },
