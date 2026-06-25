@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mathart"
+version = "0.1.0"
+description = "Formula-driven generative art for Cricut SVG stencils"
+requires-python = ">=3.9"
+dependencies = ["numpy"]
+
+[project.optional-dependencies]
+plot = ["matplotlib"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mathart*"]
