@@ -17,7 +17,9 @@
 - Automatisation : sync incrémental ajouté en étape 0 de la commande `/morning`
 - Ajout du mode `/sync-notion --full` : balayage sémantique multi-requêtes (best-effort) pour rattraper les conversations manquées par l'incrémental. Premier passage : index élargi à une centaine de conversations (ajout des familles télécom/pro, rituels, QCM, mémoire absentes au départ)
 - Doublons réels détectés dans la base Notion (« Courrier à ZTE programmation » ×3, « Maîtriser mémoire hologène » ×2), à nettoyer côté Notion
-- Extraction des projets via le champ `ProjectName` des conversations : 4 projets nommés identifiés (Lead Process O&M, Nza Ngai dia Nzayi, Nza ngai Sono Zi Tiya, Nza Nga dia KiTuni) et ajoutés à CONTEXT.md (échantillon de 8 conversations, non exhaustif)
+- Extraction des projets via le champ `ProjectName` des conversations : d'abord 4 projets sur échantillon, puis inventaire exhaustif via l'outil SQL Notion (`query-data-sources`) : 1130 conversations réparties sur 24 projets nommés. CONTEXT.md mis à jour avec la cartographie complète
+- Projets nouveaux révélés, absents du contexte initial : Conseiller Patrimonial Indépendant (21), Créer un livre cours Ki Bakala (28), Dvt projet petit immeuble de 6 appartements (4), Lead QHSE Digital Architecture (20). À valider et prioriser avec Njaho
+- Constat volume : la base réelle compte 1130 conversations, l'index MCP par recherche sémantique n'en captait qu'une centaine (non-exhaustif confirmé)
 - Vérification sécurité : aucun token Notion réel présent dans le dépôt (working tree ni historique git) ; `.env` non suivi et gitignored. Régénération du token exposé dans le chat le 2026-06-06 reste recommandée
 
 ---

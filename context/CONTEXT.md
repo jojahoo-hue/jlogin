@@ -77,12 +77,44 @@ Responsable d'exploitation et responsable du service des formations dans un opé
 
 ### Projets structurés dans Notion (champ `ProjectName`)
 
-Noms de projets tels que définis par Njaho dans sa base « ChatGPT conversations » (préfixe kikongo « Nza Ngai dia... » = « Mon monde de... »). Extraits par sync le 2026-06-08 (échantillon, non exhaustif).
+Inventaire exhaustif de la base « ChatGPT conversations » : **1130 conversations**, extrait le 2026-06-08 via requête SQL Notion. Nombre de conversations entre parenthèses. Les projets « Nza (N)gai dia... » sont les "mondes" personnels de Njaho liés à la tradition Kôngo.
 
-- **Lead Process O&M** (pro) : automatisation de l'exploitation, dont la programmation massive de tests de décharge batterie via CSU/ZTE et la maintenance prédictive réseau
-- **Nza Ngai dia Nzayi** (savoir) : méthodes d'apprentissage et neurosciences (Méthode des 4 Portes, NeuroGym/Genicode, calcul mental, QCM de révision), et développement personnel
-- **Nza ngai Sono Zi Tiya** (écriture de feu) : système géo-mathématique base 12, numérologie sacrée Kiboutou, école Kimontu, lien art et enseignement Kongo
-- **Nza Nga dia KiTuni** (transmission) : accompagnement de son fils, mémoire hologène et pédagogie initiatique père-fils
+**Professionnel, exploitation et résilience télécom**
+- Lead Process O&M Digital Architecture (237) : automatisation de l'exploitation, ex. tests de décharge batterie via CSU/ZTE, maintenance prédictive
+- Lead QHSE Digital Architecture (20) et QHSE Digital (1) : digitalisation QHSE
+- Hybrid Resilience Telecom Architect (4) : architecture de résilience réseau
+
+**Savoir, apprentissage, pédagogie**
+- Nza Ngai dia Nzayi (123) : méthodes d'apprentissage, neurosciences, Méthode des 4 Portes, NeuroGym/Genicode, QCM, développement personnel
+- Créer un livre cours Ki Bakala (28) : projet de livre / cours structuré
+- Nza Ngai dia Sinsu (4) : écriture / signes
+
+**Spiritualité, tradition Kôngo, écriture de feu**
+- Nza Ngai dia Ndosi (194) : travail sur les rêves et songes
+- Thot Mfumu TuTi dia Tiya (67) : écriture de feu, Thot
+- Nza Nga dia Mbazi (32) : guides Ba Mbazi
+- Nza ngai Sono Zi Tiya (25) : géo-mathématique base 12, numérologie sacrée, école Kimontu
+- Nza ngai dia kikonko (9), Nza Ngai Gataki (3)
+
+**Transmission, famille**
+- Nza Nga dia KiTuni (160) : accompagnement de son fils, mémoire hologène, pédagogie père-fils
+- Joâo (15) : suivi personnel de son fils
+
+**Vie, santé, leadership**
+- Nza Ngai dia Moyo (14), Leadership Totémique (12), Nza Nga dia Yala (8)
+
+**Entrepreneuriat, finances, immobilier**
+- Conseiller Patrimonial Indépendant (21) : activité de conseil patrimonial
+- Nza Ngai dia MBongo (16) : finances / gestion de l'argent
+- Dvt projet petit immeuble de 6 appartements (4) : projet immobilier
+- Gestion entreprise (4)
+
+**Créatif**
+- Écriture (2), AI Movie (1)
+
+Sans projet assigné : 126.
+
+> Traductions kikongo indicatives, à préciser par Njaho. Plusieurs projets ci-dessus (conseil patrimonial, immobilier, livre Ki Bakala, QHSE) n'apparaissaient pas encore dans la liste des projets en cours.
 
 ---
 
