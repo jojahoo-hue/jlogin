@@ -75,6 +75,15 @@ Responsable d'exploitation et responsable du service des formations dans un opé
 - **Écriture de livres** : vulgariser le cheminement spirituel et les initiations pour partage collectif
 - **Migration ChatGPT vers Claude** : transfert de tous les projets et fichiers Notion vers cet environnement
 
+### Projets structurés dans Notion (champ `ProjectName`)
+
+Noms de projets tels que définis par Njaho dans sa base « ChatGPT conversations » (préfixe kikongo « Nza Ngai dia... » = « Mon monde de... »). Extraits par sync le 2026-06-08 (échantillon, non exhaustif).
+
+- **Lead Process O&M** (pro) : automatisation de l'exploitation, dont la programmation massive de tests de décharge batterie via CSU/ZTE et la maintenance prédictive réseau
+- **Nza Ngai dia Nzayi** (savoir) : méthodes d'apprentissage et neurosciences (Méthode des 4 Portes, NeuroGym/Genicode, calcul mental, QCM de révision), et développement personnel
+- **Nza ngai Sono Zi Tiya** (écriture de feu) : système géo-mathématique base 12, numérologie sacrée Kiboutou, école Kimontu, lien art et enseignement Kongo
+- **Nza Nga dia KiTuni** (transmission) : accompagnement de son fils, mémoire hologène et pédagogie initiatique père-fils
+
 ---
 
 ## Mes outils et préférences

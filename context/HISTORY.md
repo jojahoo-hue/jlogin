@@ -17,7 +17,8 @@
 - Automatisation : sync incrémental ajouté en étape 0 de la commande `/morning`
 - Ajout du mode `/sync-notion --full` : balayage sémantique multi-requêtes (best-effort) pour rattraper les conversations manquées par l'incrémental. Premier passage : index élargi à une centaine de conversations (ajout des familles télécom/pro, rituels, QCM, mémoire absentes au départ)
 - Doublons réels détectés dans la base Notion (« Courrier à ZTE programmation » ×3, « Maîtriser mémoire hologène » ×2), à nettoyer côté Notion
-- Rappel sécurité toujours en attente : régénérer le token Notion exposé le 2026-06-06
+- Extraction des projets via le champ `ProjectName` des conversations : 4 projets nommés identifiés (Lead Process O&M, Nza Ngai dia Nzayi, Nza ngai Sono Zi Tiya, Nza Nga dia KiTuni) et ajoutés à CONTEXT.md (échantillon de 8 conversations, non exhaustif)
+- Vérification sécurité : aucun token Notion réel présent dans le dépôt (working tree ni historique git) ; `.env` non suivi et gitignored. Régénération du token exposé dans le chat le 2026-06-06 reste recommandée
 
 ---
 
