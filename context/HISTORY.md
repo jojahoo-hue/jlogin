@@ -5,6 +5,18 @@
 
 ---
 
+## 2026-07-11
+
+### Mise à jour de session — Finalisation config MCP/projet
+- MCP Notion (npx) retiré de .claude/settings.json : non fonctionnel en cloud (api.notion.com bloqué + NOTION_TOKEN absent). Option A confirmée : lecture Notion assurée par scripts/sync-notion.py depuis le Mac.
+- Bug corrigé dans plaud-auto-sync.sh : push vers HEAD au lieu de la branche codée en dur claude/prime-tDwAc (les syncs partaient sur l'ancienne branche).
+- Audit sécurité du dépôt : aucun secret en dur, tout passe par .env gitignoré.
+- Point de sécurité toujours ouvert : régénérer le token Notion exposé le 6 juin.
+- Recommandation notée : adopter une branche stable (main) comme point d'ancrage du Jarvis plutôt que les branches claude/prime-* changeantes.
+- Commit poussé sur claude/prime-2hx48v.
+
+---
+
 ## 2026-06-06
 
 ### Mise à jour de session — Configuration Jarvis et intégration Notion
