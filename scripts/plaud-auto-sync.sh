@@ -31,7 +31,7 @@ if python3 scripts/sync-notion.py >> "$LOG_FILE" 2>&1; then
     else
         git add context/import/
         git commit -m "Auto-sync Plaud transcriptions $(date '+%Y-%m-%d %H:%M')"
-        git push origin claude/prime-tDwAc
+        git push origin HEAD
         echo "[$TIMESTAMP] Push git effectué" >> "$LOG_FILE"
     fi
 else
