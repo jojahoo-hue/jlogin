@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """
 Sync Notion pages to Jarvis context files.
+
+[DEPRECIE 2026-07-11] L'accès Notion principal passe désormais par le
+connecteur natif claude.ai (OAuth), lecture/écriture en direct. Ce script
+est conservé comme fallback hors-ligne (archivage git, connecteur indispo).
+
 Usage: python3 scripts/sync-notion.py
 Requires: pip install notion-client python-dotenv
 """

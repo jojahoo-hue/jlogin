@@ -1,5 +1,11 @@
 #!/bin/bash
 # Auto-sync Plaud → Notion → Jarvis
+#
+# [DEPRECIE 2026-07-11] L'accès Notion principal passe par le connecteur natif
+# claude.ai (OAuth). Ce script reste un fallback pour archiver les
+# transcriptions Plaud dans context/import/ via git. Ligne cron retirée de
+# crontab-setup.sh ; à réactiver manuellement si tu veux l'archivage git.
+#
 # À lancer via cron sur le Mac toutes les 2 heures
 #
 # Installation cron (ouvrir Terminal sur Mac) :

@@ -1,6 +1,11 @@
 # Commande /sync-notion
 
 > Synchronise le contexte Jarvis depuis les pages Notion de Njaho.
+>
+> [Mise à jour 2026-07-11] Le canal principal est le connecteur natif Notion
+> (OAuth claude.ai), qui donne un accès direct aux pages depuis le cloud.
+> Utilise ce connecteur en priorité. Le script Python `sync-notion.py` n'est
+> qu'un fallback hors-ligne si le connecteur est indisponible.
 
 ## Ce que tu dois faire
 

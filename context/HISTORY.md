@@ -7,6 +7,14 @@
 
 ## 2026-07-11
 
+### Mise à jour de session — Bascule Notion vers connecteur natif
+- Décision : Notion passe du script Mac (Option A) au connecteur natif claude.ai en OAuth (Option B), accès live lecture/écriture depuis le cloud.
+- Scripts sync-notion.py et plaud-auto-sync.sh dépréciés (conservés comme fallback hors-ligne, non supprimés).
+- Ligne cron « Sync Plaud/Notion */2h » retirée de crontab-setup.sh.
+- Commande /sync-notion mise à jour : connecteur natif prioritaire, script en fallback.
+- CONTEXT.md mis à jour sur le canal Notion.
+- Action Njaho : autoriser le connecteur Notion sur claude.ai (Réglages > Connecteurs) et sélectionner les pages à partager. Le connecteur n'est visible qu'après reconnexion de session.
+
 ### Mise à jour de session — Finalisation config MCP/projet
 - MCP Notion (npx) retiré de .claude/settings.json : non fonctionnel en cloud (api.notion.com bloqué + NOTION_TOKEN absent). Option A confirmée : lecture Notion assurée par scripts/sync-notion.py depuis le Mac.
 - Bug corrigé dans plaud-auto-sync.sh : push vers HEAD au lieu de la branche codée en dur claude/prime-tDwAc (les syncs partaient sur l'ancienne branche).

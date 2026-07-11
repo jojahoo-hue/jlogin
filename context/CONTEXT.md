@@ -81,7 +81,7 @@ Responsable d'exploitation et responsable du service des formations dans un opé
 
 ### Outils utilisés au quotidien
 
-- Notion (base de connaissance principale)
+- Notion (base de connaissance principale, accès via connecteur natif claude.ai en OAuth, lecture/écriture en direct depuis le cloud). Les scripts de sync locaux (`sync-notion.py`, `plaud-auto-sync.sh`) sont conservés en fallback hors-ligne mais ne sont plus le canal principal.
 - Google Workspace (Gmail, Drive, Docs, Sheets)
 - Excel / Power BI (données et reporting)
 - SharePoint

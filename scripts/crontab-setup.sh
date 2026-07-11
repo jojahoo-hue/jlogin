@@ -4,8 +4,10 @@
 #
 # Crons installés :
 #   07:00 chaque jour  → briefing matinal (Claude API + Telegram)
-#   toutes les 2h      → sync Plaud/Notion
 #   22:00 chaque jour  → rappel /done via Telegram
+#
+# Note : la sync Plaud/Notion */2h a été retirée le 2026-07-11 (Notion passe
+# par le connecteur natif claude.ai). Réactive-la ici si tu veux l'archivage git.
 
 JLOGIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
@@ -29,9 +31,6 @@ cat >> /tmp/new-crontab << EOF
 # Briefing matinal 7h (Claude API + Telegram notification)
 0 7 * * * cd "$JLOGIN_DIR" && python3 scripts/morning-briefing.py >> scripts/morning.log 2>&1
 
-# Sync Plaud/Notion toutes les 2h
-0 */2 * * * "$JLOGIN_DIR/scripts/plaud-auto-sync.sh" >> scripts/sync.log 2>&1
-
 # Rappel /done à 22h via Telegram
 0 22 * * * cd "$JLOGIN_DIR" && python3 -c "
 import os, requests
@@ -54,7 +53,6 @@ rm /tmp/current-crontab /tmp/new-crontab
 echo ""
 echo "✓ Crons Jarvis installés :"
 echo "  07:00 → Briefing matinal (Claude + Telegram)"
-echo "  */2h  → Sync Plaud/Notion"
 echo "  22:00 → Rappel /done (Telegram)"
 echo ""
 echo "Vérifier avec : crontab -l"
