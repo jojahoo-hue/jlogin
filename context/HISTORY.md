@@ -7,6 +7,13 @@
 
 ## 2026-07-11
 
+### Mise à jour de session — Audit et corrections du bot Telegram
+- Connecteur Notion natif testé et validé : accès live en lecture aux pages (supervision NOC, art, spirituel). Bascule Option B pleinement opérationnelle.
+- Bot Telegram audité. Corrections : modèle claude-sonnet-4-6 (inexistant) remplacé par claude-sonnet-5 dans telegram-bot.py et morning-briefing.py ; restriction sécurité au seul TELEGRAM_CHAT_ID (filters.Chat, CHAT_ID obligatoire) ; suppression du code mort speak() et pomodoro_auto().
+- Nouvelle fonctionnalité : réponse vocale du bot (macOS say + ffmpeg → note vocale Opus), activable via VOICE_REPLY. Le bot répond en texte et en audio aux vocaux.
+- Décision architecture : Notion NON branché sur le bot Telegram (Option 3). Le bot reste le canal rapide (contexte + Claude + vocal) ; le travail Notion se fait dans Claude Code via le connecteur OAuth. Séparation claire, un seul mécanisme Notion.
+- Rappel : le bot Telegram est un Jarvis allégé (Claude + CLAUDE.md + CONTEXT.md), sans accès Notion/fichiers/skills.
+
 ### Mise à jour de session — Bascule Notion vers connecteur natif
 - Décision : Notion passe du script Mac (Option A) au connecteur natif claude.ai en OAuth (Option B), accès live lecture/écriture depuis le cloud.
 - Scripts sync-notion.py et plaud-auto-sync.sh dépréciés (conservés comme fallback hors-ligne, non supprimés).
