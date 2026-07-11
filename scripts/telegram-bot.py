@@ -50,6 +50,10 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 ANTHROPIC_KEY = os.getenv("ANTHROPIC_API_KEY")
 
+# Réponse vocale (optionnel). Nécessite macOS `say` + `ffmpeg` (brew install ffmpeg).
+VOICE_REPLY = os.getenv("VOICE_REPLY", "true").lower() == "true"
+TTS_VOICE = os.getenv("TTS_VOICE", "Thomas")  # voix FR macOS
+
 if not all([TELEGRAM_TOKEN, ANTHROPIC_KEY, CHAT_ID]):
     print("Variables manquantes dans .env : TELEGRAM_BOT_TOKEN, ANTHROPIC_API_KEY, TELEGRAM_CHAT_ID")
     print("TELEGRAM_CHAT_ID est requis pour restreindre le bot à ton seul compte.")
@@ -80,6 +84,39 @@ def ask_claude(user_message: str, system_extra: str = "") -> str:
         messages=[{"role": "user", "content": user_message}]
     )
     return response.content[0].text
+
+
+def text_to_voice(text: str) -> str | None:
+    """Synthèse vocale d'une réponse en note vocale OGG/Opus.
+
+    Utilise la commande macOS `say` (voix FR native) puis `ffmpeg` pour
+    convertir en Opus, format des notes vocales Telegram. Retourne le chemin
+    du fichier .ogg, ou None si `say`/`ffmpeg` sont indisponibles (le bot
+    répond alors en texte uniquement).
+    """
+    import shutil
+    import subprocess
+
+    if not shutil.which("say") or not shutil.which("ffmpeg"):
+        logger.warning("Synthèse vocale ignorée : `say` ou `ffmpeg` introuvable.")
+        return None
+    try:
+        with tempfile.NamedTemporaryFile(suffix=".aiff", delete=False) as f:
+            aiff_path = f.name
+        ogg_path = aiff_path[:-5] + ".ogg"
+        subprocess.run(
+            ["say", "-v", TTS_VOICE, "-o", aiff_path, text],
+            check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        )
+        subprocess.run(
+            ["ffmpeg", "-y", "-i", aiff_path, "-c:a", "libopus", "-b:a", "32k", ogg_path],
+            check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        )
+        os.unlink(aiff_path)
+        return ogg_path
+    except Exception as e:
+        logger.warning(f"Synthèse vocale échouée : {e}")
+        return None
 
 
 def transcribe_audio(audio_path: str) -> str:
@@ -195,6 +232,18 @@ async def handle_voice(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     response = ask_claude(transcription)
     await update.message.reply_text(response)
+
+    # Vocal reçu → réponse aussi en vocal (si activé et outils dispo).
+    if VOICE_REPLY:
+        # On limite la longueur synthétisée pour garder une note vocale courte.
+        voice_text = response if len(response) <= 1200 else response[:1200] + "…"
+        ogg_path = text_to_voice(voice_text)
+        if ogg_path:
+            try:
+                with open(ogg_path, "rb") as vf:
+                    await update.message.reply_voice(vf)
+            finally:
+                os.unlink(ogg_path)
 
 
 # ─── MAIN ─────────────────────────────────────────────────────────────────────
