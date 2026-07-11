@@ -50,8 +50,9 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 ANTHROPIC_KEY = os.getenv("ANTHROPIC_API_KEY")
 
-if not all([TELEGRAM_TOKEN, ANTHROPIC_KEY]):
-    print("Variables manquantes dans .env : TELEGRAM_BOT_TOKEN, ANTHROPIC_API_KEY")
+if not all([TELEGRAM_TOKEN, ANTHROPIC_KEY, CHAT_ID]):
+    print("Variables manquantes dans .env : TELEGRAM_BOT_TOKEN, ANTHROPIC_API_KEY, TELEGRAM_CHAT_ID")
+    print("TELEGRAM_CHAT_ID est requis pour restreindre le bot à ton seul compte.")
     exit(1)
 
 claude = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
@@ -73,7 +74,7 @@ def ask_claude(user_message: str, system_extra: str = "") -> str:
         system += f"\n\n{system_extra}"
 
     response = claude.messages.create(
-        model="claude-sonnet-4-6",
+        model="claude-sonnet-5",
         max_tokens=1500,
         system=system,
         messages=[{"role": "user", "content": user_message}]
@@ -92,25 +93,6 @@ def transcribe_audio(audio_path: str) -> str:
         return "[Whisper non installé. Lancer : pip install openai-whisper]"
     except Exception as e:
         return f"[Erreur transcription : {e}]"
-
-
-def speak(text: str) -> bytes | None:
-    """Convertit le texte en audio via pyttsx3 (Mac natif)."""
-    try:
-        import pyttsx3
-        import io
-        engine = pyttsx3.init()
-        engine.setProperty("rate", 180)
-        with tempfile.NamedTemporaryFile(suffix=".aiff", delete=False) as f:
-            tmp_path = f.name
-        engine.save_to_file(text, tmp_path)
-        engine.runAndWait()
-        with open(tmp_path, "rb") as f:
-            audio_bytes = f.read()
-        os.unlink(tmp_path)
-        return audio_bytes
-    except Exception:
-        return None
 
 
 # ─── HANDLERS ─────────────────────────────────────────────────────────────────
@@ -215,32 +197,22 @@ async def handle_voice(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(response)
 
 
-# ─── POMODORO AUTOMATIQUE ─────────────────────────────────────────────────────
-
-async def pomodoro_auto(context: ContextTypes.DEFAULT_TYPE):
-    """Pomodoro automatique toutes les 25 minutes si CHAT_ID défini."""
-    if not CHAT_ID:
-        return
-    response = ask_claude(
-        "Envoie un rappel Pomodoro court à Njaho : pause de 5 minutes et "
-        "question de recentrage sur sa priorité du moment. 2 phrases."
-    )
-    await context.bot.send_message(chat_id=CHAT_ID, text=f"⏱ {response}")
-
-
 # ─── MAIN ─────────────────────────────────────────────────────────────────────
 
 def main():
     app = Application.builder().token(TELEGRAM_TOKEN).build()
 
-    app.add_handler(CommandHandler("start", cmd_start))
-    app.add_handler(CommandHandler("morning", cmd_morning))
-    app.add_handler(CommandHandler("agenda", cmd_agenda))
-    app.add_handler(CommandHandler("supervision", cmd_supervision))
-    app.add_handler(CommandHandler("prime", cmd_prime))
-    app.add_handler(CommandHandler("pomodoro", cmd_pomodoro))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
-    app.add_handler(MessageHandler(filters.VOICE, handle_voice))
+    # Sécurité : le bot ne répond qu'au CHAT_ID de Njaho.
+    auth = filters.Chat(chat_id=int(CHAT_ID))
+
+    app.add_handler(CommandHandler("start", cmd_start, filters=auth))
+    app.add_handler(CommandHandler("morning", cmd_morning, filters=auth))
+    app.add_handler(CommandHandler("agenda", cmd_agenda, filters=auth))
+    app.add_handler(CommandHandler("supervision", cmd_supervision, filters=auth))
+    app.add_handler(CommandHandler("prime", cmd_prime, filters=auth))
+    app.add_handler(CommandHandler("pomodoro", cmd_pomodoro, filters=auth))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND & auth, handle_text))
+    app.add_handler(MessageHandler(filters.VOICE & auth, handle_voice))
 
     logger.info("Jarvis Bot démarré.")
     app.run_polling(allowed_updates=Update.ALL_TYPES)
