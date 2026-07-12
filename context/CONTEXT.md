@@ -25,7 +25,21 @@ Responsable d'exploitation et responsable du service des formations dans un opé
 **Ingénieur / Employé**
 - Poste : Responsable d'exploitation et responsable des formations
 - Secteur : Télécommunications
+- Opérateur : MADIACOM (co-entreprise Digicel + Free Caraïbes, Antilles françaises et Guyane)
 - Missions principales : supervision réseau, automatisation des processus incidents et d'intervention, digitalisation du centre de supervision, développement des outils de formation internes, structuration du service informatique
+
+### Architecture technique de supervision (NOC)
+
+| Couche | Système |
+|--------|---------|
+| Plateforme de supervision | Oracle Communications Unified Assurance (OUA/OCUA) — corrélation RC3, ML Anomaly Detection, Topology RCA |
+| Ticketing | ServiceNow (intégration bidirectionnelle avec OUA) |
+| EMS radio (RAN) | Nokia MantaRay |
+| EMS faisceaux hertziens (microwave) | NetNumen (ZTE) |
+| IP / MPLS (backbone) | Remontée directe en SNMP vers OUA (sans EMS intermédiaire) |
+| Télémétrie énergie (sites) | i-ENERGY ZTE (état secteur, tension DC, SOC, temps d'autonomie restant) |
+
+Baseline de performance de référence (déploiement OUA/NEC Aspire) : ~80% de tickets créés automatiquement, ~60% d'incidents en moins, MTTR -40%, temps NOC sur gestion d'alarmes réduit de 55% à 20%. La supervision est externalisée à un prestataire, en cours de consultation pour changement de prestataire (RFP).
 
 **Entrepreneur**
 - Développement de sites web pour la promotion de ses oeuvres artistiques

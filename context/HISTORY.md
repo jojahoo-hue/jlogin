@@ -5,6 +5,16 @@
 
 ---
 
+## 2026-07-12
+
+### Mise à jour de session — Automatisation NOC : cartographie et livrables RFP
+- Cartographie de l'architecture de supervision MADIACOM documentée dans CONTEXT.md : OUA/OCUA + ServiceNow, EMS radio Nokia MantaRay, EMS microwave NetNumen (ZTE), IP/MPLS en SNMP direct vers OUA, télémétrie énergie i-ENERGY ZTE.
+- Opérateur identifié : MADIACOM (Digicel + Free Caraïbes, Antilles/Guyane). Supervision externalisée, RFP de changement de prestataire en cours.
+- Séquencement d'automatisation défini : corrélation d'alarmes d'abord (déjà mature via RC3), escalades ensuite, troubleshooting en dernier. Boucle fermée réservée à un périmètre restreint.
+- Livrable : section CCTP corrélation d'alarmes pour le RFP (context/import/rfp-correlation-alarmes-noc.md), avec baseline OUA contractualisée et matrice familles/type/niveau d'automatisation.
+- Livrable : fiche technique boucle fermée énergie (context/import/scenario-energie-boucle-fermee.md), scénario site nodal sur batterie basé sur le temps d'autonomie i-ENERGY ZTE, avec garde-fous et phasage 0-3.
+- Points à auditer côté Njaho : calibration du temps d'autonomie i-ENERGY, couverture i-ENERGY sur tous les sites nodaux.
+
 ## 2026-07-11
 
 ### Mise à jour de session — Audit et corrections du bot Telegram
