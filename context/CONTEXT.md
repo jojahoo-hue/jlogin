@@ -30,14 +30,17 @@ Responsable d'exploitation et responsable du service des formations dans un opé
 
 ### Architecture technique de supervision (NOC)
 
+**Modèle : RAN sharing.** MADIACOM opère le réseau radio mutualisé entre Digicel et Free Caraïbes. Le périmètre de supervision couvre le RAN, le transport (hertzien + IP/MPLS) et l'énergie des sites. **Pas de supervision du cœur de réseau** : les cores restent chez chaque opérateur parent.
+
 | Couche | Système |
 |--------|---------|
 | Plateforme de supervision | Oracle Communications Unified Assurance (OUA/OCUA) — corrélation RC3, ML Anomaly Detection, Topology RCA |
 | Ticketing | ServiceNow (intégration bidirectionnelle avec OUA) |
 | EMS radio (RAN) | Nokia MantaRay |
 | EMS faisceaux hertziens (microwave) | NetNumen (ZTE) |
-| IP / MPLS (backbone) | Remontée directe en SNMP vers OUA (sans EMS intermédiaire) |
+| IP / MPLS (backhaul) | Remontée directe en SNMP vers OUA (sans EMS intermédiaire) |
 | Télémétrie énergie (sites) | i-ENERGY ZTE (état secteur, tension DC, SOC, temps d'autonomie restant) |
+| Cœur de réseau (core) | Hors périmètre (supervisé par les opérateurs parents) |
 
 Baseline de performance de référence (déploiement OUA/NEC Aspire) : ~80% de tickets créés automatiquement, ~60% d'incidents en moins, MTTR -40%, temps NOC sur gestion d'alarmes réduit de 55% à 20%. La supervision est externalisée à un prestataire, en cours de consultation pour changement de prestataire (RFP).
 
