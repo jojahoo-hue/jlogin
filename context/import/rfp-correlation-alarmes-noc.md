@@ -12,8 +12,14 @@
 
 La présente section définit les exigences relatives à la **corrélation des
 alarmes** et à l'**automatisation du déclenchement des incidents** dans le
-centre de supervision (NOC) supervisant le réseau mobile et fixe (2G à 5G) sur
-le territoire.
+centre de supervision (NOC) du réseau radio mutualisé (**RAN sharing**) et de
+son transport sur le territoire.
+
+**Périmètre de supervision :** RAN, transport (faisceaux hertziens, IP/MPLS) et
+énergie des sites. **Le cœur de réseau (core) est hors périmètre** (supervisé
+par les opérateurs parents). En conséquence, l'impact service n'est pas mesuré
+de bout en bout côté abonné, mais **inféré à partir de la disponibilité RAN et
+transport** agrégée par zone.
 
 Le prestataire retenu opérera sur la plateforme existante **Oracle
 Communications Unified Assurance (OCUA)**, intégrée de façon bidirectionnelle
@@ -64,7 +70,7 @@ la politique de corrélation, et applique le niveau d'automatisation cible.
 | Perte simultanée de plusieurs sites | Topologique + temporelle | Assisté | Recherche de cause commune énergie/transmission |
 | Dégradation multi-cellules + seuil de performance dépassé | Temporelle + performance | Assisté | Corrélation perf/faute, pas d'action auto |
 | Site nodal sur batterie / défaut climatisation | Causale (énergie) | **Boucle fermée** | Cascade déterministe, remédiation cadrée (cf. §5) |
-| Disruption > 5% d'un service critique (voix/SMS/data) territoire | Agrégation de service | Assisté, escalade prioritaire | Enjeu critique, décision humaine maintenue |
+| Indisponibilité RAN/transport agrégée par zone (> seuil de sites ou de population couverte) | Agrégation topologique | Assisté, escalade prioritaire | Proxy de l'impact service (core hors périmètre) ; décision humaine maintenue |
 
 Types de corrélation attendus :
 - **Topologique** : regroupement selon la hiérarchie réseau (site parent → sites enfants).

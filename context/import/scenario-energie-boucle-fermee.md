@@ -45,9 +45,10 @@ Northbound (SNMP traps pour les alarmes, API REST / fichiers pour les KPIs
    ├─[CLIMATISATION]  High temperature / AC fail (branche parallèle)
    │
    └─[CONSÉQUENTES RÉSEAU]  (supprimées, rattachées à la racine)
-        Perte cellules du site nodal (EMS RAN)
+        Perte cellules du site nodal (EMS RAN Nokia MantaRay)
+        Perte des liens hertziens portant les sites subordonnés (NetNumen ZTE)
         Perte des sites subordonnés (topologie)
-        Impact service voix/SMS/data zone
+        Indisponibilité RAN/transport agrégée zone (proxy impact, core hors périmètre)
 ```
 
 - **Causale** : l'alarme énergie racine domine, les alarmes réseau sont ses
@@ -56,7 +57,8 @@ Northbound (SNMP traps pour les alarmes, API REST / fichiers pour les KPIs
 - **Temporelle** : fenêtre d'agrégation de la cascade.
 
 Sortie : un incident unique, ex. *"Site nodal X sur batterie, autonomie estimée
-45 min (SOC 62%), 6 sites subordonnés impactés, service data dégradé zone Y"*.
+45 min (SOC 62%), 6 sites subordonnés impactés via hertzien, indisponibilité
+RAN/transport agrégée zone Y"*.
 
 ## 4. Logique de déclenchement (conditionnelle)
 
