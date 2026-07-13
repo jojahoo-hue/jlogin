@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automatisation du NOC — Note direction</title>
+<style>
+  :root {
+    --ground: #F6F7F9;
+    --surface: #FFFFFF;
+    --surface-2: #FBFCFD;
+    --ink: #10151C;
+    --muted: #59636F;
+    --faint: #8A93A0;
+    --line: #E4E8ED;
+    --accent: #0C7B84;
+    --accent-2: #0E8F99;
+    --energy: #B8730F;
+    --energy-bg: #FBF1E1;
+    --energy-line: #EAD4AE;
+    --shadow: 0 1px 2px rgba(16,21,28,.04), 0 8px 28px rgba(16,21,28,.06);
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #0B0F14;
+      --surface: #121821;
+      --surface-2: #0F151D;
+      --ink: #E9EDF2;
+      --muted: #9BA6B2;
+      --faint: #6B7683;
+      --line: #222C38;
+      --accent: #2BC3CC;
+      --accent-2: #46D5DD;
+      --energy: #E3A44B;
+      --energy-bg: #211A0F;
+      --energy-line: #4A3A1E;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #F6F7F9; --surface: #FFFFFF; --surface-2: #FBFCFD; --ink: #10151C;
+    --muted: #59636F; --faint: #8A93A0; --line: #E4E8ED; --accent: #0C7B84;
+    --accent-2: #0E8F99; --energy: #B8730F; --energy-bg: #FBF1E1; --energy-line: #EAD4AE;
+    --shadow: 0 1px 2px rgba(16,21,28,.04), 0 8px 28px rgba(16,21,28,.06);
+  }
+  :root[data-theme="dark"] {
+    --ground: #0B0F14; --surface: #121821; --surface-2: #0F151D; --ink: #E9EDF2;
+    --muted: #9BA6B2; --faint: #6B7683; --line: #222C38; --accent: #2BC3CC;
+    --accent-2: #46D5DD; --energy: #E3A44B; --energy-bg: #211A0F; --energy-line: #4A3A1E;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* Header */
+  header.masthead {
+    border-bottom: 1px solid var(--line);
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--accent) 6%, var(--surface)), var(--surface));
+  }
+  .masthead-inner { max-width: 860px; margin: 0 auto; padding: 28px 24px 34px; }
+  .statusline {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent);
+    animation: pulse 2.4s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); }
+    70% { box-shadow: 0 0 0 7px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+  @media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+
+  h1 {
+    font-size: clamp(28px, 5vw, 42px);
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    font-weight: 720;
+    margin: 20px 0 10px;
+    text-wrap: balance;
+  }
+  .lede { font-size: clamp(17px, 2.4vw, 19px); color: var(--muted); max-width: 60ch; margin: 0; }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 8px 20px;
+    margin-top: 22px;
+    font-family: var(--font-mono); font-size: 12.5px; color: var(--faint);
+  }
+  .meta span { white-space: nowrap; }
+  .meta b { color: var(--muted); font-weight: 600; }
+
+  /* Metric readout */
+  .metrics {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin: 34px 0 6px;
+  }
+  @media (max-width: 680px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+  .metric {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 16px 14px; box-shadow: var(--shadow);
+  }
+  .metric .val {
+    font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+    font-size: clamp(24px, 4vw, 30px); font-weight: 600; letter-spacing: -.01em;
+    color: var(--accent);
+  }
+  .metric .lab { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.35; }
+  .readout-note { font-family: var(--font-mono); font-size: 12px; color: var(--faint); margin: 14px 0 0; }
+
+  section { margin-top: 46px; }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent-2); margin: 0 0 8px;
+  }
+  h2 { font-size: clamp(21px, 3vw, 25px); letter-spacing: -.01em; font-weight: 680; margin: 0 0 12px; text-wrap: balance; }
+  p { margin: 0 0 14px; max-width: 66ch; }
+  strong { font-weight: 660; }
+
+  /* Sequence */
+  .seq { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .seq li {
+    display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 18px; box-shadow: var(--shadow);
+  }
+  .seq .idx {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+    color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+    border-radius: 8px; padding: 3px 9px; margin-top: 1px;
+  }
+  .seq .t { font-weight: 640; }
+  .seq .d { color: var(--muted); font-size: 15px; }
+
+  .callout {
+    margin-top: 22px; background: var(--surface); border: 1px solid var(--line);
+    border-left: 3px solid var(--accent); border-radius: 12px;
+    padding: 20px 22px; box-shadow: var(--shadow);
+  }
+  .callout h3 { margin: 0 0 8px; font-size: 18px; }
+  .callout ul { margin: 10px 0 0; padding-left: 20px; color: var(--muted); }
+  .callout li { margin: 5px 0; }
+
+  .alert {
+    margin-top: 22px; background: var(--energy-bg); border: 1px solid var(--energy-line);
+    border-left: 3px solid var(--energy); border-radius: 12px; padding: 18px 22px;
+  }
+  .alert .eyebrow { color: var(--energy); }
+  .alert p { margin: 0; }
+  .alert .arrow { display: block; margin-top: 10px; color: var(--ink); font-weight: 600; }
+
+  /* Ask */
+  .ask { counter-reset: ask; list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .ask li {
+    position: relative; padding: 18px 20px 18px 58px;
+    background: linear-gradient(180deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
+  }
+  .ask li::before {
+    counter-increment: ask; content: counter(ask);
+    position: absolute; left: 16px; top: 16px;
+    width: 28px; height: 28px; border-radius: 8px;
+    display: grid; place-items: center;
+    font-family: var(--font-mono); font-weight: 600; font-size: 14px;
+    color: var(--surface); background: var(--accent);
+  }
+  .ask b { font-weight: 660; }
+
+  footer { margin-top: 54px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--faint); font-size: 13px; font-family: var(--font-mono); }
+
+  a { color: var(--accent-2); }
+  :focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; border-radius: 4px; }
+</style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="statusline"><span class="dot" aria-hidden="true"></span> Centre de supervision · Note de synthèse direction</div>
+      <h1>Automatisation du centre de supervision</h1>
+      <p class="lede">D'une supervision assistée vers une exploitation semi-autonome, sans jamais agir seul sur le réseau.</p>
+      <div class="meta">
+        <span><b>Opérateur</b> MADIACOM</span>
+        <span><b>Modèle</b> RAN sharing</span>
+        <span><b>Périmètre</b> RAN · transport · énergie</span>
+        <span><b>Date</b> 12.07.2026</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <div class="metrics" role="list" aria-label="Baseline de performance actuelle">
+      <div class="metric" role="listitem"><div class="val">80%</div><div class="lab">tickets créés automatiquement</div></div>
+      <div class="metric" role="listitem"><div class="val">−60%</div><div class="lab">volume d'incidents</div></div>
+      <div class="metric" role="listitem"><div class="val">−40%</div><div class="lab">temps de résolution (MTTR)</div></div>
+      <div class="metric" role="listitem"><div class="val">−25%</div><div class="lab">ressources NOC mobilisées</div></div>
+    </div>
+    <p class="readout-note">Baseline du déploiement Oracle Unified Assurance · à confirmer sur nos données en Phase 0</p>
+
+    <section>
+      <p class="eyebrow">Le constat</p>
+      <h2>Nous ne partons pas de zéro</h2>
+      <p>Notre NOC est déjà automatisé via Oracle Unified Assurance (corrélation, apprentissage automatique, ticketing ServiceNow). La performance de référence est solide.</p>
+      <p>Deux faits nouveaux ouvrent une fenêtre d'action : un gisement d'automatisation reste inexploité, les 20% de tickets encore traités manuellement, et le changement de prestataire de supervision est en cours.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">La vision</p>
+      <h2>Un NOC recentré sur l'expertise</h2>
+      <p>Faire passer la supervision d'un modèle assisté à un modèle semi-autonome, où le système corrèle, priorise et déclenche les interventions. Moins de temps sur le bruit d'alarmes, une intervention plus rapide sur les incidents à fort impact.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">L'approche</p>
+      <h2>Prouver avant d'étendre</h2>
+      <p>Nous n'automatisons pas tout en même temps. Le séquencement suit le niveau de risque croissant :</p>
+      <ol class="seq">
+        <li><span class="idx">01</span><div><div class="t">Corrélation d'alarmes</div><div class="d">Déjà mature. On optimise et on mesure le gisement restant.</div></div></li>
+        <li><span class="idx">02</span><div><div class="t">Escalades</div><div class="d">Automatisation du routage des interventions selon une matrice de décision.</div></div></li>
+        <li><span class="idx">03</span><div><div class="t">Troubleshooting</div><div class="d">En dernier, au compte-goutte, sur des actions sûres et réversibles.</div></div></li>
+      </ol>
+      <p style="margin-top:18px;">L'automatisation pleinement autonome (boucle fermée) est réservée à <strong>un seul périmètre en phase 1 : l'énergie</strong>. Restreint, réversible, sans aucune action sur les équipements réseau.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Le quick win</p>
+      <h2>L'énergie, gain immédiat sans risque réseau</h2>
+      <div class="callout">
+        <h3>Site nodal sur batterie</h3>
+        <p>Quand un site bascule sur batterie, la panne est prévisible. Grâce à la télémétrie i-ENERGY (temps d'autonomie restant), le système peut :</p>
+        <ul>
+          <li>corréler l'événement racine et supprimer le bruit d'alarmes conséquent,</li>
+          <li>prioriser automatiquement selon l'autonomie réelle de chaque site,</li>
+          <li>déclencher le dispatch du groupe électrogène et alerter les équipes.</li>
+        </ul>
+        <p style="margin:12px 0 0; color:var(--muted);">Résultat attendu : moins de sites perdus par épuisement batterie, un délai d'intervention réduit, un impact client contenu.</p>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Le retour attendu</p>
+      <h2>La baseline devient notre plancher</h2>
+      <p>Les chiffres actuels (80% d'automatisation, incidents et MTTR en forte baisse) deviennent un <strong>plancher contractuel</strong> avec le nouveau prestataire : il ne peut pas dégrader l'acquis. Le gain additionnel vient du gisement manuel restant et du périmètre énergie.</p>
+      <p style="color:var(--muted); font-size:15px;">Ces chiffres seront confirmés sur nos propres données lors de l'audit Phase 0, avant tout engagement chiffré.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Urgence</p>
+      <h2>Une fenêtre qui se ferme</h2>
+      <div class="alert">
+        <p class="eyebrow">À traiter maintenant</p>
+        <p>Le prestataire sortant détient une connaissance critique : politiques de corrélation, topologie réseau, calibrage énergie. Sans action, elle part avec lui.</p>
+        <span class="arrow">→ Activer une clause de réversibilité dans le contrat sortant pour récupérer ces éléments avant la bascule.</span>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">La demande</p>
+      <h2>Trois décisions</h2>
+      <ol class="ask">
+        <li><b>Valider le séquencement</b> : corrélation, puis escalades, puis troubleshooting. Boucle fermée limitée à l'énergie.</li>
+        <li><b>Mandater la Phase 0 d'audit</b> : 4 semaines pour établir la baseline réelle, la couverture et le calibrage i-ENERGY, et la topologie.</li>
+        <li><b>Intégrer la clause de réversibilité</b> au contrat du prestataire sortant, en lien avec le juridique.</li>
+      </ol>
+    </section>
+
+    <footer>
+      Note de synthèse interne · Automatisation NOC MADIACOM · Document de travail
+    </footer>
+
+  </div>
+</body>
+</html>
