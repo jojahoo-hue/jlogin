@@ -13,7 +13,10 @@
 - Séquencement d'automatisation défini : corrélation d'alarmes d'abord (déjà mature via RC3), escalades ensuite, troubleshooting en dernier. Boucle fermée réservée à un périmètre restreint.
 - Livrable : section CCTP corrélation d'alarmes pour le RFP (context/import/rfp-correlation-alarmes-noc.md), avec baseline OUA contractualisée et matrice familles/type/niveau d'automatisation.
 - Livrable : fiche technique boucle fermée énergie (context/import/scenario-energie-boucle-fermee.md), scénario site nodal sur batterie basé sur le temps d'autonomie i-ENERGY ZTE, avec garde-fous et phasage 0-3.
-- Points à auditer côté Njaho : calibration du temps d'autonomie i-ENERGY, couverture i-ENERGY sur tous les sites nodaux.
+- Périmètre précisé : RAN sharing (Digicel + Free Caraïbes), pas de supervision du cœur de réseau. Impact service inféré du RAN/transport, pas mesuré côté abonné. Livrables CCTP et énergie réalignés en conséquence.
+- Livrable : plan d'audit Phase 0 (context/import/phase0-audit-noc.md), avec grille go/no-go phase 1 et enjeu de timing (extraction des données du prestataire sortant).
+- Livrable : projet de clause de réversibilité (context/import/clause-reversibilite-noc.md) pour le contrat sortant, à faire valider par le juridique.
+- Actions Njaho : auditer calibration/couverture i-ENERGY ; vérifier si une clause de réversibilité existe déjà et qui possède les configurations OUA ; extraire la connaissance du prestataire sortant avant bascule.
 
 ## 2026-07-11
 
