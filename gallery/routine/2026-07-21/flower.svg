@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1400" height="1400" viewBox="0 0 1400 1400">
+  <rect width="1400" height="1400" fill="white"/>
+  <defs><clipPath id="flower-clip"><circle cx="700.00" cy="700.00" r="644.00"/></clipPath></defs>
+  <g clip-path="url(#flower-clip)">
+  <circle cx="28.000" cy="700.000" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="140.000" cy="893.990" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="252.000" cy="1087.979" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="364.000" cy="1281.969" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="140.000" cy="506.010" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="252.000" cy="700.000" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="364.000" cy="893.990" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="476.000" cy="1087.979" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="588.000" cy="1281.969" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="252.000" cy="312.021" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="364.000" cy="506.010" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="476.000" cy="700.000" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="588.000" cy="893.990" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="700.000" cy="1087.979" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="812.000" cy="1281.969" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="364.000" cy="118.031" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="476.000" cy="312.021" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="588.000" cy="506.010" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="700.000" cy="700.000" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="812.000" cy="893.990" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="924.000" cy="1087.979" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="1036.000" cy="1281.969" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="588.000" cy="118.031" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="700.000" cy="312.021" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="812.000" cy="506.010" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="924.000" cy="700.000" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="1036.000" cy="893.990" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="1148.000" cy="1087.979" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="812.000" cy="118.031" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="924.000" cy="312.021" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="1036.000" cy="506.010" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="1148.000" cy="700.000" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="1260.000" cy="893.990" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="1036.000" cy="118.031" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="1148.000" cy="312.021" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="1260.000" cy="506.010" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  <circle cx="1372.000" cy="700.000" r="112.000" fill="none" stroke="#1a1a1a" stroke-width="2.52"/>
+  </g>
+  <circle cx="700.000" cy="700.000" r="644.000" fill="none" stroke="#1a1a1a" stroke-width="5.04"/>
+</svg>
