@@ -1,3 +1,9 @@
+# personal input photos — never publish these to GitHub Pages
+input/
+
+# local dev server config
+.claude/launch.json
+
 __pycache__/
 *.pyc
 *.egg-info/

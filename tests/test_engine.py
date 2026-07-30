@@ -203,6 +203,32 @@ def test_trace_series_variations():
     assert all(abs(c0[i] - a0.get(int(fr[i]), 0j)) < 1e-9 for i in range(len(fr)))
 
 
+def test_site_manifest_indexes_and_classifies(tmp_path=None):
+    import json
+    import os
+    import tempfile
+    from mathart import site as sm
+    root = tempfile.mkdtemp()
+    gdir = os.path.join(root, "gallery", "routine", "2026-01-02")
+    os.makedirs(gdir)
+    # one sacred svg, one scribe svg, one render png, one trace json
+    open(os.path.join(gdir, "sri-yantra-silhouette.svg"), "w").write("<svg/>")
+    open(os.path.join(gdir, "harmonograph-silhouette.svg"), "w").write("<svg/>")
+    open(os.path.join(gdir, "horse.png"), "wb").write(b"\x89PNG\r\n")
+    open(os.path.join(gdir, "demo-horse.json"), "w").write("{}")
+    res = sm.build_manifest(root=root)
+    assert res["count"] == 4
+    man = json.load(open(os.path.join(root, "manifest.json")))
+    kinds = {it["name"]: it["type"] for it in man["items"]}
+    assert kinds["sri-yantra-silhouette"] == "sacré"
+    assert kinds["harmonograph-silhouette"] == "scribe"
+    assert kinds["demo-horse"] == "trace"
+    # the date is read from the routine/<date>/ path, not mtime
+    assert all(it["date"] == "2026-01-02" for it in man["items"])
+    # the sibling .js global exists for file:// double-click use
+    assert os.path.exists(os.path.join(root, "manifest.js"))
+
+
 def test_aigen_is_dormant_without_key():
     import os
     from mathart import aigen

@@ -115,6 +115,12 @@ def main(argv=None):
                     help="[morph] interpolation 0..1")
     add_stencil_opts(tr)
 
+    si = sub.add_parser("site", help="index gallery/ into manifest.json for the web site")
+    si.add_argument("--root", default=".", help="repo root (holds index.html)")
+    si.add_argument("--dirs", nargs="+", default=list(),
+                    help="folders to index (default: gallery)")
+    si.add_argument("--out", default="manifest.json")
+
     g = sub.add_parser("sacred", help="parametric sacred-geometry SVG stencil")
     from .sacred import GENERATORS
     g.add_argument("design", choices=sorted(GENERATORS))
@@ -231,6 +237,13 @@ def main(argv=None):
         svg = _to_svg(mask, args.mode, args)
         path = _write_svg(svg, args.out, f"{stem}-{args.mode}")
         print(f"saved {path}")
+        return
+
+    if args.cmd == "site":
+        from . import site as st_site
+        dirs = tuple(args.dirs) if args.dirs else st_site.DEFAULT_DIRS
+        res = st_site.build_manifest(root=args.root, dirs=dirs, out=args.out)
+        print(f"indexed {res['count']} artefact(s) -> {res['path']}")
         return
 
     if args.cmd == "sacred":
