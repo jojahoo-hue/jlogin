@@ -14,6 +14,17 @@
 
 ---
 
+## Serveurs MCP
+
+| Serveur | Config | Authentification |
+|---------|--------|------------------|
+| `notion` | `@notionhq/notion-mcp-server` | `NOTION_TOKEN` dans `.env` |
+| `plaud` | `@plaud-ai/mcp` (officiel) | OAuth navigateur au 1er lancement, aucune clé à stocker |
+
+**Plaud :** au premier démarrage, le serveur ouvre votre navigateur pour vous connecter à votre compte Plaud et autoriser l'accès. Vos identifiants restent locaux, l'assistant ne voit jamais votre mot de passe. Une fois autorisé, Claude accède directement à vos enregistrements, transcriptions et résumés Plaud, sans passer par l'export Notion.
+
+---
+
 ## Structure
 
 ```
