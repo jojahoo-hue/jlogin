@@ -30,6 +30,35 @@ WORKS = {"forest", "horse", "turbines", "turbines_exact"}
 
 _DATE_DIR = re.compile(r"(?:^|/)(\d{4}-\d{2}-\d{2})(?:/|$)")
 
+# variant/mode suffixes to strip so sibling variations collapse to one "family"
+_SUFFIX = re.compile(
+    r"-(silhouette|negative|L\d+|h\d+|kal\d+|mod|morph[\d.]+)$", re.I)
+
+
+def _family(stem: str) -> str:
+    """Collapse a file stem to its motif family (drop mode/variant suffixes)."""
+    s = stem
+    if s.startswith("demo-"):
+        s = s[5:]
+    prev = None
+    while prev != s:                     # strip repeatedly: horse-h12-silhouette
+        prev = s
+        s = _SUFFIX.sub("", s)
+    return s or stem
+
+
+def _formula_summary(abspath: str) -> str:
+    """One-line Fourier-equation summary for a saved trace formula (best effort)."""
+    try:
+        with open(abspath, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if isinstance(data, dict) and data.get("type") == "fourier-epicycles":
+            from . import trace as tr
+            return tr.formula_equation(data, top=3).split("\n")[0]
+    except Exception:
+        pass
+    return ""
+
 
 def _classify_type(relpath: str, stem: str) -> str:
     low = relpath.lower()
@@ -78,29 +107,61 @@ def scan(root: str, dirs=DEFAULT_DIRS) -> List[dict]:
                     size = os.path.getsize(abspath)
                 except OSError:
                     size = 0
-                items.append({
+                item = {
                     "id": relpath,
                     "name": stem,
                     "path": relpath,
                     "type": _classify_type(relpath, stem),
+                    "family": _family(stem),
                     "format": fmt,
                     "date": _date_for(relpath, abspath),
                     "bytes": size,
-                })
+                }
+                if fmt == "json":
+                    summ = _formula_summary(abspath)
+                    if summ:
+                        item["formula"] = summ
+                items.append(item)
     # newest first, then by name
     items.sort(key=lambda it: (it["date"], it["name"]), reverse=True)
     return items
 
 
+def _latest_report(root: str, max_chars: int = 8000) -> dict:
+    """Embed the newest reports/*.md so the site can show it with no fetch."""
+    rdir = os.path.join(root, "reports")
+    if not os.path.isdir(rdir):
+        return {}
+    mds = [f for f in os.listdir(rdir) if f.lower().endswith(".md")]
+    if not mds:
+        return {}
+    mds.sort(reverse=True)                    # names are ISO datetimes → newest first
+    name = mds[0]
+    try:
+        with open(os.path.join(rdir, name), "r", encoding="utf-8") as f:
+            text = f.read(max_chars + 1)
+    except OSError:
+        return {}
+    truncated = len(text) > max_chars
+    return {"name": name, "path": f"reports/{name}",
+            "text": text[:max_chars], "truncated": truncated}
+
+
 def build_manifest(root: str = ".", dirs=DEFAULT_DIRS,
                    out: str = "manifest.json") -> dict:
     items = scan(root, dirs)
+    families = {}
+    for it in items:
+        families[it["family"]] = families.get(it["family"], 0) + 1
     manifest = {
         "generated": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "count": len(items),
         "types": sorted({it["type"] for it in items}),
         "formats": sorted({it["format"] for it in items}),
         "dates": sorted({it["date"] for it in items}, reverse=True),
+        "families": dict(sorted(families.items(),
+                                key=lambda kv: (-kv[1], kv[0]))),
+        "report": _latest_report(root),
         "items": items,
     }
     blob = json.dumps(manifest, ensure_ascii=False, indent=1)

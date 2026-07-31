@@ -117,6 +117,7 @@
       <option value="none">Sans groupe</option>
     </select>
     <button class="btn" id="favonly">☆ Favoris</button>
+    <button class="btn" id="reportbtn" title="dernier rapport d'avancement">📄 Rapport</button>
   </div>
   <div class="chips" id="typechips"></div>
   <div class="chips" id="fmtchips"></div>
@@ -135,6 +136,10 @@
       <p class="meta" style="margin:10px 0 0">Favoris & collections sont
       enregistrés dans ce navigateur.</p>
     </div>
+    <div class="coll" style="margin-top:16px">
+      <h3>◇ Motifs</h3>
+      <ul id="famlist"></ul>
+    </div>
   </aside>
   <div style="flex:1;min-width:0">
     <div id="out"></div>
@@ -149,9 +154,15 @@
   <div class="addto" id="lbaddto"></div>
 </div>
 
+<div class="lb" id="rep">
+  <span class="x" id="repx">×</span>
+  <div style="max-width:820px;max-height:82vh;overflow:auto;background:var(--panel);
+    color:var(--ink);border-radius:12px;padding:22px 26px" id="repbody"></div>
+</div>
+
 <script>
 const LS_FAV="mathart.favs", LS_COLL="mathart.collections";
-let DATA=null, FILT={types:new Set(),fmts:new Set(),q:"",favonly:false,coll:null};
+let DATA=null, FILT={types:new Set(),fmts:new Set(),q:"",favonly:false,coll:null,family:null};
 let favs=new Set(JSON.parse(localStorage.getItem(LS_FAV)||"[]"));
 let colls=JSON.parse(localStorage.getItem(LS_COLL)||"{}"); // {name:[ids]}
 const $=s=>document.querySelector(s);
@@ -196,6 +207,7 @@ function filtered(){
   if(FILT.q) it=it.filter(i=>i.name.toLowerCase().includes(FILT.q));
   if(FILT.favonly) it=it.filter(i=>favs.has(i.id));
   if(FILT.coll) it=it.filter(i=>(colls[FILT.coll]||[]).includes(i.id));
+  if(FILT.family) it=it.filter(i=>i.family===FILT.family);
   const s=$("#sort").value;
   it.sort((a,b)=>{
     if(s==="date-asc")return a.date.localeCompare(b.date)||a.name.localeCompare(b.name);
@@ -217,7 +229,19 @@ function render(){
       html+=`<div class="grouphead"><h2>${k}</h2><span class="c">${sub.length}</span></div>`+grid(sub);
     });
   }
-  out.innerHTML=html; wire();
+  out.innerHTML=html; wire(); renderFamilies();
+}
+function renderFamilies(){
+  const ul=$("#famlist"); if(!ul||!DATA.families)return; ul.innerHTML="";
+  const all=document.createElement("li");
+  all.className=FILT.family?"":"on"; all.innerHTML=`Tous <span class="n">${DATA.count}</span>`;
+  all.onclick=()=>{FILT.family=null;render();}; ul.appendChild(all);
+  Object.entries(DATA.families).forEach(([fam,n])=>{
+    const li=document.createElement("li"); li.className=FILT.family===fam?"on":"";
+    li.innerHTML=`<span>${fam}</span><span class="n">${n}</span>`;
+    li.onclick=()=>{FILT.family=(FILT.family===fam?null:fam);render();};
+    ul.appendChild(li);
+  });
 }
 function grid(items){
   return '<div class="grid">'+items.map(card).join("")+"</div>";
@@ -228,7 +252,7 @@ function card(i){
     ? `<div class="json">{ } formule<br>${i.name}</div>`
     : `<img loading="lazy" src="${i.path}" alt="${i.name}">`;
   return `<div class="card" data-id="${i.id}">
-    <div class="thumb" data-zoom="${i.path}" data-name="${i.name}" data-fmt="${i.format}">
+    <div class="thumb" data-id="${i.id}">
       ${thumb}<span class="badge">${i.type}</span><span class="fmt">${i.format}</span>
     </div>
     <div class="cbody">
@@ -249,7 +273,7 @@ function wire(){
     s.classList.toggle("on"); renderColls();
     if(FILT.favonly||FILT.coll)render();
   });
-  document.querySelectorAll(".thumb").forEach(t=>t.onclick=()=>openLB(t.dataset.zoom,t.dataset.name,t.dataset.fmt));
+  document.querySelectorAll(".thumb").forEach(t=>t.onclick=()=>openLB(t.dataset.id));
 }
 
 /* collections */
@@ -280,11 +304,20 @@ $("#colladd").onclick=()=>{
 
 /* lightbox with "add to collection" */
 let LBID=null;
-function openLB(path,name,fmt){
+function openLB(id){
+  const it=DATA.items.find(x=>x.id===id); if(!it)return;
+  const path=it.path,name=it.name,fmt=it.format;
   LBID=path;
   $("#lbimg").style.display = fmt==="json"?"none":"block";
   $("#lbimg").src = fmt==="json"?"":path;
-  $("#lbcap").innerHTML=`${name} — <a href="${path}" target="_blank">ouvrir ${fmt.toUpperCase()}</a>`;
+  let cap=`<b>${name}</b> · ${it.family} · ${it.date} — `+
+    `<a href="${path}" target="_blank">ouvrir ${fmt.toUpperCase()}</a>`;
+  if(it.formula) cap+=`<div style="margin-top:10px;font:12.5px ui-monospace,`+
+    `monospace;color:#bcd;background:rgba(0,0,0,.35);padding:8px 12px;`+
+    `border-radius:8px;max-width:80vw">${it.formula}</div>`;
+  else if(fmt==="json") cap+=`<div style="margin-top:8px;color:#aaa">formule `+
+    `réutilisable (Fourier) — ouvrir le JSON</div>`;
+  $("#lbcap").innerHTML=cap;
   const box=$("#lbaddto"); box.innerHTML="";
   const names=Object.keys(colls);
   if(!names.length){box.innerHTML='<span class="meta" style="color:#aaa">Créez une collection à gauche pour y ajouter.</span>';}
@@ -294,7 +327,7 @@ function openLB(path,name,fmt){
     el.textContent=(has?"✓ ":"+ ")+n;
     el.onclick=()=>{ const arr=colls[n];
       const idx=arr.indexOf(path); idx>=0?arr.splice(idx,1):arr.push(path);
-      saveColl(); openLB(path,name,fmt); renderColls();
+      saveColl(); openLB(LBID); renderColls();
       if(FILT.coll)render();
     };
     box.appendChild(el);
@@ -304,13 +337,41 @@ function openLB(path,name,fmt){
 $("#lbx").onclick=()=>$("#lb").classList.remove("on");
 $("#lb").onclick=e=>{if(e.target.id==="lb")$("#lb").classList.remove("on");};
 
+/* report modal — minimal markdown */
+function md(t){
+  const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  const lines=esc(t).split("\n"); let html="",inCode=false,inList=false;
+  const flush=()=>{if(inList){html+="</ul>";inList=false;}};
+  for(let ln of lines){
+    if(/^```/.test(ln)){inCode=!inCode;html+=inCode?"<pre style='background:rgba(0,0,0,.3);padding:10px;border-radius:8px;overflow:auto'>":"</pre>";continue;}
+    if(inCode){html+=ln+"\n";continue;}
+    let m;
+    if(m=ln.match(/^(#{1,4})\s+(.*)/)){flush();const l=m[1].length;html+=`<h${l} style='margin:.7em 0 .3em'>${m[2]}</h${l}>`;}
+    else if(/^\s*[-*]\s+/.test(ln)){if(!inList){html+="<ul>";inList=true;}html+="<li>"+ln.replace(/^\s*[-*]\s+/,"")+"</li>";}
+    else if(/^\s*$/.test(ln)){flush();}
+    else{flush();html+="<p style='margin:.4em 0'>"+ln+"</p>";}
+  }
+  flush();
+  return html.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/`([^`]+)`/g,"<code>$1</code>");
+}
+$("#reportbtn").onclick=()=>{
+  const r=DATA.report;
+  $("#repbody").innerHTML = (r&&r.text)
+    ? `<div style="color:var(--dim);font-size:12px;margin-bottom:8px">${r.name}
+       ${r.truncated?" · (extrait)":""} · <a href="${r.path}" target="_blank">fichier</a></div>`+md(r.text)
+    : "<p>Aucun rapport pour l'instant. Les routines en publient un à chaque exécution.</p>";
+  $("#rep").classList.add("on");
+};
+$("#repx").onclick=()=>$("#rep").classList.remove("on");
+$("#rep").onclick=e=>{if(e.target.id==="rep")$("#rep").classList.remove("on");};
+
 /* controls */
 $("#q").oninput=e=>{FILT.q=e.target.value.toLowerCase().trim();render();};
 $("#sort").onchange=render;
 $("#group").onchange=render;
 $("#favonly").onclick=()=>{FILT.favonly=!FILT.favonly;
   $("#favonly").classList.toggle("on",FILT.favonly); render();};
-document.addEventListener("keydown",e=>{if(e.key==="Escape")$("#lb").classList.remove("on");});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("#lb").classList.remove("on");$("#rep").classList.remove("on");}});
 
 load().then(renderColls);
 </script>
