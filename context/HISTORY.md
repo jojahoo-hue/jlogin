@@ -5,6 +5,18 @@
 
 ---
 
+## 2026-07-31
+
+### Alimentation du contexte — Inspections QHSE et résumés de la veille (via MCP Notion / Plaud)
+
+- Clarification : pas de MCP Plaud autonome. Plaud exporte vers Notion (base `🎙️ Plaud Archive`), et c'est le MCP Notion qui alimente le contexte Jarvis.
+- Le MCP Notion (connecteur claude.ai) fonctionne dans la session web, contrairement à l'accès direct `api.notion.com` bloqué côté cloud (voir note du 2026-06-06).
+- ID réel de la base Plaud renseigné dans `notion-config.json` (était en placeholder) : `36f92f894f8c81b79bc5dbec08bf24d4`.
+- Création de `context/import/plaud-inspections-veille.md` : synthèse des inspections QHSE / Visite d'Inspection Commune (2 comptes rendus extraits, 2 analyses indexées) et des résumés de la veille (2026-07-30).
+- En attente de validation : périmètre exact des « quatre inspections », et report des points structurants (PPA, binôme obligatoire, sécurisation des accès) dans `CONTEXT.md`.
+
+---
+
 ## 2026-06-06
 
 ### Mise à jour de session — Configuration Jarvis et intégration Notion
