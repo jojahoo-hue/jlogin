@@ -51,8 +51,44 @@ def cmd_trace(args):
         size=args.size,
         name=args.name,
         out_dir=args.out,
+        save_formula=getattr(args, "save_formula", False),
     )
     print(f"Saved: {out}")
+
+
+def cmd_site(args):
+    import json
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    gallery = os.path.join(repo_root, "gallery")
+    artefacts = []
+    excluded = {"input"}
+    for root, dirs, files in os.walk(gallery):
+        dirs[:] = [d for d in dirs if d not in excluded]
+        for f in sorted(files):
+            if not f.endswith((".svg", ".png")):
+                continue
+            fp = os.path.join(root, f)
+            rel = os.path.relpath(fp, repo_root).replace(os.sep, "/")
+            parts = rel.split("/")
+            # date from path segment like routine/YYYY-MM-DD
+            date = ""
+            for p in parts:
+                if len(p) == 10 and p.count("-") == 2:
+                    date = p
+                    break
+            name, ext = os.path.splitext(f)
+            artefacts.append({"path": rel, "name": name, "ext": ext.lstrip("."), "date": date})
+    artefacts.sort(key=lambda a: (a["date"], a["name"]))
+    manifest = {"total": len(artefacts), "artefacts": artefacts}
+    manifest_path = os.path.join(repo_root, "manifest.json")
+    with open(manifest_path, "w") as fh:
+        json.dump(manifest, fh, indent=2)
+    js_path = os.path.join(repo_root, "manifest.js")
+    with open(js_path, "w") as fh:
+        fh.write("const MANIFEST = ")
+        json.dump(manifest, fh, indent=2)
+        fh.write(";\n")
+    print(f"Site updated: {len(artefacts)} artefacts indexed → manifest.json + manifest.js")
 
 
 def cmd_list(args):
@@ -127,7 +163,13 @@ def main():
     p_trace.add_argument("--size", type=int, default=800)
     p_trace.add_argument("--name", default="traced")
     p_trace.add_argument("--out", default="gallery")
+    p_trace.add_argument("--save-formula", action="store_true", dest="save_formula",
+                         help="Also save Fourier coefficients as a reusable JSON formula")
     p_trace.set_defaults(func=cmd_trace)
+
+    # site
+    p_site = sub.add_parser("site", help="Rebuild manifest.json and manifest.js from gallery")
+    p_site.set_defaults(func=cmd_site)
 
     # list
     p_list = sub.add_parser("list", help="List available works and gallery artefacts")

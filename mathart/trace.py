@@ -79,7 +79,7 @@ def _extract_contour(gray, threshold=0.5):
     return xs, ys, cx, cy
 
 
-def trace_image(img_path, harmonics=60, size=800, name="traced", out_dir="."):
+def trace_image(img_path, harmonics=60, size=800, name="traced", out_dir=".", save_formula=False):
     """
     Load an image, extract its contour, approximate with N Fourier harmonics,
     and write an SVG of the reconstructed path.
@@ -135,4 +135,22 @@ def trace_image(img_path, harmonics=60, size=800, name="traced", out_dir="."):
 
     svg = svg_doc(size, elems, bg="white")
     os.makedirs(out_dir, exist_ok=True)
-    return save_svg(svg, out_dir, f"{name}.svg")
+    svg_path = save_svg(svg, out_dir, f"{name}.svg")
+
+    if save_formula:
+        import json
+        formula = {
+            "name": name,
+            "harmonics": harmonics,
+            "size": size,
+            "source": os.path.basename(img_path),
+            "coefficients": [
+                {"k": int(np.fft.fftfreq(len(Z))[i] * len(Z)), "re": float(Z_filtered[i].real), "im": float(Z_filtered[i].imag)}
+                for i in top_idx
+            ],
+        }
+        formula_path = os.path.join(out_dir, f"{name}-formula.json")
+        with open(formula_path, "w") as fh:
+            json.dump(formula, fh, indent=2)
+
+    return svg_path
