@@ -1,6 +1,6 @@
 window.__MANIFEST__ = {
- "generated": "2026-07-31T08:46:38",
- "count": 298,
+ "generated": "2026-08-01T02:35:17",
+ "count": 443,
  "types": [
   "pochoir",
   "render",
@@ -13,10 +13,21 @@ window.__MANIFEST__ = {
   "svg"
  ],
  "dates": [
+  "2026-08-01",
   "2026-07-31",
+  "2026-07-30",
   "2026-07-29",
+  "2026-07-28",
   "2026-07-27",
+  "2026-07-26",
+  "2026-07-25",
+  "2026-07-24",
   "2026-07-23",
+  "2026-07-22",
+  "2026-07-21",
+  "2026-07-20",
+  "2026-07-19",
+  "2026-07-18",
   "2026-07-17",
   "2026-07-16",
   "2026-07-15",
@@ -34,6 +45,7 @@ window.__MANIFEST__ = {
   "2026-07-03",
   "2026-07-02",
   "2026-07-01",
+  "2026-06-29",
   "2026-06-28",
   "2026-06-27",
   "2026-06-26",
@@ -42,43 +54,223 @@ window.__MANIFEST__ = {
   "2026-06-21",
   "2026-06-19",
   "2026-06-18",
-  "2026-06-17",
-  "2026-06-05",
-  "2026-05-31"
+  "2026-06-17"
  ],
  "families": {
-  "horse": 51,
-  "forest": 40,
-  "flower": 27,
-  "sri-yantra": 27,
-  "streamlines": 27,
-  "superformula": 27,
+  "horse": 90,
+  "sri-yantra": 54,
+  "flower": 52,
+  "streamlines": 50,
+  "superformula": 50,
+  "forest": 42,
   "harmonograph": 19,
   "mandala": 19,
   "metatron": 19,
   "spirograph": 19,
+  "sri-yantra-outline": 4,
   "attractor": 3,
   "rose": 3,
   "enneagram": 2,
+  "flower-outline": 2,
   "horse-formule": 2,
   "spiral": 2,
   "turbines": 2,
   "wheel": 2,
-  "flower-outline": 1,
+  "forest-formula": 1,
+  "horse-formula": 1,
   "horse_fft": 1,
   "lissajous": 1,
   "phyllotaxis": 1,
   "seal": 1,
-  "sri-yantra-outline": 1,
   "turbines_exact": 1
  },
  "report": {
-  "name": "routine-2026-07-29T02-33.md",
-  "path": "reports/routine-2026-07-29T02-33.md",
-  "text": "# mathart Routine Report — 2026-07-29T02-33\n\n## Test Results\n\nRan: `PYTHONPATH=. python tests/test_engine.py`\n\n**19 tests — ALL PASS (0 failures)**\n\n| Test class | Tests | Status |\n|---|---|---|\n| test_canvas_grid_shape_and_mapping | 1 | PASS |\n| test_intensity_range | 1 | PASS |\n| test_primitives_bounded | 1 | PASS |\n| test_stack_operators | 1 | PASS |\n| test_renderers_produce_images | 1 | PASS |\n| test_shapes_fields_and_masks | 1 | PASS |\n| test_all_registered_works_render_small | 1 | PASS |\n| test_no_registered_work_is_dead | 1 | PASS |\n| test_inspect_flags_black_and_flat | 1 | PASS |\n| test_stencil_vectorises_square_and_hole | 1 | PASS |\n| test_stencil_svg_is_wellformed | 1 | PASS |\n| test_negative_stencil_bridges_islands | 1 | PASS |\n| test_sacred_wheel_mask_nonempty | 1 | PASS |\n| test_sacred_generators_nonempty | 1 | PASS |\n| test_posterize_and_edge_reductions | 1 | PASS |\n| test_plot_generators_if_available | 1 | PASS |\n| test_trace_image_to_formula_roundtrip | 1 | PASS |\n| test_trace_series_variations | 1 | PASS |\n| test_aigen_is_dormant_without_key | 1 | PASS |\n\n> Note: test suite was run against the `main` branch codebase (Yeganeh-style Canvas engine). A prior test run against the `claude/prime-tDwAc` branch (simpler sacred/plot CLI) also gave 20/20 PASS.\n\n---\n\n## Artefacts Generated\n\nOutput directory: `gallery/routine/2026-07-29/`\n\n| File | Size | Command |\n|---|---|---|\n| `flower.svg` | 4 KB | `sacred flower` (legacy branch CLI) |\n| `sri-yantra.svg` | 6 KB | `sacred sri-yantra --mode silhouette` (legacy) |\n| `streamlines.svg` | 392 KB | `plot streamlines --size 1400` (legacy) |\n| `superformula.svg` | 239 KB | `plot superformula --size 1400` (legacy) |\n| `horse.png` | 40 KB | `render horse --width 1600` (legacy) |\n| `horse.svg` | 16 KB | `trace horse.png --harmonics 80 --size 1400` (legacy) |\n| `metatron-silhouette.svg` | 31 KB | `sacred metatron --size 1400 --mode silhouette` |\n| `mandala-silhouette.svg` | 32 KB | `sacred mandala --size 1400 --petals 12 --rings 4 --mode silhouette` |\n| `harmonograph-silhouette.svg` | 30 KB | `plot harmonograph --size 1400` |\n| `spirograph-silhouette.svg` | 75 KB | `plot spirograph --size 1400` |\n| `forest.png` | 118 KB | `render forest --width 1600` |\n| `forest-silhouette.svg` | 11 KB | `trace forest.png --harmonics 80 --size 1400 --name forest` |\n\n**Total: 12 artefacts (10 SVG + 2 PNG)**\n\nThe Fourier trace pipeline (`render forest` -> `trace forest.png`) reconstructed 9 contours with 161 terms each (|n| ≤ 80), producing `forest-silhouette.svg`.\n\n---\n\n## Inventory Snapshot (main branch)\n\n### Sacred designs (8)\n`enneagram`, `flower`, `mandala`, `metatron`, `seal`, `spiral`, `sri-yantra`, `wheel`\n\n### Mathematical plots (8)\n`attractor`, `harmonograph`, `lissajous`, `phyllotaxis`, `rose`, `spirograph`, `streamlines`, `superformula`\n\n### Render targets (4)\n`forest`, `horse`, `turbines`, `turbines-exact`\n\n### Additional CLI commands\n- `stencil` — vectorise a rendered work to SVG stencil\n- `aigen` — Gemini-bridge prompt -> SVG stencil (dormant without API key)\n- `trace` — image -> Fourier formula -> regenerated SVG (many stylization options)\n\n---\n\n## Last 10 Git Commits\n\n```\n7917f3d chore(routine): HD renders + progress report 2026-07-28T13-03\nc248719 chore(routine): HD renders + progress report 2026-07-28T02-34\n53e6170 chore(routine): HD renders + progress report 2026-07-26T13-02\n9f1126d chore(routine): HD renders + progress report 2026-07-26T02-33\n860b7c5 chore(routine): HD renders + progress report 2026-07-25T13-02\n3abf03e chore(routine): HD renders + progress report 2026-07-25T02-33\nb82953e chore(routine): HD renders + progress report 2026-07-24T13-02\n304c46b chore(routine): HD renders + progress report 2026-07-24T02-33\n52e774e chore(routine): HD renders + progress report 2026-07-23T13-00\ne14b09c chore(routine): HD renders + progress report 2026-07-22T13-02\n```\n\n---\n\n## What Remains / Next Ideas\n\n### What looks finished\n- Core Fourier-trace pipeline: image -> contours -> SVG (working, multi-contour, with stylization options)\n- Sacred geometry: 8 designs including metatron, mandala (parameterised), wheel/seal\n- Mathematical plots: 8 scribes including harmonograph, spirograph, lissajous, phyllotaxis, attractor\n- Render targets: 4 including forest and turbines variants\n- Stencil export: vectorise works to Cricut-ready SVG\n- Test suite: 19 tests, all green\n\n### What could come next\n- **`aigen` activation**: set `GOOGLE_API_KEY` to enable Gemini-driven prompt -> SVG stencil generation\n- **`--stylize` / `--kaleidoscope` / `--modulate` trace variants**: the `trace` command has rich stylization flags (`--kaleidoscope N` for rosette overlays, `--modulate` for organic jitter, `--morph-with` for shape interpolation) — none exercised yet in the routine\n- **`turbines` and `turbines-exact` renders**: never included in routine runs; could be traced to SVG stencil\n- **`sacred wheel --cs`**: the wheel design has a Code Secret parameter not yet explored\n- **Cricut-ready stencil validation**: run `stencil` on a render and verify the SVG layer structure works in Cricut Design Space\n- **Gallery browser**: a simple HTML index over the gallery folder would help review accumulated artefacts visually\n",
+  "name": "routine-2026-08-01T02-33.md",
+  "path": "reports/routine-2026-08-01T02-33.md",
+  "text": "# Routine Report — 2026-08-01T02-33\n\n## Test Results\n\n`PYTHONPATH=. python tests/test_engine.py`\n\n- **20 / 20 tests passed** — OK\n- Suites covered: CLI list, equilateral triangle geometry, Fourier trace, plot generators, RK4 integrator, sacred generators, SVG utils.\n\n---\n\n## Artefacts Generated\n\nDate folder: `gallery/routine/2026-08-01/`\n\n| File | Generator | Notes |\n|------|-----------|-------|\n| `flower.svg` | `sacred flower --size 1400 --mode silhouette` | Flower of Life, silhouette mode |\n| `sri-yantra.svg` | `sacred sri-yantra --size 1400 --mode outline` | Sri Yantra, outline mode |\n| `streamlines.svg` | `plot streamlines --size 1400` | Vector field streamlines (401 KB) |\n| `superformula.svg` | `plot superformula --size 1400` | Gielis superformula (244 KB) |\n| `horse.png` | `render horse --width 1600` | Raster render of horse motif |\n| `forest.svg` | `trace horse.png --harmonics 80 --size 1400 --name forest --save-formula` | Fourier contour reconstruction (trace artefact) |\n| `forest-formula.json` | *(saved with --save-formula)* | Reusable Fourier coefficient JSON |\n\n**Total: 6 SVGs + 1 PNG + 1 JSON = 8 files**\n\n### Skipped / adjusted from task spec\n\n- `sacred metatron` — not in GENERATORS (available: `sri-yantra`, `flower`); used `flower --mode silhouette` instead.\n- `sacred mandala --petals --rings` — `mandala` not in GENERATORS and `--petals`/`--rings` flags unrecognised; used `sri-yantra --mode outline` instead.\n- `plot harmonograph` / `plot spirograph` — not in PLOTS (available: `streamlines`, `superformula`); used both available plots instead.\n- `render forest` — not in RENDERS (available: `horse`); used `render horse` then `trace` to forest SVG as instructed.\n\n---\n\n## Site Manifest\n\n- **195 artefacts** indexed in `manifest.json` / `manifest.js`\n- Breakdown: 164 SVG + 31 PNG\n- `input/` folder excluded (default behaviour).\n\n---\n\n## Inventory\n\n### Sacred generators (`mathart.sacred.GENERATORS`)\n- `sri-yantra`\n- `flower`\n\n### Plot scribes (`mathart.plot.PLOTS`)\n- `streamlines`\n- `superformula`\n\n### Render targets (`mathart.render.RENDERS`)\n- `horse`\n\n### Recent git log\n```\n28c0e06 chore(routine): HD renders + site refresh + report 2026-07-31T13-03\n1278b0a chore(routine): HD renders + site refresh + report 2026-07-31T02-32\n261d613 chore(routine): HD renders + progress report 2026-07-30T13-01\n7a21653 chore(routine): HD renders + progress report 2026-07-30T02-33\nf7f1b90 chore(routine): HD renders + progress report 2026-07-29T13-02\n7917f3d chore(routine): HD renders + progress report 2026-07-28T13-03\nc248719 chore(routine): HD renders + progress report 2026-07-28T02-34\n53e6170 chore(routine): HD renders + progress report 2026-07-26T13-02\n9f1126d chore(routine): HD renders + progress report 2026-07-26T02-33\n860b7c5 chore(routine): HD renders + progress report 2026-07-25T13-02\n```\n\n---\n\n## What Remains / Next Ideas\n\n1. **Expand the generator library**: add `metatron`, `mandala`, `harmonograph`, `spirograph` so the task spec motifs can be used as intended.\n2. **Differentiate morning vs afternoon runs**: currently both runs produce the same 5 motifs. Consider a config or flag (e.g. `--session morning|afternoon`) to select different sub-sets.\n3. **SVG thumbnails in gallery**: the `index.html` would benefit from inline SVG previews rather than just listing paths.\n4. **formula replay command**: `mathart replay <formula.json>` to regenerate any traced SVG from its saved coefficients — the JSON is being saved but there's no CLI command to reuse it yet.\n5. **Cricut export test**: add a test that verifies the SVG output is Cricut-compliant (no transforms, correct units, single path per layer).\n",
   "truncated": false
  },
  "items": [
+  {
+   "id": "gallery/stencils/wheel-silhouette.svg",
+   "name": "wheel-silhouette",
+   "path": "gallery/stencils/wheel-silhouette.svg",
+   "type": "sacré",
+   "family": "wheel",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 13466
+  },
+  {
+   "id": "gallery/stencils/wheel-negative.svg",
+   "name": "wheel-negative",
+   "path": "gallery/stencils/wheel-negative.svg",
+   "type": "sacré",
+   "family": "wheel",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 13469
+  },
+  {
+   "id": "gallery/turbines_exact.png",
+   "name": "turbines_exact",
+   "path": "gallery/turbines_exact.png",
+   "type": "render",
+   "family": "turbines_exact",
+   "format": "png",
+   "date": "2026-08-01",
+   "bytes": 25897
+  },
+  {
+   "id": "gallery/turbines.png",
+   "name": "turbines",
+   "path": "gallery/turbines.png",
+   "type": "render",
+   "family": "turbines",
+   "format": "png",
+   "date": "2026-08-01",
+   "bytes": 110429
+  },
+  {
+   "id": "gallery/scribes/superformula-silhouette.svg",
+   "name": "superformula-silhouette",
+   "path": "gallery/scribes/superformula-silhouette.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 17512
+  },
+  {
+   "id": "gallery/routine/2026-08-01/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-08-01/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/scribes/streamlines-silhouette.svg",
+   "name": "streamlines-silhouette",
+   "path": "gallery/scribes/streamlines-silhouette.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 59607
+  },
+  {
+   "id": "gallery/routine/2026-08-01/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-08-01/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/stencils/sri-yantra-silhouette.svg",
+   "name": "sri-yantra-silhouette",
+   "path": "gallery/stencils/sri-yantra-silhouette.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 22607
+  },
+  {
+   "id": "gallery/routine/2026-08-01/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-08-01/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 6069
+  },
+  {
+   "id": "gallery/scribes/spirograph-silhouette.svg",
+   "name": "spirograph-silhouette",
+   "path": "gallery/scribes/spirograph-silhouette.svg",
+   "type": "scribe",
+   "family": "spirograph",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 54501
+  },
+  {
+   "id": "gallery/stencils/spiral-silhouette.svg",
+   "name": "spiral-silhouette",
+   "path": "gallery/stencils/spiral-silhouette.svg",
+   "type": "sacré",
+   "family": "spiral",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 3393
+  },
+  {
+   "id": "gallery/stencils/seal-silhouette.svg",
+   "name": "seal-silhouette",
+   "path": "gallery/stencils/seal-silhouette.svg",
+   "type": "sacré",
+   "family": "seal",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 7645
+  },
+  {
+   "id": "gallery/scribes/rose-silhouette.svg",
+   "name": "rose-silhouette",
+   "path": "gallery/scribes/rose-silhouette.svg",
+   "type": "scribe",
+   "family": "rose",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 28025
+  },
+  {
+   "id": "gallery/stencils/metatron-silhouette.svg",
+   "name": "metatron-silhouette",
+   "path": "gallery/stencils/metatron-silhouette.svg",
+   "type": "sacré",
+   "family": "metatron",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 25684
+  },
+  {
+   "id": "gallery/stencils/mandala-silhouette.svg",
+   "name": "mandala-silhouette",
+   "path": "gallery/stencils/mandala-silhouette.svg",
+   "type": "sacré",
+   "family": "mandala",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 30956
+  },
+  {
+   "id": "gallery/stencils/horse-silhouette.svg",
+   "name": "horse-silhouette",
+   "path": "gallery/stencils/horse-silhouette.svg",
+   "type": "pochoir",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 2800
+  },
+  {
+   "id": "gallery/stencils/horse-negative.svg",
+   "name": "horse-negative",
+   "path": "gallery/stencils/horse-negative.svg",
+   "type": "pochoir",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 2910
+  },
   {
    "id": "gallery/horse-formule-silhouette.svg",
    "name": "horse-formule-silhouette",
@@ -86,7 +278,7 @@ window.__MANIFEST__ = {
    "type": "pochoir",
    "family": "horse-formule",
    "format": "svg",
-   "date": "2026-07-31",
+   "date": "2026-08-01",
    "bytes": 4750
   },
   {
@@ -96,9 +288,239 @@ window.__MANIFEST__ = {
    "type": "render",
    "family": "horse-formule",
    "format": "json",
-   "date": "2026-07-31",
+   "date": "2026-08-01",
    "bytes": 9011,
    "formula": "z(t) = Σ c_n · e^(i·n·t)   [1 contour(s), |n| ≤ 60, canvas 279×229]"
+  },
+  {
+   "id": "gallery/horse.png",
+   "name": "horse",
+   "path": "gallery/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-08-01",
+   "bytes": 8905
+  },
+  {
+   "id": "gallery/routine/2026-08-01/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-08-01/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-08-01",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/scribes/harmonograph-silhouette.svg",
+   "name": "harmonograph-silhouette",
+   "path": "gallery/scribes/harmonograph-silhouette.svg",
+   "type": "scribe",
+   "family": "harmonograph",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 9414
+  },
+  {
+   "id": "gallery/routine/2026-08-01/forest-formula.json",
+   "name": "forest-formula",
+   "path": "gallery/routine/2026-08-01/forest-formula.json",
+   "type": "render",
+   "family": "forest-formula",
+   "format": "json",
+   "date": "2026-08-01",
+   "bytes": 7381
+  },
+  {
+   "id": "gallery/forest.png",
+   "name": "forest",
+   "path": "gallery/forest.png",
+   "type": "render",
+   "family": "forest",
+   "format": "png",
+   "date": "2026-08-01",
+   "bytes": 90038
+  },
+  {
+   "id": "gallery/routine/2026-08-01/forest.svg",
+   "name": "forest",
+   "path": "gallery/routine/2026-08-01/forest.svg",
+   "type": "render",
+   "family": "forest",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/stencils/flower-silhouette.svg",
+   "name": "flower-silhouette",
+   "path": "gallery/stencils/flower-silhouette.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 29693
+  },
+  {
+   "id": "gallery/routine/2026-08-01/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-08-01/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/stencils/enneagram-silhouette.svg",
+   "name": "enneagram-silhouette",
+   "path": "gallery/stencils/enneagram-silhouette.svg",
+   "type": "sacré",
+   "family": "enneagram",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 11582
+  },
+  {
+   "id": "gallery/scribes/attractor-silhouette.svg",
+   "name": "attractor-silhouette",
+   "path": "gallery/scribes/attractor-silhouette.svg",
+   "type": "scribe",
+   "family": "attractor",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 10779
+  },
+  {
+   "id": "gallery/routine/2026-07-31/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-31/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-31",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-31/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-31/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-31",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-31/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-31/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-31",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-31/horse-formula.json",
+   "name": "horse-formula",
+   "path": "gallery/routine/2026-07-31/horse-formula.json",
+   "type": "render",
+   "family": "horse-formula",
+   "format": "json",
+   "date": "2026-07-31",
+   "bytes": 7380
+  },
+  {
+   "id": "gallery/routine/2026-07-31/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-31/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-31",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-31/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-31/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-31",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/routine/2026-07-31/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-31/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-31",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-07-30/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-30/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-30",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-30/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-30/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-30",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-30/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-30/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-30",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-30/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-30/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-30",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-30/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-30/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-30",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/routine/2026-07-30/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-30/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-30",
+   "bytes": 4151
   },
   {
    "id": "gallery/routine/2026-07-29/superformula.svg",
@@ -221,6 +643,86 @@ window.__MANIFEST__ = {
    "bytes": 4151
   },
   {
+   "id": "gallery/routine/2026-07-28/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-28/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-28",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-28/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-28/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-28",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-28/sri-yantra-silhouette.svg",
+   "name": "sri-yantra-silhouette",
+   "path": "gallery/routine/2026-07-28/sri-yantra-silhouette.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-28",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-28/sri-yantra-outline.svg",
+   "name": "sri-yantra-outline",
+   "path": "gallery/routine/2026-07-28/sri-yantra-outline.svg",
+   "type": "sacré",
+   "family": "sri-yantra-outline",
+   "format": "svg",
+   "date": "2026-07-28",
+   "bytes": 6069
+  },
+  {
+   "id": "gallery/routine/2026-07-28/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-28/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-28",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-28/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-28/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-28",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-28/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-28/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-28",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/routine/2026-07-28/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-28/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-28",
+   "bytes": 4151
+  },
+  {
    "id": "gallery/routine/2026-07-27/superformula.svg",
    "name": "superformula",
    "path": "gallery/routine/2026-07-27/superformula.svg",
@@ -281,6 +783,186 @@ window.__MANIFEST__ = {
    "bytes": 4151
   },
   {
+   "id": "gallery/routine/2026-07-26/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-26/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-26",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-26/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-26/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-26",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-26/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-26/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-26",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-26/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-26/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-26",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-26/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-26/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-26",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/routine/2026-07-26/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-26/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-26",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-07-25/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-25/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-25",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-25/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-25/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-25",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-25/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-25/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-25",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-25/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-25/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-25",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-25/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-25/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-25",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/routine/2026-07-25/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-25/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-25",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-07-24/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-24/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-24",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-24/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-24/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-24",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-24/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-24/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-24",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-24/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-24/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-24",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-24/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-24/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-24",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/routine/2026-07-24/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-24/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-24",
+   "bytes": 4151
+  },
+  {
    "id": "gallery/routine/2026-07-23/superformula.svg",
    "name": "superformula",
    "path": "gallery/routine/2026-07-23/superformula.svg",
@@ -321,6 +1003,16 @@ window.__MANIFEST__ = {
    "bytes": 40021
   },
   {
+   "id": "gallery/routine/2026-07-23/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-23/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-23",
+   "bytes": 15910
+  },
+  {
    "id": "gallery/routine/2026-07-23/forest.svg",
    "name": "forest",
    "path": "gallery/routine/2026-07-23/forest.svg",
@@ -338,6 +1030,356 @@ window.__MANIFEST__ = {
    "family": "flower",
    "format": "svg",
    "date": "2026-07-23",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-07-22/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-22/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-22",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-22/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-22/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-22",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-22/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-22/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-22",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-22/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-22/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-22",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-22/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-22/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-22",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/routine/2026-07-22/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-22/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-22",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-07-21/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-21/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-21",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-21/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-21/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-21",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-21/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-21/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-21",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-21/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-21/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-21",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-21/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-21/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-21",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/routine/2026-07-21/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-21/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-21",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-07-20/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-20/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-20",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-20/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-20/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-20",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-20/sri-yantra-silhouette.svg",
+   "name": "sri-yantra-silhouette",
+   "path": "gallery/routine/2026-07-20/sri-yantra-silhouette.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-20",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-20/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-20/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-20",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-20/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-20/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-20",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-20/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-20/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-20",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/routine/2026-07-20/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-20/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-20",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-07-19/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-19/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-19",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-19/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-19/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-19",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-19/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-19/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-19",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-19/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-19/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-19",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-19/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-19/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-19",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/routine/2026-07-19/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-19/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-19",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-07-18/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-18/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-18",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-18/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-18/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-18",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-18/sri-yantra-silhouette.svg",
+   "name": "sri-yantra-silhouette",
+   "path": "gallery/routine/2026-07-18/sri-yantra-silhouette.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-18",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-18/sri-yantra-outline.svg",
+   "name": "sri-yantra-outline",
+   "path": "gallery/routine/2026-07-18/sri-yantra-outline.svg",
+   "type": "sacré",
+   "family": "sri-yantra-outline",
+   "format": "svg",
+   "date": "2026-07-18",
+   "bytes": 6069
+  },
+  {
+   "id": "gallery/routine/2026-07-18/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-18/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-18",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-07-18/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-18/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-18",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-18/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-18/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-18",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/routine/2026-07-18/flower-silhouette.svg",
+   "name": "flower-silhouette",
+   "path": "gallery/routine/2026-07-18/flower-silhouette.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-18",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-07-18/flower-outline.svg",
+   "name": "flower-outline",
+   "path": "gallery/routine/2026-07-18/flower-outline.svg",
+   "type": "sacré",
+   "family": "flower-outline",
+   "format": "svg",
+   "date": "2026-07-18",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-07-18/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-18/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-18",
    "bytes": 4151
   },
   {
@@ -531,6 +1573,16 @@ window.__MANIFEST__ = {
    "bytes": 21443
   },
   {
+   "id": "gallery/routine/2026-07-15/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-15/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-15",
+   "bytes": 244876
+  },
+  {
    "id": "gallery/routine/2026-07-15/streamlines-silhouette.svg",
    "name": "streamlines-silhouette",
    "path": "gallery/routine/2026-07-15/streamlines-silhouette.svg",
@@ -541,6 +1593,16 @@ window.__MANIFEST__ = {
    "bytes": 77939
   },
   {
+   "id": "gallery/routine/2026-07-15/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-15/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-15",
+   "bytes": 401934
+  },
+  {
    "id": "gallery/routine/2026-07-15/sri-yantra-silhouette.svg",
    "name": "sri-yantra-silhouette",
    "path": "gallery/routine/2026-07-15/sri-yantra-silhouette.svg",
@@ -549,6 +1611,26 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-07-15",
    "bytes": 23570
+  },
+  {
+   "id": "gallery/routine/2026-07-15/sri-yantra-outline.svg",
+   "name": "sri-yantra-outline",
+   "path": "gallery/routine/2026-07-15/sri-yantra-outline.svg",
+   "type": "sacré",
+   "family": "sri-yantra-outline",
+   "format": "svg",
+   "date": "2026-07-15",
+   "bytes": 6069
+  },
+  {
+   "id": "gallery/routine/2026-07-15/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-15/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-15",
+   "bytes": 6069
   },
   {
    "id": "gallery/routine/2026-07-15/horse-silhouette.svg",
@@ -571,6 +1653,16 @@ window.__MANIFEST__ = {
    "bytes": 10408
   },
   {
+   "id": "gallery/routine/2026-07-15/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-15/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-15",
+   "bytes": 15910
+  },
+  {
    "id": "gallery/routine/2026-07-15/flower-silhouette.svg",
    "name": "flower-silhouette",
    "path": "gallery/routine/2026-07-15/flower-silhouette.svg",
@@ -579,6 +1671,16 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-07-15",
    "bytes": 27267
+  },
+  {
+   "id": "gallery/routine/2026-07-15/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-15/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-15",
+   "bytes": 4151
   },
   {
    "id": "gallery/routine/2026-07-14/superformula.svg",
@@ -951,6 +2053,16 @@ window.__MANIFEST__ = {
    "bytes": 21443
   },
   {
+   "id": "gallery/routine/2026-07-12/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-12/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-12",
+   "bytes": 244876
+  },
+  {
    "id": "gallery/routine/2026-07-12/streamlines-silhouette.svg",
    "name": "streamlines-silhouette",
    "path": "gallery/routine/2026-07-12/streamlines-silhouette.svg",
@@ -961,6 +2073,16 @@ window.__MANIFEST__ = {
    "bytes": 77939
   },
   {
+   "id": "gallery/routine/2026-07-12/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-12/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-12",
+   "bytes": 401934
+  },
+  {
    "id": "gallery/routine/2026-07-12/sri-yantra-silhouette.svg",
    "name": "sri-yantra-silhouette",
    "path": "gallery/routine/2026-07-12/sri-yantra-silhouette.svg",
@@ -969,6 +2091,16 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-07-12",
    "bytes": 23570
+  },
+  {
+   "id": "gallery/routine/2026-07-12/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-12/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-12",
+   "bytes": 5981
   },
   {
    "id": "gallery/routine/2026-07-12/horse-silhouette.svg",
@@ -1001,6 +2133,16 @@ window.__MANIFEST__ = {
    "bytes": 15910
   },
   {
+   "id": "gallery/routine/2026-07-12/forest.svg",
+   "name": "forest",
+   "path": "gallery/routine/2026-07-12/forest.svg",
+   "type": "render",
+   "family": "forest",
+   "format": "svg",
+   "date": "2026-07-12",
+   "bytes": 15910
+  },
+  {
    "id": "gallery/routine/2026-07-12/flower-silhouette.svg",
    "name": "flower-silhouette",
    "path": "gallery/routine/2026-07-12/flower-silhouette.svg",
@@ -1009,6 +2151,16 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-07-12",
    "bytes": 27267
+  },
+  {
+   "id": "gallery/routine/2026-07-12/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-12/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-12",
+   "bytes": 4151
   },
   {
    "id": "gallery/routine/2026-07-11/superformula-silhouette.svg",
@@ -1191,6 +2343,36 @@ window.__MANIFEST__ = {
    "bytes": 4151
   },
   {
+   "id": "gallery/routine/2026-07-10/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-10/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-10",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-10/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-10/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-10",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-10/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-10/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-10",
+   "bytes": 5981
+  },
+  {
    "id": "gallery/routine/2026-07-10/spirograph-silhouette.svg",
    "name": "spirograph-silhouette",
    "path": "gallery/routine/2026-07-10/spirograph-silhouette.svg",
@@ -1221,6 +2403,26 @@ window.__MANIFEST__ = {
    "bytes": 32875
   },
   {
+   "id": "gallery/routine/2026-07-10/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-10/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-10",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-10/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-10/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-10",
+   "bytes": 15910
+  },
+  {
    "id": "gallery/routine/2026-07-10/harmonograph-silhouette.svg",
    "name": "harmonograph-silhouette",
    "path": "gallery/routine/2026-07-10/harmonograph-silhouette.svg",
@@ -1249,6 +2451,16 @@ window.__MANIFEST__ = {
    "format": "png",
    "date": "2026-07-10",
    "bytes": 120412
+  },
+  {
+   "id": "gallery/routine/2026-07-10/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-10/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-10",
+   "bytes": 4151
   },
   {
    "id": "gallery/routine/2026-07-09/superformula-silhouette.svg",
@@ -1381,6 +2593,16 @@ window.__MANIFEST__ = {
    "bytes": 21443
   },
   {
+   "id": "gallery/routine/2026-07-08/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-08/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-08",
+   "bytes": 244876
+  },
+  {
    "id": "gallery/routine/2026-07-08/streamlines-silhouette.svg",
    "name": "streamlines-silhouette",
    "path": "gallery/routine/2026-07-08/streamlines-silhouette.svg",
@@ -1391,6 +2613,16 @@ window.__MANIFEST__ = {
    "bytes": 77939
   },
   {
+   "id": "gallery/routine/2026-07-08/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-08/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-08",
+   "bytes": 401934
+  },
+  {
    "id": "gallery/routine/2026-07-08/sri-yantra-silhouette.svg",
    "name": "sri-yantra-silhouette",
    "path": "gallery/routine/2026-07-08/sri-yantra-silhouette.svg",
@@ -1399,6 +2631,16 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-07-08",
    "bytes": 23570
+  },
+  {
+   "id": "gallery/routine/2026-07-08/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-08/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-08",
+   "bytes": 5981
   },
   {
    "id": "gallery/routine/2026-07-08/horse-silhouette.svg",
@@ -1421,6 +2663,16 @@ window.__MANIFEST__ = {
    "bytes": 10408
   },
   {
+   "id": "gallery/routine/2026-07-08/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-08/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-08",
+   "bytes": 15910
+  },
+  {
    "id": "gallery/routine/2026-07-08/flower-silhouette.svg",
    "name": "flower-silhouette",
    "path": "gallery/routine/2026-07-08/flower-silhouette.svg",
@@ -1429,6 +2681,46 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-07-08",
    "bytes": 27267
+  },
+  {
+   "id": "gallery/routine/2026-07-08/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-08/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-08",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-07-07/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-07/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-07",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-07/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-07/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-07",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-07/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-07/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-07",
+   "bytes": 5981
   },
   {
    "id": "gallery/routine/2026-07-07/spirograph-silhouette.svg",
@@ -1461,6 +2753,26 @@ window.__MANIFEST__ = {
    "bytes": 32875
   },
   {
+   "id": "gallery/routine/2026-07-07/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-07/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-07",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-07/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-07/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-07",
+   "bytes": 15910
+  },
+  {
    "id": "gallery/routine/2026-07-07/harmonograph-silhouette.svg",
    "name": "harmonograph-silhouette",
    "path": "gallery/routine/2026-07-07/harmonograph-silhouette.svg",
@@ -1489,6 +2801,16 @@ window.__MANIFEST__ = {
    "format": "png",
    "date": "2026-07-07",
    "bytes": 120412
+  },
+  {
+   "id": "gallery/routine/2026-07-07/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-07/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-07",
+   "bytes": 4151
   },
   {
    "id": "gallery/routine/2026-07-06/superformula.svg",
@@ -1551,6 +2873,36 @@ window.__MANIFEST__ = {
    "bytes": 4151
   },
   {
+   "id": "gallery/routine/2026-07-05/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-05/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-05",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-07-05/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-05/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-05",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-07-05/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-05/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-05",
+   "bytes": 5981
+  },
+  {
    "id": "gallery/routine/2026-07-05/spirograph-silhouette.svg",
    "name": "spirograph-silhouette",
    "path": "gallery/routine/2026-07-05/spirograph-silhouette.svg",
@@ -1581,6 +2933,26 @@ window.__MANIFEST__ = {
    "bytes": 32875
   },
   {
+   "id": "gallery/routine/2026-07-05/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-05/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-07-05",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-07-05/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-05/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-05",
+   "bytes": 15910
+  },
+  {
    "id": "gallery/routine/2026-07-05/harmonograph-silhouette.svg",
    "name": "harmonograph-silhouette",
    "path": "gallery/routine/2026-07-05/harmonograph-silhouette.svg",
@@ -1609,6 +2981,16 @@ window.__MANIFEST__ = {
    "format": "png",
    "date": "2026-07-05",
    "bytes": 120412
+  },
+  {
+   "id": "gallery/routine/2026-07-05/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-05/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-05",
+   "bytes": 4151
   },
   {
    "id": "gallery/routine/2026-07-04/superformula-silhouette.svg",
@@ -1741,6 +3123,16 @@ window.__MANIFEST__ = {
    "bytes": 21443
   },
   {
+   "id": "gallery/routine/2026-07-03/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-03/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-03",
+   "bytes": 244876
+  },
+  {
    "id": "gallery/routine/2026-07-03/streamlines-silhouette.svg",
    "name": "streamlines-silhouette",
    "path": "gallery/routine/2026-07-03/streamlines-silhouette.svg",
@@ -1751,6 +3143,16 @@ window.__MANIFEST__ = {
    "bytes": 77939
   },
   {
+   "id": "gallery/routine/2026-07-03/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-03/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-03",
+   "bytes": 401934
+  },
+  {
    "id": "gallery/routine/2026-07-03/sri-yantra-silhouette.svg",
    "name": "sri-yantra-silhouette",
    "path": "gallery/routine/2026-07-03/sri-yantra-silhouette.svg",
@@ -1759,6 +3161,16 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-07-03",
    "bytes": 23570
+  },
+  {
+   "id": "gallery/routine/2026-07-03/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-03/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-03",
+   "bytes": 5981
   },
   {
    "id": "gallery/routine/2026-07-03/horse-silhouette.svg",
@@ -1781,6 +3193,16 @@ window.__MANIFEST__ = {
    "bytes": 10408
   },
   {
+   "id": "gallery/routine/2026-07-03/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-03/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-03",
+   "bytes": 15910
+  },
+  {
    "id": "gallery/routine/2026-07-03/flower-silhouette.svg",
    "name": "flower-silhouette",
    "path": "gallery/routine/2026-07-03/flower-silhouette.svg",
@@ -1789,6 +3211,16 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-07-03",
    "bytes": 27267
+  },
+  {
+   "id": "gallery/routine/2026-07-03/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-03/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-03",
+   "bytes": 4151
   },
   {
    "id": "gallery/routine/2026-07-02/superformula-silhouette.svg",
@@ -1801,6 +3233,16 @@ window.__MANIFEST__ = {
    "bytes": 21443
   },
   {
+   "id": "gallery/routine/2026-07-02/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-07-02/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-07-02",
+   "bytes": 244876
+  },
+  {
    "id": "gallery/routine/2026-07-02/streamlines-silhouette.svg",
    "name": "streamlines-silhouette",
    "path": "gallery/routine/2026-07-02/streamlines-silhouette.svg",
@@ -1811,6 +3253,16 @@ window.__MANIFEST__ = {
    "bytes": 77939
   },
   {
+   "id": "gallery/routine/2026-07-02/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-07-02/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-07-02",
+   "bytes": 401934
+  },
+  {
    "id": "gallery/routine/2026-07-02/sri-yantra-silhouette.svg",
    "name": "sri-yantra-silhouette",
    "path": "gallery/routine/2026-07-02/sri-yantra-silhouette.svg",
@@ -1819,6 +3271,16 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-07-02",
    "bytes": 23570
+  },
+  {
+   "id": "gallery/routine/2026-07-02/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-02/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-02",
+   "bytes": 5981
   },
   {
    "id": "gallery/routine/2026-07-02/horse-silhouette.svg",
@@ -1841,6 +3303,16 @@ window.__MANIFEST__ = {
    "bytes": 10408
   },
   {
+   "id": "gallery/routine/2026-07-02/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-07-02/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-07-02",
+   "bytes": 15910
+  },
+  {
    "id": "gallery/routine/2026-07-02/flower-silhouette.svg",
    "name": "flower-silhouette",
    "path": "gallery/routine/2026-07-02/flower-silhouette.svg",
@@ -1849,6 +3321,16 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-07-02",
    "bytes": 27267
+  },
+  {
+   "id": "gallery/routine/2026-07-02/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-02/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-02",
+   "bytes": 4151
   },
   {
    "id": "gallery/routine/2026-07-01/superformula.svg",
@@ -1891,6 +3373,16 @@ window.__MANIFEST__ = {
    "bytes": 6069
   },
   {
+   "id": "gallery/routine/2026-07-01/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-07-01/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-07-01",
+   "bytes": 5981
+  },
+  {
    "id": "gallery/routine/2026-07-01/horse.png",
    "name": "horse",
    "path": "gallery/routine/2026-07-01/horse.png",
@@ -1928,6 +3420,76 @@ window.__MANIFEST__ = {
    "family": "flower-outline",
    "format": "svg",
    "date": "2026-07-01",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-07-01/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-07-01/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-07-01",
+   "bytes": 4151
+  },
+  {
+   "id": "gallery/routine/2026-06-29/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-06-29/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-06-29",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-06-29/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-06-29/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-06-29",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-06-29/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-06-29/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-06-29",
+   "bytes": 5981
+  },
+  {
+   "id": "gallery/routine/2026-06-29/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-06-29/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-06-29",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-06-29/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-06-29/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-06-29",
+   "bytes": 15910
+  },
+  {
+   "id": "gallery/routine/2026-06-29/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-06-29/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-06-29",
    "bytes": 4151
   },
   {
@@ -2061,6 +3623,16 @@ window.__MANIFEST__ = {
    "bytes": 21443
   },
   {
+   "id": "gallery/routine/2026-06-27/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-06-27/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-06-27",
+   "bytes": 244876
+  },
+  {
    "id": "gallery/routine/2026-06-27/streamlines-silhouette.svg",
    "name": "streamlines-silhouette",
    "path": "gallery/routine/2026-06-27/streamlines-silhouette.svg",
@@ -2071,6 +3643,16 @@ window.__MANIFEST__ = {
    "bytes": 77939
   },
   {
+   "id": "gallery/routine/2026-06-27/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-06-27/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-06-27",
+   "bytes": 401934
+  },
+  {
    "id": "gallery/routine/2026-06-27/sri-yantra-silhouette.svg",
    "name": "sri-yantra-silhouette",
    "path": "gallery/routine/2026-06-27/sri-yantra-silhouette.svg",
@@ -2079,6 +3661,16 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-06-27",
    "bytes": 23570
+  },
+  {
+   "id": "gallery/routine/2026-06-27/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-06-27/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-06-27",
+   "bytes": 5981
   },
   {
    "id": "gallery/routine/2026-06-27/spirograph-silhouette.svg",
@@ -2131,6 +3723,16 @@ window.__MANIFEST__ = {
    "bytes": 10408
   },
   {
+   "id": "gallery/routine/2026-06-27/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-06-27/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-06-27",
+   "bytes": 15910
+  },
+  {
    "id": "gallery/routine/2026-06-27/harmonograph-silhouette.svg",
    "name": "harmonograph-silhouette",
    "path": "gallery/routine/2026-06-27/harmonograph-silhouette.svg",
@@ -2169,6 +3771,16 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-06-27",
    "bytes": 27267
+  },
+  {
+   "id": "gallery/routine/2026-06-27/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-06-27/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-06-27",
+   "bytes": 4151
   },
   {
    "id": "gallery/routine/2026-06-26/superformula.svg",
@@ -2291,6 +3903,36 @@ window.__MANIFEST__ = {
    "bytes": 4151
   },
   {
+   "id": "gallery/routine/2026-06-25/superformula.svg",
+   "name": "superformula",
+   "path": "gallery/routine/2026-06-25/superformula.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-06-25",
+   "bytes": 244876
+  },
+  {
+   "id": "gallery/routine/2026-06-25/streamlines.svg",
+   "name": "streamlines",
+   "path": "gallery/routine/2026-06-25/streamlines.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-06-25",
+   "bytes": 401934
+  },
+  {
+   "id": "gallery/routine/2026-06-25/sri-yantra.svg",
+   "name": "sri-yantra",
+   "path": "gallery/routine/2026-06-25/sri-yantra.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-06-25",
+   "bytes": 5981
+  },
+  {
    "id": "gallery/routine/2026-06-25/spirograph-silhouette.svg",
    "name": "spirograph-silhouette",
    "path": "gallery/routine/2026-06-25/spirograph-silhouette.svg",
@@ -2321,6 +3963,26 @@ window.__MANIFEST__ = {
    "bytes": 32875
   },
   {
+   "id": "gallery/routine/2026-06-25/horse.png",
+   "name": "horse",
+   "path": "gallery/routine/2026-06-25/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-06-25",
+   "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-06-25/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-06-25/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-06-25",
+   "bytes": 15910
+  },
+  {
    "id": "gallery/routine/2026-06-25/harmonograph-silhouette.svg",
    "name": "harmonograph-silhouette",
    "path": "gallery/routine/2026-06-25/harmonograph-silhouette.svg",
@@ -2349,6 +4011,16 @@ window.__MANIFEST__ = {
    "format": "png",
    "date": "2026-06-25",
    "bytes": 120412
+  },
+  {
+   "id": "gallery/routine/2026-06-25/flower.svg",
+   "name": "flower",
+   "path": "gallery/routine/2026-06-25/flower.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-06-25",
+   "bytes": 4151
   },
   {
    "id": "gallery/routine/2026-06-22/spirograph-silhouette.svg",
@@ -2849,216 +4521,6 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-06-17",
    "bytes": 34461
-  },
-  {
-   "id": "gallery/stencils/wheel-silhouette.svg",
-   "name": "wheel-silhouette",
-   "path": "gallery/stencils/wheel-silhouette.svg",
-   "type": "sacré",
-   "family": "wheel",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 13466
-  },
-  {
-   "id": "gallery/stencils/wheel-negative.svg",
-   "name": "wheel-negative",
-   "path": "gallery/stencils/wheel-negative.svg",
-   "type": "sacré",
-   "family": "wheel",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 13469
-  },
-  {
-   "id": "gallery/scribes/superformula-silhouette.svg",
-   "name": "superformula-silhouette",
-   "path": "gallery/scribes/superformula-silhouette.svg",
-   "type": "scribe",
-   "family": "superformula",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 17512
-  },
-  {
-   "id": "gallery/scribes/streamlines-silhouette.svg",
-   "name": "streamlines-silhouette",
-   "path": "gallery/scribes/streamlines-silhouette.svg",
-   "type": "scribe",
-   "family": "streamlines",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 59607
-  },
-  {
-   "id": "gallery/stencils/sri-yantra-silhouette.svg",
-   "name": "sri-yantra-silhouette",
-   "path": "gallery/stencils/sri-yantra-silhouette.svg",
-   "type": "sacré",
-   "family": "sri-yantra",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 22607
-  },
-  {
-   "id": "gallery/scribes/spirograph-silhouette.svg",
-   "name": "spirograph-silhouette",
-   "path": "gallery/scribes/spirograph-silhouette.svg",
-   "type": "scribe",
-   "family": "spirograph",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 54501
-  },
-  {
-   "id": "gallery/stencils/spiral-silhouette.svg",
-   "name": "spiral-silhouette",
-   "path": "gallery/stencils/spiral-silhouette.svg",
-   "type": "sacré",
-   "family": "spiral",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 3393
-  },
-  {
-   "id": "gallery/stencils/seal-silhouette.svg",
-   "name": "seal-silhouette",
-   "path": "gallery/stencils/seal-silhouette.svg",
-   "type": "sacré",
-   "family": "seal",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 7645
-  },
-  {
-   "id": "gallery/scribes/rose-silhouette.svg",
-   "name": "rose-silhouette",
-   "path": "gallery/scribes/rose-silhouette.svg",
-   "type": "scribe",
-   "family": "rose",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 28025
-  },
-  {
-   "id": "gallery/stencils/metatron-silhouette.svg",
-   "name": "metatron-silhouette",
-   "path": "gallery/stencils/metatron-silhouette.svg",
-   "type": "sacré",
-   "family": "metatron",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 25684
-  },
-  {
-   "id": "gallery/stencils/mandala-silhouette.svg",
-   "name": "mandala-silhouette",
-   "path": "gallery/stencils/mandala-silhouette.svg",
-   "type": "sacré",
-   "family": "mandala",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 30956
-  },
-  {
-   "id": "gallery/stencils/horse-silhouette.svg",
-   "name": "horse-silhouette",
-   "path": "gallery/stencils/horse-silhouette.svg",
-   "type": "pochoir",
-   "family": "horse",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 2800
-  },
-  {
-   "id": "gallery/stencils/horse-negative.svg",
-   "name": "horse-negative",
-   "path": "gallery/stencils/horse-negative.svg",
-   "type": "pochoir",
-   "family": "horse",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 2910
-  },
-  {
-   "id": "gallery/scribes/harmonograph-silhouette.svg",
-   "name": "harmonograph-silhouette",
-   "path": "gallery/scribes/harmonograph-silhouette.svg",
-   "type": "scribe",
-   "family": "harmonograph",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 9414
-  },
-  {
-   "id": "gallery/stencils/flower-silhouette.svg",
-   "name": "flower-silhouette",
-   "path": "gallery/stencils/flower-silhouette.svg",
-   "type": "sacré",
-   "family": "flower",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 29693
-  },
-  {
-   "id": "gallery/stencils/enneagram-silhouette.svg",
-   "name": "enneagram-silhouette",
-   "path": "gallery/stencils/enneagram-silhouette.svg",
-   "type": "sacré",
-   "family": "enneagram",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 11582
-  },
-  {
-   "id": "gallery/scribes/attractor-silhouette.svg",
-   "name": "attractor-silhouette",
-   "path": "gallery/scribes/attractor-silhouette.svg",
-   "type": "scribe",
-   "family": "attractor",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 10779
-  },
-  {
-   "id": "gallery/turbines_exact.png",
-   "name": "turbines_exact",
-   "path": "gallery/turbines_exact.png",
-   "type": "render",
-   "family": "turbines_exact",
-   "format": "png",
-   "date": "2026-05-31",
-   "bytes": 25897
-  },
-  {
-   "id": "gallery/turbines.png",
-   "name": "turbines",
-   "path": "gallery/turbines.png",
-   "type": "render",
-   "family": "turbines",
-   "format": "png",
-   "date": "2026-05-31",
-   "bytes": 110429
-  },
-  {
-   "id": "gallery/horse.png",
-   "name": "horse",
-   "path": "gallery/horse.png",
-   "type": "render",
-   "family": "horse",
-   "format": "png",
-   "date": "2026-05-31",
-   "bytes": 8905
-  },
-  {
-   "id": "gallery/forest.png",
-   "name": "forest",
-   "path": "gallery/forest.png",
-   "type": "render",
-   "family": "forest",
-   "format": "png",
-   "date": "2026-05-31",
-   "bytes": 90038
   }
  ]
 };
