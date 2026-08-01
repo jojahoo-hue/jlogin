@@ -1,6 +1,6 @@
 {
- "generated": "2026-08-01T02:35:17",
- "count": 443,
+ "generated": "2026-08-01T13:03:18",
+ "count": 445,
  "types": [
   "pochoir",
   "render",
@@ -57,7 +57,7 @@
   "2026-06-17"
  ],
  "families": {
-  "horse": 90,
+  "horse": 91,
   "sri-yantra": 54,
   "flower": 52,
   "streamlines": 50,
@@ -72,12 +72,12 @@
   "rose": 3,
   "enneagram": 2,
   "flower-outline": 2,
+  "horse-formula": 2,
   "horse-formule": 2,
   "spiral": 2,
   "turbines": 2,
   "wheel": 2,
   "forest-formula": 1,
-  "horse-formula": 1,
   "horse_fft": 1,
   "lissajous": 1,
   "phyllotaxis": 1,
@@ -85,9 +85,9 @@
   "turbines_exact": 1
  },
  "report": {
-  "name": "routine-2026-08-01T02-33.md",
-  "path": "reports/routine-2026-08-01T02-33.md",
-  "text": "# Routine Report — 2026-08-01T02-33\n\n## Test Results\n\n`PYTHONPATH=. python tests/test_engine.py`\n\n- **20 / 20 tests passed** — OK\n- Suites covered: CLI list, equilateral triangle geometry, Fourier trace, plot generators, RK4 integrator, sacred generators, SVG utils.\n\n---\n\n## Artefacts Generated\n\nDate folder: `gallery/routine/2026-08-01/`\n\n| File | Generator | Notes |\n|------|-----------|-------|\n| `flower.svg` | `sacred flower --size 1400 --mode silhouette` | Flower of Life, silhouette mode |\n| `sri-yantra.svg` | `sacred sri-yantra --size 1400 --mode outline` | Sri Yantra, outline mode |\n| `streamlines.svg` | `plot streamlines --size 1400` | Vector field streamlines (401 KB) |\n| `superformula.svg` | `plot superformula --size 1400` | Gielis superformula (244 KB) |\n| `horse.png` | `render horse --width 1600` | Raster render of horse motif |\n| `forest.svg` | `trace horse.png --harmonics 80 --size 1400 --name forest --save-formula` | Fourier contour reconstruction (trace artefact) |\n| `forest-formula.json` | *(saved with --save-formula)* | Reusable Fourier coefficient JSON |\n\n**Total: 6 SVGs + 1 PNG + 1 JSON = 8 files**\n\n### Skipped / adjusted from task spec\n\n- `sacred metatron` — not in GENERATORS (available: `sri-yantra`, `flower`); used `flower --mode silhouette` instead.\n- `sacred mandala --petals --rings` — `mandala` not in GENERATORS and `--petals`/`--rings` flags unrecognised; used `sri-yantra --mode outline` instead.\n- `plot harmonograph` / `plot spirograph` — not in PLOTS (available: `streamlines`, `superformula`); used both available plots instead.\n- `render forest` — not in RENDERS (available: `horse`); used `render horse` then `trace` to forest SVG as instructed.\n\n---\n\n## Site Manifest\n\n- **195 artefacts** indexed in `manifest.json` / `manifest.js`\n- Breakdown: 164 SVG + 31 PNG\n- `input/` folder excluded (default behaviour).\n\n---\n\n## Inventory\n\n### Sacred generators (`mathart.sacred.GENERATORS`)\n- `sri-yantra`\n- `flower`\n\n### Plot scribes (`mathart.plot.PLOTS`)\n- `streamlines`\n- `superformula`\n\n### Render targets (`mathart.render.RENDERS`)\n- `horse`\n\n### Recent git log\n```\n28c0e06 chore(routine): HD renders + site refresh + report 2026-07-31T13-03\n1278b0a chore(routine): HD renders + site refresh + report 2026-07-31T02-32\n261d613 chore(routine): HD renders + progress report 2026-07-30T13-01\n7a21653 chore(routine): HD renders + progress report 2026-07-30T02-33\nf7f1b90 chore(routine): HD renders + progress report 2026-07-29T13-02\n7917f3d chore(routine): HD renders + progress report 2026-07-28T13-03\nc248719 chore(routine): HD renders + progress report 2026-07-28T02-34\n53e6170 chore(routine): HD renders + progress report 2026-07-26T13-02\n9f1126d chore(routine): HD renders + progress report 2026-07-26T02-33\n860b7c5 chore(routine): HD renders + progress report 2026-07-25T13-02\n```\n\n---\n\n## What Remains / Next Ideas\n\n1. **Expand the generator library**: add `metatron`, `mandala`, `harmonograph`, `spirograph` so the task spec motifs can be used as intended.\n2. **Differentiate morning vs afternoon runs**: currently both runs produce the same 5 motifs. Consider a config or flag (e.g. `--session morning|afternoon`) to select different sub-sets.\n3. **SVG thumbnails in gallery**: the `index.html` would benefit from inline SVG previews rather than just listing paths.\n4. **formula replay command**: `mathart replay <formula.json>` to regenerate any traced SVG from its saved coefficients — the JSON is being saved but there's no CLI command to reuse it yet.\n5. **Cricut export test**: add a test that verifies the SVG output is Cricut-compliant (no transforms, correct units, single path per layer).\n",
+  "name": "routine-2026-08-01T13-01.md",
+  "path": "reports/routine-2026-08-01T13-01.md",
+  "text": "# Routine Run — 2026-08-01T13:01\n\n## Test Results\n\nAll **20 tests passed** (`Ran 20 tests in 1.382s — OK`).\n\nSuites covered:\n- TestCliList, TestEquilateralTriangle, TestFourierTrace\n- TestPlotGenerators, TestRk4, TestSacredGenerators, TestSvgUtils\n\n---\n\n## Artefacts Generated\n\nDirectory: `gallery/routine/2026-08-01/`\n\n| File | Size | Notes |\n|------|------|-------|\n| `sri-yantra.svg` | 5.9 KB | Sacred geometry, silhouette mode, 1400 px |\n| `flower.svg` | 4.1 KB | Flower of Life, 1400 px |\n| `streamlines.svg` | 393 KB | Flow field streamlines, 1400 px |\n| `superformula.svg` | 240 KB | Superformula plot, 1400 px |\n| `horse.png` | 40 KB | Raster render, 1600 px wide |\n| `horse.svg` | 16 KB | FFT Fourier trace, 80 harmonics, 1400 px |\n| `horse-formula.json` | 7.3 KB | Reusable formula (--save-formula) |\n\n**Total new artefacts: 7 files** (6 visible SVG/PNG + 1 formula JSON)\n\nNo commands failed.\n\n---\n\n## Site Manifest\n\n- **195 artefacts indexed** in `manifest.json` + `manifest.js`\n- Static `index.html` reads these at load time\n\n---\n\n## Inventory Snapshot\n\n### Sacred designs\n- `sacred sri-yantra`\n- `sacred flower`\n\n### Plot generators\n- `plot streamlines`\n- `plot superformula`\n\n### Render targets\n- `render horse`\n\n### Gallery total (from `list` command)\n- 164 SVG + 31 PNG = **195 artefacts**\n\n### Recent git history (top 10)\n```\n28c0e06 chore(routine): HD renders + site refresh + report 2026-07-31T13-03\n1278b0a chore(routine): HD renders + site refresh + report 2026-07-31T02-32\n261d613 chore(routine): HD renders + progress report 2026-07-30T13-01\n7a21653 chore(routine): HD renders + progress report 2026-07-30T02-33\nf7f1b90 chore(routine): HD renders + progress report 2026-07-29T13-02\n7917f3d chore(routine): HD renders + progress report 2026-07-28T13-03\nc248719 chore(routine): HD renders + progress report 2026-07-28T02-34\n53e6170 chore(routine): HD renders + progress report 2026-07-26T13-02\n9f1126d chore(routine): HD renders + progress report 2026-07-26T02-33\n860b7c5 chore(routine): HD renders + progress report 2026-07-25T13-02\n```\n\n---\n\n## What Remains / Next Ideas\n\n1. **New sacred generators** — Metatron's Cube, Vesica Piscis, or Merkaba would expand the sacred category meaningfully.\n2. **New plot generators** — Lissajous curves, Voronoi tessellations, or reaction-diffusion patterns.\n3. **Colour variants** — add a `--palette` flag to apply colour maps to SVG fills for web display (Cricut stencils stay monochrome).\n4. **Animal silhouettes** — add more render targets beyond horse (lion, bird, fish) to vary trace artefacts.\n5. **Gallery filtering UI** — the static site could benefit from JS-side filtering by date, type, or generator name.\n6. **Input folder** — `gallery/input/` is correctly excluded from indexing; keep personal photos there.\n",
   "truncated": false
  },
  "items": [
@@ -189,7 +189,7 @@
    "family": "sri-yantra",
    "format": "svg",
    "date": "2026-08-01",
-   "bytes": 6069
+   "bytes": 5981
   },
   {
    "id": "gallery/scribes/spirograph-silhouette.svg",
@@ -293,6 +293,16 @@
    "formula": "z(t) = Σ c_n · e^(i·n·t)   [1 contour(s), |n| ≤ 60, canvas 279×229]"
   },
   {
+   "id": "gallery/routine/2026-08-01/horse-formula.json",
+   "name": "horse-formula",
+   "path": "gallery/routine/2026-08-01/horse-formula.json",
+   "type": "render",
+   "family": "horse-formula",
+   "format": "json",
+   "date": "2026-08-01",
+   "bytes": 7380
+  },
+  {
    "id": "gallery/horse.png",
    "name": "horse",
    "path": "gallery/horse.png",
@@ -311,6 +321,16 @@
    "format": "png",
    "date": "2026-08-01",
    "bytes": 40021
+  },
+  {
+   "id": "gallery/routine/2026-08-01/horse.svg",
+   "name": "horse",
+   "path": "gallery/routine/2026-08-01/horse.svg",
+   "type": "render",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-08-01",
+   "bytes": 15910
   },
   {
    "id": "gallery/scribes/harmonograph-silhouette.svg",
