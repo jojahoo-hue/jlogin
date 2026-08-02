@@ -10,7 +10,7 @@
 Quand Njaho tape `/redige` (seul) ou `/redige [gabarit + projet + chapitre]`.
 
 - `/redige` seul → activer le skill `redaction-initiatique` et afficher le **menu de démarrage rapide**
-  (les 7 gabarits + Numérologie), puis attendre le choix.
+  (les 8 gabarits + Numérologie), puis attendre le choix.
 - `/redige mémoire vivante projet Ndosi ch.2` (ou toute demande contenant déjà gabarit / projet / chapitre)
   → **sauter le menu** et enchaîner directement la rédaction.
 
@@ -33,6 +33,7 @@ Quand Njaho tape `/redige` (seul) ou `/redige [gabarit + projet + chapitre]`.
 /redige transmission vivante — tout — le livre entier
 /redige ba nitu projet KiTuni chapitre 3
 /redige castaneda projet Ndosi ch.1
+/redige reprise de manuscrit  (puis joindre le manuscrit en PJ)
 /redige numérologie du mot "Kongo"
 ```
 

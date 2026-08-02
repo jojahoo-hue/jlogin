@@ -2,14 +2,16 @@
 name: redaction-initiatique
 description: >
   Rédacteur Initiatique — moteur d'écriture de livre de transmission à partir des conversations, projets, rêves,
-  guidances et expériences de Njaho (archivés dans Notion / Plaud / Apple Notes). 7 gabarits d'écriture au choix.
+  guidances et expériences de Njaho (archivés dans Notion / Plaud / Apple Notes ou fournis en manuscrit).
+  8 gabarits d'écriture au choix.
   S'active sur : « rédiger un chapitre », « écrire le chapitre suivant », « continuer le livre », « enrichir le
   manuscrit », « on continue », « chapitre suivant », « en vibratoire / initiation écrite », « journaling / mot pour
   mot / restitution littérale », « Ba Nitu / ce que le corps demande / incarner ce que je sais / diriger depuis le
   cœur / cicatrice devenue sagesse / rayonner plutôt que prouver », « transmission vivante / écris tout le livre /
   œuvre de transmission / Ba Mbazi / guides de lumière », « mémoire vivante / un livre par projet / extraction
-  symbolique », « à la Castaneda / apprenti et maître / voie du guerrier », « numérologie / valeur secrète / code
-  secret / transformer un mot en nombre ».
+  symbolique », « à la Castaneda / apprenti et maître / voie du guerrier », « reprise de manuscrit / à partir de
+  mon manuscrit / manuscrit en pièce jointe / garder le nombre de mots / déduire les chapitres du manuscrit »,
+  « numérologie / valeur secrète / code secret / transformer un mot en nombre ».
 ---
 
 # Rédacteur Initiatique (`redaction-initiatique`)
@@ -41,6 +43,7 @@ Si un gabarit / projet / chapitre est déjà nommé dans la demande, **sauter le
 5. Transmission Vivante  UN livre entier tiré de toute la matière
 6. Mémoire Vivante     UN livre PAR projet + extraction symbolique
 7. Castaneda           Récit d'apprentissage (apprenti / maître nagual)
+8. Reprise de Manuscrit  Repart d'un manuscrit fourni (PJ) : chapitres déduits, mots conservés
 +  Numérologie         Géométrie sacrée : transformer un mot en nombre
 
 Dis-moi : quel PROJET · quel CHAPITRE (ou « tout ») · quel GABARIT.
@@ -67,6 +70,7 @@ dossier. Trois canaux d'alimentation :
 | **A — Notion** *(recommandé)* | Pages ChatGPT & Plaud (Résumé / Transcription) organisées par projet | ✅ prêt | aucune |
 | **B — Plaud MCP** | `get_note` (résumé) + `get_transcript` | ⚠ MCP à activer | pas de notion de « dossier » : filtrage par nom / date / catégorie seulement |
 | **C — Apple Notes** | export `osascript` vers `_sources/` | ⚠ autorisation requise | timeout tant que l'Automation (Réglages → Confidentialité → Automatisation → Notes) n'est pas accordée |
+| **D — Manuscrit en PJ** | un manuscrit déjà écrit, fourni en pièce jointe (`.md` · `.txt` · `.docx` · `.pdf`) | ✅ prêt | dédié au gabarit **Reprise de Manuscrit** (le manuscrit devient à la fois source *et* structure) |
 
 **Méthode d'extraction :** lister les pages/notes du projet côté canal choisi → écrire un fichier daté par
 conversation dans `_sources/` → rédiger à partir de ces fichiers. **Canal A par défaut** (le plus fiable).
@@ -363,6 +367,44 @@ Déclencheurs : « à la Castaneda », « apprenti et maître », « voie du gue
 
 ---
 
+## 8. Reprise de Manuscrit — repartir d'un texte existant
+
+**Nature :** part d'un **manuscrit déjà écrit, fourni en pièce jointe** (Canal D) plutôt que des archives de
+conversations. Le manuscrit devient à la fois la **matière** et la **charpente** : la structure des chapitres
+est **déduite de sa lecture**, jamais imposée d'avance. Champ Notion **Méthode = `Reprise de Manuscrit`**.
+
+Déclencheurs : « reprise de manuscrit », « à partir de mon manuscrit », « manuscrit en pièce jointe »,
+« garder le nombre de mots », « déduire les chapitres du manuscrit », « ré-étoffer mon manuscrit ».
+
+**Trois règles propres à ce gabarit :**
+
+1. **Chapitres déduits de la lecture** — lire le manuscrit en entier, puis reconstituer son plan réel
+   (titres, ruptures, respirations, chapitres implicites). Ne pas plaquer une architecture externe : on
+   révèle celle qui est déjà là. Restituer d'abord le sommaire déduit et le faire valider avant de rédiger.
+
+2. **Nombre de mots conservé à minima, voire augmenté** — le compte de mots de chaque chapitre source est un
+   **plancher, jamais un plafond**. La réécriture **n'ampute pas** : elle égale au minimum le texte d'origine
+   et peut l'enrichir (jusqu'à la cible ~5000 mots/chapitre si la matière le porte, sans dilution ni
+   remplissage). Afficher, par chapitre, `mots source → mots produits` pour prouver qu'aucun passage n'a
+   rétréci.
+
+3. **Style proposé après lecture** — le style n'est **pas** fixé d'avance. Après lecture, analyser la voix du
+   manuscrit (registre, rythme, images, ton, part de vécu vs. concept) puis **proposer** :
+   - soit de **prolonger fidèlement** le style détecté du manuscrit ;
+   - soit de le **rapprocher d'un gabarit** existant (SOSRAC, Vibratoire, Ba Nitu, Transmission Vivante,
+     Mémoire Vivante, Castaneda) s'il s'en approche.
+   Présenter la proposition en une phrase (« ton manuscrit sonne proche de X — je le garde tel quel, je
+   l'accentue vers X, ou je te propose Y ? ») et **attendre le choix** avant de rédiger.
+
+**Déroulé :** manuscrit en PJ → copie datée dans `_sources/` → lecture intégrale → sommaire déduit (validé) →
+proposition de style (validée) → réécriture chapitre par chapitre au plancher de mots, avec le registre
+littéral & explicatif → sauvegarde Notion (Méthode = `Reprise de Manuscrit`) → export `.md`.
+
+**Garde-fou d'authenticité :** on enrichit et on élève, on ne réécrit pas contre l'auteur ni contre les faits
+du manuscrit. Aucun passage existant n'est supprimé sans accord ; les ajouts servent le texte, pas le volume.
+
+---
+
 ## + Module Géométrie Sacrée & Numérologie
 
 Module de calcul transformant un mot / nom en nombres initiatiques : **V.N** (valeur numérique), **Z.M**,
@@ -409,4 +451,5 @@ Déclencheurs : « numérologie », « valeur secrète », « code secret », «
 | 5 | Transmission Vivante | 1 livre de toute la matière (Ba Mbazi + Ba Nitu, 11 temps) | `Transmission Vivante` |
 | 6 | Mémoire Vivante | 1 livre par projet (extraction symbolique, 8 temps) | `Mémoire Vivante` |
 | 7 | Castaneda | Récit d'apprentissage apprenti/maître | `Castaneda` |
+| 8 | Reprise de Manuscrit | Repart d'un manuscrit en PJ : chapitres déduits, mots conservés (plancher), style proposé | `Reprise de Manuscrit` |
 | + | Géométrie Sacrée & Numérologie | Calcul mot → nombre (image via `mathart`) | `Numérologie` |
