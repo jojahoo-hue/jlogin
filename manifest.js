@@ -1,6 +1,6 @@
 window.__MANIFEST__ = {
- "generated": "2026-08-05T13:07:43",
- "count": 466,
+ "generated": "2026-08-08T02:36:46",
+ "count": 473,
  "types": [
   "pochoir",
   "render",
@@ -13,6 +13,7 @@ window.__MANIFEST__ = {
   "svg"
  ],
  "dates": [
+  "2026-08-08",
   "2026-08-05",
   "2026-08-04",
   "2026-08-02",
@@ -65,11 +66,11 @@ window.__MANIFEST__ = {
   "flower": 55,
   "streamlines": 53,
   "superformula": 53,
-  "forest": 43,
-  "harmonograph": 19,
-  "mandala": 19,
-  "metatron": 19,
-  "spirograph": 19,
+  "forest": 46,
+  "harmonograph": 20,
+  "mandala": 20,
+  "metatron": 20,
+  "spirograph": 20,
   "sri-yantra-outline": 4,
   "attractor": 3,
   "horse-formula": 3,
@@ -88,9 +89,9 @@ window.__MANIFEST__ = {
   "turbines_exact": 1
  },
  "report": {
-  "name": "routine-2026-08-04T02-33.md",
-  "path": "reports/routine-2026-08-04T02-33.md",
-  "text": "# Routine Report — 2026-08-04T02-33\n\n## Test Results\n\nAll **20 tests passed** (`PYTHONPATH=. python tests/test_engine.py`).\n\nSuites covered: CLI list, equilateral triangle geometry, Fourier trace, plot generators, RK4 solver, sacred generators, SVG utils.\n\n---\n\n## Artefacts Generated\n\nOutput directory: `gallery/routine/2026-08-04/`\n\n| File | Command | Notes |\n|------|---------|-------|\n| `sri-yantra.svg` | `sacred sri-yantra --size 1400 --mode silhouette` | Sacred geometry, silhouette mode |\n| `flower.svg` | `sacred flower --size 1400 --mode outline` | Flower of life, outline mode |\n| `streamlines.svg` | `plot streamlines --size 1400` | Vector field streamlines |\n| `superformula.svg` | `plot superformula --size 1400` | Superformula parametric curve |\n| `horse.png` | `render horse --width 1600` | Reference image render |\n| `horse.svg` | `trace horse.png --harmonics 80 --size 1400 --save-formula` | Fourier FFT trace → SVG |\n| `horse-formula.json` | (saved via --save-formula) | Reusable Fourier coefficient formula |\n\n**Skipped:** `sacred metatron`, `sacred mandala` (don't exist), `render forest` (only `horse` available), `plot harmonograph`/`spirograph` (only `streamlines`/`superformula` available). Task prompt references motifs not yet implemented.\n\n---\n\n## Site Manifest\n\n`python -m mathart.cli site` → **459 artefacts indexed** in `manifest.json` + `manifest.js` (44 gallery dates on `main`).\n\n---\n\n## Inventory\n\n**Sacred designs:** `sri-yantra`, `flower`\n\n**Plot scribes:** `streamlines`, `superformula`\n\n**Render targets:** `horse`\n\n**Trace:** any PNG/JPEG via FFT contour reconstruction\n\n**Gallery totals:** 388 SVG, 65 PNG, 6 JSON (459 total, 44 dates)\n\n### Recent git log (last 10 commits)\n\n```\n131cea8 chore(routine): HD renders + site refresh + report 2026-08-03T13-01\n41c29bc chore(routine): HD renders + site refresh + report 2026-08-03T02-33\nfa2736f chore(routine): HD renders + site refresh + report 2026-08-02T13-01\n28c0e06 chore(routine): HD renders + progress report 2026-07-31T13-03\n1278b0a chore(routine): HD renders + progress report 2026-07-31T02-32\n261d613 chore(routine): HD renders + progress report 2026-07-30T13-01\n7a21653 chore(routine): HD renders + progress report 2026-07-30T02-33\nf7f1b90 chore(routine): HD renders + progress report 2026-07-29T13-02\n7917f3d chore(routine): HD renders + progress report 2026-07-28T13-03\nc248719 chore(routine): HD renders + progress report 2026-07-28T02-34\n```\n\n---\n\n## What Remains / Next Ideas\n\n- **Expand the motif library:** The task prompt references `metatron`, `mandala`, `harmonograph`, `spirograph`, and `forest` — none of which exist yet. Adding even one per week would meaningfully diversify the daily output.\n- **New render subjects:** Only `horse` is available. Adding more reference images (human figure, geometric solids, animal silhouettes) would enrich the Fourier trace pipeline.\n- **Vary Fourier harmonics:** Today's trace used 80 harmonics. A low-harmonic (20–30) variant would produce a more impressionistic stencil style worth comparing.\n- **SVG colour themes:** All outputs are monochrome. A palette parameter per motif would make the gallery more visually varied.\n- **Automated site deploy:** The static `index.html` + manifest pattern is solid; wiring it to GitHub Pages or Netlify would make the gallery publicly accessible without manual steps.\n",
+  "name": "routine-2026-08-05T13-04.md",
+  "path": "reports/routine-2026-08-05T13-04.md",
+  "text": "# Routine Report — 2026-08-05T13-04\n\n## Test Results\n\nSuite: `tests/test_engine.py` — **20/20 tests passed**\n\nAll suites green: canvas, intensity, primitives, stack operators, renderers, shapes/fields/masks, registered works, inspect flags, stencil (SVG well-formedness, negative bridges), sacred generators, posterize/edge reductions, plot generators, Fourier trace roundtrip, trace series variations, site manifest indexing, aigen dormant-without-key.\n\n## Artefacts Generated — `gallery/routine/2026-08-05/`\n\n| File | Command | Size |\n|------|---------|------|\n| `sri-yantra-silhouette.svg` | `sacred sri-yantra --size 1400 --mode silhouette` | 1400 px |\n| `flower-silhouette.svg` | `sacred flower --size 1400` | 1400 px |\n| `streamlines-silhouette.svg` | `plot streamlines --size 1400` | 1400 px |\n| `superformula-silhouette.svg` | `plot superformula --size 1400` | 1400 px |\n| `horse.png` | `render horse --width 1600` | 1600×900 px |\n| `horse-silhouette.svg` | `trace horse.png --harmonics 80 --size 1400 --name horse` | 1400 px |\n| `horse.json` | `--save-formula` (Fourier formula, 161 terms, 1 contour) | — |\n\n**Total generated this session: 7 files (6 SVG stencils + 1 PNG render + 1 formula JSON)**\n\nTrace output: z(t) = Σ c_n · e^(i·n·t) — 1 contour(s), |n| ≤ 80, canvas 324×184.\n\n## Site Manifest\n\n- **Previous count (origin/main as of 2026-08-04):** 459\n- **After today's session:** 466\n- Manifest format: `{ generated, count, types, formats, dates, artefacts[] }`\n\n## Inventory\n\n### Sacred generators (8)\n`wheel`, `seal`, `flower`, `metatron`, `mandala`, `spiral`, `enneagram`, `sri-yantra`\n\n### Plot generators / Graphical scribes (8)\n`harmonograph`, `spirograph`, `lissajous`, `rose`, `phyllotaxis`, `superformula`, `streamlines`, `attractor`\n\n### Render targets (4)\n`forest`, `horse`, `turbines`, `turbines-exact`\n\n### Trace\nAny PNG/JPEG via FFT contour reconstruction with Fourier formula export (`--save-formula`).\n\n## Git Log (last 10 commits on main)\n\n```\n998be28 chore(routine): HD renders + site refresh + report 2026-08-04T02-33\nf67d946 chore(routine): HD renders + site refresh + report 2026-08-02T00-00\n7d26d13 chore(routine): HD renders + site refresh + report 2026-08-01T13-01\n7158f20 chore: commit untracked project files (gallery archive, config, reports, mathart modules)\nce58be6 chore(routine): HD renders + site refresh + report 2026-08-01T02-33\n698f77a feat(site): panneau Motifs (compteur/filtre par famille), modale Rapport du jour, formule Fourier en lightbox\n7e82ee3 chore(site): manifeste initial sur toute l'archive (296 créations, 31 jours)\n5db5004 feat(site): galerie web statique (tri date/type/format, favoris, collections)\nade4301 chore(routine): HD renders + progress report 2026-07-29T02-33\n21f26b3 chore(routine): HD renders + progress report 2026-07-27T13-00\n```\n\n## Notes\n\n- Session ran on branch `main` (previously the routine had been pushing to `claude/prime-tDwAc`, a diverged branch with unrelated history).\n- The diverged branch had 213 artefacts with a simpler manifest structure; origin/main (this session's target) has 459→466 artefacts with the richer manifest including `types`, `formats`, `dates` classification.\n\n## What Remains / Next Ideas\n\n1. **Merge reconciliation**: The `claude/prime-tDwAc` branch (diverged, ~50+ routine commits) was never merged to main due to unrelated histories. Consider `git merge --allow-unrelated-histories` with manual conflict resolution, or simply continue from main going forward.\n2. **New sacred generators**: `wheel` (Code Secret), `metatron`, `seal`, `enneagram`, `mandala` — none were exercised today; worth running with `--size 1400` to build out variety.\n3. **Richer plot scribes**: `harmonograph`, `spirograph`, `lissajous`, `rose`, `phyllotaxis`, `attractor` were not rendered today; add them to the routine.\n4. **Aigen bridge**: `mathart.aigen` Nano Banana (Gemini) is dormant without a key; add `GOOGLE_API_KEY` to the environment to unlock prompt-driven SVG generation.\n5. **`turbines` render**: `turbines` and `turbines-exact` exist as render targets but have never appeared in the routine.\n6. **Site diff**: `origin/main`'s web gallery has richer features (Motifs panel, Rapport du jour modal, Fourier lightbox) — ensure the `index.html` on the active deploy matches the `main` branch after these commits land.\n",
   "truncated": false
  },
  "items": [
@@ -101,7 +102,7 @@ window.__MANIFEST__ = {
    "type": "sacré",
    "family": "wheel",
    "format": "svg",
-   "date": "2026-08-05",
+   "date": "2026-08-08",
    "bytes": 13466
   },
   {
@@ -111,7 +112,7 @@ window.__MANIFEST__ = {
    "type": "sacré",
    "family": "wheel",
    "format": "svg",
-   "date": "2026-08-05",
+   "date": "2026-08-08",
    "bytes": 13469
   },
   {
@@ -121,7 +122,7 @@ window.__MANIFEST__ = {
    "type": "render",
    "family": "turbines_exact",
    "format": "png",
-   "date": "2026-08-05",
+   "date": "2026-08-08",
    "bytes": 25897
   },
   {
@@ -131,8 +132,270 @@ window.__MANIFEST__ = {
    "type": "render",
    "family": "turbines",
    "format": "png",
-   "date": "2026-08-05",
+   "date": "2026-08-08",
    "bytes": 110429
+  },
+  {
+   "id": "gallery/scribes/superformula-silhouette.svg",
+   "name": "superformula-silhouette",
+   "path": "gallery/scribes/superformula-silhouette.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 17512
+  },
+  {
+   "id": "gallery/scribes/streamlines-silhouette.svg",
+   "name": "streamlines-silhouette",
+   "path": "gallery/scribes/streamlines-silhouette.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 59607
+  },
+  {
+   "id": "gallery/stencils/sri-yantra-silhouette.svg",
+   "name": "sri-yantra-silhouette",
+   "path": "gallery/stencils/sri-yantra-silhouette.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 22607
+  },
+  {
+   "id": "gallery/routine/2026-08-08/spirograph-silhouette.svg",
+   "name": "spirograph-silhouette",
+   "path": "gallery/routine/2026-08-08/spirograph-silhouette.svg",
+   "type": "scribe",
+   "family": "spirograph",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 76870
+  },
+  {
+   "id": "gallery/scribes/spirograph-silhouette.svg",
+   "name": "spirograph-silhouette",
+   "path": "gallery/scribes/spirograph-silhouette.svg",
+   "type": "scribe",
+   "family": "spirograph",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 54501
+  },
+  {
+   "id": "gallery/stencils/spiral-silhouette.svg",
+   "name": "spiral-silhouette",
+   "path": "gallery/stencils/spiral-silhouette.svg",
+   "type": "sacré",
+   "family": "spiral",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 3393
+  },
+  {
+   "id": "gallery/stencils/seal-silhouette.svg",
+   "name": "seal-silhouette",
+   "path": "gallery/stencils/seal-silhouette.svg",
+   "type": "sacré",
+   "family": "seal",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 7645
+  },
+  {
+   "id": "gallery/scribes/rose-silhouette.svg",
+   "name": "rose-silhouette",
+   "path": "gallery/scribes/rose-silhouette.svg",
+   "type": "scribe",
+   "family": "rose",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 28025
+  },
+  {
+   "id": "gallery/routine/2026-08-08/metatron-silhouette.svg",
+   "name": "metatron-silhouette",
+   "path": "gallery/routine/2026-08-08/metatron-silhouette.svg",
+   "type": "sacré",
+   "family": "metatron",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 31839
+  },
+  {
+   "id": "gallery/stencils/metatron-silhouette.svg",
+   "name": "metatron-silhouette",
+   "path": "gallery/stencils/metatron-silhouette.svg",
+   "type": "sacré",
+   "family": "metatron",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 25684
+  },
+  {
+   "id": "gallery/routine/2026-08-08/mandala-silhouette.svg",
+   "name": "mandala-silhouette",
+   "path": "gallery/routine/2026-08-08/mandala-silhouette.svg",
+   "type": "sacré",
+   "family": "mandala",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 32875
+  },
+  {
+   "id": "gallery/stencils/mandala-silhouette.svg",
+   "name": "mandala-silhouette",
+   "path": "gallery/stencils/mandala-silhouette.svg",
+   "type": "sacré",
+   "family": "mandala",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 30956
+  },
+  {
+   "id": "gallery/stencils/horse-silhouette.svg",
+   "name": "horse-silhouette",
+   "path": "gallery/stencils/horse-silhouette.svg",
+   "type": "pochoir",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 2800
+  },
+  {
+   "id": "gallery/stencils/horse-negative.svg",
+   "name": "horse-negative",
+   "path": "gallery/stencils/horse-negative.svg",
+   "type": "pochoir",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 2910
+  },
+  {
+   "id": "gallery/horse-formule-silhouette.svg",
+   "name": "horse-formule-silhouette",
+   "path": "gallery/horse-formule-silhouette.svg",
+   "type": "pochoir",
+   "family": "horse-formule",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 4750
+  },
+  {
+   "id": "gallery/horse-formule.json",
+   "name": "horse-formule",
+   "path": "gallery/horse-formule.json",
+   "type": "render",
+   "family": "horse-formule",
+   "format": "json",
+   "date": "2026-08-08",
+   "bytes": 9011,
+   "formula": "z(t) = Σ c_n · e^(i·n·t)   [1 contour(s), |n| ≤ 60, canvas 279×229]"
+  },
+  {
+   "id": "gallery/horse.png",
+   "name": "horse",
+   "path": "gallery/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-08-08",
+   "bytes": 8905
+  },
+  {
+   "id": "gallery/routine/2026-08-08/harmonograph-silhouette.svg",
+   "name": "harmonograph-silhouette",
+   "path": "gallery/routine/2026-08-08/harmonograph-silhouette.svg",
+   "type": "scribe",
+   "family": "harmonograph",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 30635
+  },
+  {
+   "id": "gallery/scribes/harmonograph-silhouette.svg",
+   "name": "harmonograph-silhouette",
+   "path": "gallery/scribes/harmonograph-silhouette.svg",
+   "type": "scribe",
+   "family": "harmonograph",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 9414
+  },
+  {
+   "id": "gallery/routine/2026-08-08/forest-silhouette.svg",
+   "name": "forest-silhouette",
+   "path": "gallery/routine/2026-08-08/forest-silhouette.svg",
+   "type": "pochoir",
+   "family": "forest",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 10807
+  },
+  {
+   "id": "gallery/forest.png",
+   "name": "forest",
+   "path": "gallery/forest.png",
+   "type": "render",
+   "family": "forest",
+   "format": "png",
+   "date": "2026-08-08",
+   "bytes": 90038
+  },
+  {
+   "id": "gallery/routine/2026-08-08/forest.json",
+   "name": "forest",
+   "path": "gallery/routine/2026-08-08/forest.json",
+   "type": "render",
+   "family": "forest",
+   "format": "json",
+   "date": "2026-08-08",
+   "bytes": 110897,
+   "formula": "z(t) = Σ c_n · e^(i·n·t)   [9 contour(s), |n| ≤ 80, canvas 324×144]"
+  },
+  {
+   "id": "gallery/routine/2026-08-08/forest.png",
+   "name": "forest",
+   "path": "gallery/routine/2026-08-08/forest.png",
+   "type": "render",
+   "family": "forest",
+   "format": "png",
+   "date": "2026-08-08",
+   "bytes": 120412
+  },
+  {
+   "id": "gallery/stencils/flower-silhouette.svg",
+   "name": "flower-silhouette",
+   "path": "gallery/stencils/flower-silhouette.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 29693
+  },
+  {
+   "id": "gallery/stencils/enneagram-silhouette.svg",
+   "name": "enneagram-silhouette",
+   "path": "gallery/stencils/enneagram-silhouette.svg",
+   "type": "sacré",
+   "family": "enneagram",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 11582
+  },
+  {
+   "id": "gallery/scribes/attractor-silhouette.svg",
+   "name": "attractor-silhouette",
+   "path": "gallery/scribes/attractor-silhouette.svg",
+   "type": "scribe",
+   "family": "attractor",
+   "format": "svg",
+   "date": "2026-08-08",
+   "bytes": 10779
   },
   {
    "id": "gallery/routine/2026-08-05/superformula-silhouette.svg",
@@ -145,16 +408,6 @@ window.__MANIFEST__ = {
    "bytes": 21443
   },
   {
-   "id": "gallery/scribes/superformula-silhouette.svg",
-   "name": "superformula-silhouette",
-   "path": "gallery/scribes/superformula-silhouette.svg",
-   "type": "scribe",
-   "family": "superformula",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 17512
-  },
-  {
    "id": "gallery/routine/2026-08-05/streamlines-silhouette.svg",
    "name": "streamlines-silhouette",
    "path": "gallery/routine/2026-08-05/streamlines-silhouette.svg",
@@ -163,16 +416,6 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-08-05",
    "bytes": 77939
-  },
-  {
-   "id": "gallery/scribes/streamlines-silhouette.svg",
-   "name": "streamlines-silhouette",
-   "path": "gallery/scribes/streamlines-silhouette.svg",
-   "type": "scribe",
-   "family": "streamlines",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 59607
   },
   {
    "id": "gallery/routine/2026-08-05/sri-yantra-silhouette.svg",
@@ -185,76 +428,6 @@ window.__MANIFEST__ = {
    "bytes": 23570
   },
   {
-   "id": "gallery/stencils/sri-yantra-silhouette.svg",
-   "name": "sri-yantra-silhouette",
-   "path": "gallery/stencils/sri-yantra-silhouette.svg",
-   "type": "sacré",
-   "family": "sri-yantra",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 22607
-  },
-  {
-   "id": "gallery/scribes/spirograph-silhouette.svg",
-   "name": "spirograph-silhouette",
-   "path": "gallery/scribes/spirograph-silhouette.svg",
-   "type": "scribe",
-   "family": "spirograph",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 54501
-  },
-  {
-   "id": "gallery/stencils/spiral-silhouette.svg",
-   "name": "spiral-silhouette",
-   "path": "gallery/stencils/spiral-silhouette.svg",
-   "type": "sacré",
-   "family": "spiral",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 3393
-  },
-  {
-   "id": "gallery/stencils/seal-silhouette.svg",
-   "name": "seal-silhouette",
-   "path": "gallery/stencils/seal-silhouette.svg",
-   "type": "sacré",
-   "family": "seal",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 7645
-  },
-  {
-   "id": "gallery/scribes/rose-silhouette.svg",
-   "name": "rose-silhouette",
-   "path": "gallery/scribes/rose-silhouette.svg",
-   "type": "scribe",
-   "family": "rose",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 28025
-  },
-  {
-   "id": "gallery/stencils/metatron-silhouette.svg",
-   "name": "metatron-silhouette",
-   "path": "gallery/stencils/metatron-silhouette.svg",
-   "type": "sacré",
-   "family": "metatron",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 25684
-  },
-  {
-   "id": "gallery/stencils/mandala-silhouette.svg",
-   "name": "mandala-silhouette",
-   "path": "gallery/stencils/mandala-silhouette.svg",
-   "type": "sacré",
-   "family": "mandala",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 30956
-  },
-  {
    "id": "gallery/routine/2026-08-05/horse-silhouette.svg",
    "name": "horse-silhouette",
    "path": "gallery/routine/2026-08-05/horse-silhouette.svg",
@@ -263,57 +436,6 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-08-05",
    "bytes": 4297
-  },
-  {
-   "id": "gallery/stencils/horse-silhouette.svg",
-   "name": "horse-silhouette",
-   "path": "gallery/stencils/horse-silhouette.svg",
-   "type": "pochoir",
-   "family": "horse",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 2800
-  },
-  {
-   "id": "gallery/stencils/horse-negative.svg",
-   "name": "horse-negative",
-   "path": "gallery/stencils/horse-negative.svg",
-   "type": "pochoir",
-   "family": "horse",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 2910
-  },
-  {
-   "id": "gallery/horse-formule-silhouette.svg",
-   "name": "horse-formule-silhouette",
-   "path": "gallery/horse-formule-silhouette.svg",
-   "type": "pochoir",
-   "family": "horse-formule",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 4750
-  },
-  {
-   "id": "gallery/horse-formule.json",
-   "name": "horse-formule",
-   "path": "gallery/horse-formule.json",
-   "type": "render",
-   "family": "horse-formule",
-   "format": "json",
-   "date": "2026-08-05",
-   "bytes": 9011,
-   "formula": "z(t) = Σ c_n · e^(i·n·t)   [1 contour(s), |n| ≤ 60, canvas 279×229]"
-  },
-  {
-   "id": "gallery/horse.png",
-   "name": "horse",
-   "path": "gallery/horse.png",
-   "type": "render",
-   "family": "horse",
-   "format": "png",
-   "date": "2026-08-05",
-   "bytes": 8905
   },
   {
    "id": "gallery/routine/2026-08-05/horse.json",
@@ -337,26 +459,6 @@ window.__MANIFEST__ = {
    "bytes": 10408
   },
   {
-   "id": "gallery/scribes/harmonograph-silhouette.svg",
-   "name": "harmonograph-silhouette",
-   "path": "gallery/scribes/harmonograph-silhouette.svg",
-   "type": "scribe",
-   "family": "harmonograph",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 9414
-  },
-  {
-   "id": "gallery/forest.png",
-   "name": "forest",
-   "path": "gallery/forest.png",
-   "type": "render",
-   "family": "forest",
-   "format": "png",
-   "date": "2026-08-05",
-   "bytes": 90038
-  },
-  {
    "id": "gallery/routine/2026-08-05/flower-silhouette.svg",
    "name": "flower-silhouette",
    "path": "gallery/routine/2026-08-05/flower-silhouette.svg",
@@ -365,36 +467,6 @@ window.__MANIFEST__ = {
    "format": "svg",
    "date": "2026-08-05",
    "bytes": 27267
-  },
-  {
-   "id": "gallery/stencils/flower-silhouette.svg",
-   "name": "flower-silhouette",
-   "path": "gallery/stencils/flower-silhouette.svg",
-   "type": "sacré",
-   "family": "flower",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 29693
-  },
-  {
-   "id": "gallery/stencils/enneagram-silhouette.svg",
-   "name": "enneagram-silhouette",
-   "path": "gallery/stencils/enneagram-silhouette.svg",
-   "type": "sacré",
-   "family": "enneagram",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 11582
-  },
-  {
-   "id": "gallery/scribes/attractor-silhouette.svg",
-   "name": "attractor-silhouette",
-   "path": "gallery/scribes/attractor-silhouette.svg",
-   "type": "scribe",
-   "family": "attractor",
-   "format": "svg",
-   "date": "2026-08-05",
-   "bytes": 10779
   },
   {
    "id": "gallery/routine/2026-08-04/superformula.svg",
