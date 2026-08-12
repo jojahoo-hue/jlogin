@@ -1,5 +1,5 @@
 const MANIFEST = {
-  "total": 256,
+  "total": 257,
   "artefacts": [
     {
       "path": "gallery/routine/2026-06-25/flower.svg",
@@ -1517,6 +1517,12 @@ const MANIFEST = {
       "path": "gallery/routine/2026-08-12/horse.png",
       "name": "horse",
       "ext": "png",
+      "date": "2026-08-12"
+    },
+    {
+      "path": "gallery/routine/2026-08-12/horse.svg",
+      "name": "horse",
+      "ext": "svg",
       "date": "2026-08-12"
     },
     {
