@@ -1,5 +1,5 @@
 {
-  "total": 295,
+  "total": 301,
   "artefacts": [
     {
       "path": "gallery/routine/2026-06-25/flower.svg",
@@ -1770,6 +1770,42 @@
       "name": "superformula",
       "ext": "svg",
       "date": "2026-08-18"
+    },
+    {
+      "path": "gallery/routine/2026-08-19/flower.svg",
+      "name": "flower",
+      "ext": "svg",
+      "date": "2026-08-19"
+    },
+    {
+      "path": "gallery/routine/2026-08-19/horse.png",
+      "name": "horse",
+      "ext": "png",
+      "date": "2026-08-19"
+    },
+    {
+      "path": "gallery/routine/2026-08-19/horse.svg",
+      "name": "horse",
+      "ext": "svg",
+      "date": "2026-08-19"
+    },
+    {
+      "path": "gallery/routine/2026-08-19/sri-yantra.svg",
+      "name": "sri-yantra",
+      "ext": "svg",
+      "date": "2026-08-19"
+    },
+    {
+      "path": "gallery/routine/2026-08-19/streamlines.svg",
+      "name": "streamlines",
+      "ext": "svg",
+      "date": "2026-08-19"
+    },
+    {
+      "path": "gallery/routine/2026-08-19/superformula.svg",
+      "name": "superformula",
+      "ext": "svg",
+      "date": "2026-08-19"
     }
   ]
 }
