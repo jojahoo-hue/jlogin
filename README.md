@@ -36,4 +36,13 @@ jarvis/
 
 ---
 
+## Intégrations MCP
+
+Serveurs MCP configurés dans `.claude/settings.json` :
+
+- **notion** : accès à l'espace Notion (nécessite `NOTION_TOKEN` dans `.env`).
+- **plaud** : accès aux enregistrements et transcriptions Plaud (`@plaud-ai/mcp`, authentification OAuth via navigateur). Activation en local : `npx -y @plaud-ai/mcp@latest install`.
+
+---
+
 Créé avec le Jarvis Starter Kit de Yassine SDIRI, Communauté IA sur Skool.
