@@ -58,6 +58,8 @@ Le titre de la note est pris, dans cet ordre : le champ `title` du front-matter 
 
 Ce qui est converti en blocs Notion : titres, listes à puces et numérotées, cases à cocher (`- [ ]` et `☐` / `☑`), citations, blocs de code, tableaux, séparateurs, gras / italique / barré / code inline, liens, images distantes.
 
+Les listes imbriquées sont conservées sur trois niveaux, ce qui est le maximum accepté par l'API Notion. Au-delà, les éléments plus profonds sont rattachés au troisième niveau plutôt que perdus.
+
 Les pièces jointes locales (photos, PDF, croquis) ne peuvent pas être poussées par l'API : elles sont signalées dans la page Notion par un encadré avec leur chemin, à réimporter à la main si besoin.
 
 ## 3. Migrer vers Notion

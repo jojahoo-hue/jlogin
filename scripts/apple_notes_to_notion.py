@@ -43,6 +43,7 @@ MAX_TEXT_LENGTH = 2000       # caractères par objet rich_text
 MAX_RICH_TEXT_ITEMS = 100    # objets rich_text par bloc
 MAX_BLOCKS_PER_CALL = 100    # blocs par appel à blocks.children.append
 MAX_TITLE_LENGTH = 200       # longueur max d'une 1re ligne utilisée comme titre
+MAX_LIST_DEPTH = 3           # niveaux de listes imbriquées (Notion : 2 niveaux d'enfants)
 
 
 # ---------------------------------------------------------------------------
@@ -169,6 +170,21 @@ def _block(block_type: str, payload: dict) -> dict:
     return {"object": "block", "type": block_type, block_type: payload}
 
 
+def count_blocks(blocks: list[dict]) -> int:
+    """Nombre total de blocs, enfants imbriqués compris."""
+    total = 0
+    for block in blocks:
+        total += 1
+        total += count_blocks(block.get(block["type"], {}).get("children", []))
+    return total
+
+
+def _indent_of(line: str) -> int:
+    """Largeur d'indentation d'une ligne (une tabulation vaut 4 espaces)."""
+    expanded = line.replace("\t", "    ")
+    return len(expanded) - len(expanded.lstrip(" "))
+
+
 def _table_cells(line: str, width: int) -> list[list[dict]]:
     """Découpe une ligne de tableau Markdown en cellules rich_text."""
     raw = line.strip().strip("|").split("|")
@@ -187,6 +203,29 @@ def markdown_to_blocks(markdown: str) -> tuple[list[dict], list[str]]:
     attachments: list[str] = []
     lines = markdown.replace("\r\n", "\n").replace("\r", "\n").split("\n")
     i = 0
+
+    # Pile des éléments de liste ouverts : (indentation, bloc parent potentiel).
+    open_items: list[tuple[int, dict]] = []
+
+    def add_root(block: dict):
+        """Ajoute un bloc au premier niveau et referme les listes en cours."""
+        open_items.clear()
+        blocks.append(block)
+
+    def add_list_item(block: dict, indent: int):
+        """Ajoute un élément de liste au bon niveau d'imbrication."""
+        while open_items and open_items[-1][0] >= indent:
+            open_items.pop()
+        depth = len(open_items)
+        if depth == 0:
+            blocks.append(block)
+        else:
+            # Notion n'accepte que deux niveaux d'enfants : au-delà, on rattache
+            # au plus profond niveau autorisé plutôt que de perdre le contenu.
+            parent = open_items[min(depth, MAX_LIST_DEPTH - 1) - 1][1]
+            payload = parent[parent["type"]]
+            payload.setdefault("children", []).append(block)
+        open_items.append((indent, block))
 
     while i < len(lines):
         line = lines[i]
@@ -209,7 +248,7 @@ def markdown_to_blocks(markdown: str) -> tuple[list[dict], list[str]]:
                 i += 1
             i += 1  # fermeture de la clôture
             code = "\n".join(code_lines)
-            blocks.append(_block("code", {
+            add_root(_block("code", {
                 "rich_text": [_text_object(c, {}) for c in _split_long(code)] or [_text_object("", {})],
                 "language": language,
             }))
@@ -224,7 +263,7 @@ def markdown_to_blocks(markdown: str) -> tuple[list[dict], list[str]]:
             while i < len(lines) and TABLE_ROW_RE.match(lines[i]):
                 rows.append(lines[i])
                 i += 1
-            blocks.append(_block("table", {
+            add_root(_block("table", {
                 "table_width": width,
                 "has_column_header": True,
                 "has_row_header": False,
@@ -236,7 +275,7 @@ def markdown_to_blocks(markdown: str) -> tuple[list[dict], list[str]]:
             continue
 
         if DIVIDER_RE.match(line):
-            blocks.append(_block("divider", {}))
+            add_root(_block("divider", {}))
             i += 1
             continue
 
@@ -244,12 +283,12 @@ def markdown_to_blocks(markdown: str) -> tuple[list[dict], list[str]]:
         if image:
             url = image.group(1)
             if url.startswith(("http://", "https://")):
-                blocks.append(_block("image", {"type": "external", "external": {"url": url}}))
+                add_root(_block("image", {"type": "external", "external": {"url": url}}))
             else:
                 # Une pièce jointe locale ne peut pas être poussée via cette API :
                 # on garde une trace lisible dans la page Notion.
                 attachments.append(url)
-                blocks.append(_block("callout", {
+                add_root(_block("callout", {
                     "rich_text": parse_inline(f"Pièce jointe non migrée : `{url}`"),
                     "icon": {"type": "emoji", "emoji": "📎"},
                 }))
@@ -259,7 +298,7 @@ def markdown_to_blocks(markdown: str) -> tuple[list[dict], list[str]]:
         heading = HEADING_RE.match(line)
         if heading:
             level = min(len(heading.group(1)), 3)
-            blocks.append(_block(f"heading_{level}", {
+            add_root(_block(f"heading_{level}", {
                 "rich_text": parse_inline(heading.group(2).strip()),
             }))
             i += 1
@@ -267,19 +306,19 @@ def markdown_to_blocks(markdown: str) -> tuple[list[dict], list[str]]:
 
         todo = TODO_RE.match(line)
         if todo:
-            blocks.append(_block("to_do", {
+            add_list_item(_block("to_do", {
                 "rich_text": parse_inline(todo.group(2).strip()),
                 "checked": todo.group(1).lower() == "x",
-            }))
+            }), _indent_of(line))
             i += 1
             continue
 
         apple_todo = APPLE_TODO_RE.match(line)
         if apple_todo:
-            blocks.append(_block("to_do", {
+            add_list_item(_block("to_do", {
                 "rich_text": parse_inline(apple_todo.group(2).strip()),
                 "checked": apple_todo.group(1) in "☑✓✔",
-            }))
+            }), _indent_of(line))
             i += 1
             continue
 
@@ -290,18 +329,20 @@ def markdown_to_blocks(markdown: str) -> tuple[list[dict], list[str]]:
             while i < len(lines) and QUOTE_RE.match(lines[i]):
                 quote_lines.append(QUOTE_RE.match(lines[i]).group(1))
                 i += 1
-            blocks.append(_block("quote", {"rich_text": parse_inline("\n".join(quote_lines).strip())}))
+            add_root(_block("quote", {"rich_text": parse_inline("\n".join(quote_lines).strip())}))
             continue
 
         bullet = BULLET_RE.match(line)
         if bullet:
-            blocks.append(_block("bulleted_list_item", {"rich_text": parse_inline(bullet.group(1).strip())}))
+            add_list_item(_block("bulleted_list_item", {"rich_text": parse_inline(bullet.group(1).strip())}),
+                          _indent_of(line))
             i += 1
             continue
 
         numbered = NUMBERED_RE.match(line)
         if numbered:
-            blocks.append(_block("numbered_list_item", {"rich_text": parse_inline(numbered.group(1).strip())}))
+            add_list_item(_block("numbered_list_item", {"rich_text": parse_inline(numbered.group(1).strip())}),
+                          _indent_of(line))
             i += 1
             continue
 
@@ -311,7 +352,7 @@ def markdown_to_blocks(markdown: str) -> tuple[list[dict], list[str]]:
         while i < len(lines) and lines[i].strip() and not _starts_new_block(lines[i]):
             paragraph.append(lines[i].strip())
             i += 1
-        blocks.append(_block("paragraph", {"rich_text": parse_inline("\n".join(paragraph))}))
+        add_root(_block("paragraph", {"rich_text": parse_inline("\n".join(paragraph))}))
 
     return blocks, attachments
 
@@ -596,11 +637,12 @@ def main(argv=None) -> int:
         total_attachments = 0
         for note in notes:
             blocks, attachments = markdown_to_blocks(note.body)
-            total_blocks += len(blocks)
+            nb_blocks = count_blocks(blocks)
+            total_blocks += nb_blocks
             total_attachments += len(attachments)
             status = "inchangée" if state["notes"].get(note.relative_path, {}).get("fingerprint") == note.fingerprint else "à migrer"
             folder = f"[{note.folder}] " if note.folder else ""
-            print(f"  {folder}{note.title} — {len(blocks)} bloc(s), {status}")
+            print(f"  {folder}{note.title} — {nb_blocks} bloc(s), {status}")
         print(f"\nSimulation : {len(notes)} note(s), {total_blocks} bloc(s) Notion, "
               f"{total_attachments} pièce(s) jointe(s) locale(s) non migrable(s).")
         print(f"Cible : {'base ' + database_id if database_id else 'page ' + parent_page_id if parent_page_id else 'NON CONFIGURÉE'}")

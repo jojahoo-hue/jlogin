@@ -155,6 +155,62 @@ class TestMarkdownToBlocks(unittest.TestCase):
         self.assertEqual(plain(blocks[0]["heading_1"]["rich_text"]), "Titre")
 
 
+class TestListesImbriquees(unittest.TestCase):
+    def test_deux_niveaux(self):
+        blocks, _ = markdown_to_blocks("- parent\n    - enfant\n- autre parent")
+        self.assertEqual(len(blocks), 2)
+        enfants = blocks[0]["bulleted_list_item"]["children"]
+        self.assertEqual(len(enfants), 1)
+        self.assertEqual(plain(enfants[0]["bulleted_list_item"]["rich_text"]), "enfant")
+        self.assertNotIn("children", blocks[1]["bulleted_list_item"])
+
+    def test_trois_niveaux(self):
+        blocks, _ = markdown_to_blocks("- a\n  - b\n    - c")
+        niveau2 = blocks[0]["bulleted_list_item"]["children"]
+        niveau3 = niveau2[0]["bulleted_list_item"]["children"]
+        self.assertEqual(plain(niveau3[0]["bulleted_list_item"]["rich_text"]), "c")
+
+    def test_profondeur_excessive_rattachee_au_dernier_niveau_autorise(self):
+        blocks, _ = markdown_to_blocks("- a\n  - b\n    - c\n      - d\n        - e")
+        niveau2 = blocks[0]["bulleted_list_item"]["children"]
+        niveau3 = niveau2[0]["bulleted_list_item"]["children"]
+        # d et e ne creusent pas plus loin : Notion n'accepte que deux niveaux d'enfants.
+        self.assertEqual([plain(b["bulleted_list_item"]["rich_text"]) for b in niveau3],
+                         ["c", "d", "e"])
+        self.assertNotIn("children", niveau3[0]["bulleted_list_item"])
+
+    def test_retour_au_niveau_parent(self):
+        blocks, _ = markdown_to_blocks("- a\n  - b\n- c")
+        self.assertEqual([plain(b["bulleted_list_item"]["rich_text"]) for b in blocks], ["a", "c"])
+
+    def test_indentation_par_tabulation(self):
+        blocks, _ = markdown_to_blocks("- parent\n\t- enfant")
+        self.assertEqual(len(blocks), 1)
+        self.assertEqual(len(blocks[0]["bulleted_list_item"]["children"]), 1)
+
+    def test_types_de_listes_melanges(self):
+        blocks, _ = markdown_to_blocks("- puce\n    1. numerotee\n    - [ ] a faire")
+        enfants = blocks[0]["bulleted_list_item"]["children"]
+        self.assertEqual([b["type"] for b in enfants], ["numbered_list_item", "to_do"])
+
+    def test_cases_a_cocher_apple_imbriquees(self):
+        blocks, _ = markdown_to_blocks("☐ courses\n    ☑ pain\n    ☐ lait")
+        enfants = blocks[0]["to_do"]["children"]
+        self.assertEqual(len(enfants), 2)
+        self.assertTrue(enfants[0]["to_do"]["checked"])
+
+    def test_un_bloc_non_liste_referme_la_liste(self):
+        blocks, _ = markdown_to_blocks("- a\n\n## Titre\n\n  - b")
+        self.assertEqual([b["type"] for b in blocks],
+                         ["bulleted_list_item", "heading_2", "bulleted_list_item"])
+        self.assertNotIn("children", blocks[0]["bulleted_list_item"])
+
+    def test_liste_plate_inchangee(self):
+        blocks, _ = markdown_to_blocks("- a\n- b\n- c")
+        self.assertEqual(len(blocks), 3)
+        self.assertTrue(all("children" not in b["bulleted_list_item"] for b in blocks))
+
+
 class TestFrontMatterEtTitre(unittest.TestCase):
     def test_front_matter(self):
         meta, body = parse_front_matter('---\ntitle: "Ma note"\ntags: [a, b]\n---\ncontenu\n')
