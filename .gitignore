@@ -5,3 +5,6 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+
+# Journaux des taches de fond (regeneres a chaque execution)
+psi-attente.log
