@@ -1,0 +1,12 @@
+# Dépendances Jarvis — scripts/
+# Cœur : briefing matinal, sync Notion, bot Telegram (hors transcription vocale)
+anthropic
+requests
+python-dotenv
+notion-client
+python-telegram-bot
+
+# Optionnel — transcription vocale du bot Telegram (LOURD : tire PyTorch)
+# Décommenter uniquement si besoin en remote.
+# openai-whisper
+# pyttsx3
