@@ -397,8 +397,9 @@
   <h1>Masterisation njaho.com</h1>
   <p class="lede">
     Le site n'a pas pu être audité cette nuit : le domaine est bloqué par le
-    filtrage réseau de l'environnement distant. Tout le reste a été préparé pour
-    que l'audit prenne cinq minutes demain matin.
+    filtrage réseau de l'environnement distant, et le contournement tenté par
+    l'API Google a échoué faute de quota. Tout le reste a été préparé pour que
+    l'audit prenne cinq minutes depuis ton poste.
   </p>
 </header>
 
@@ -418,10 +419,10 @@
     </div>
   </div>
   <div class="ligne">
-    <span class="pastille p-attente">En cours</span>
+    <span class="pastille p-bloque">Échoué</span>
     <div>
       <strong>Contournement par l'API Google</strong>
-      <span>PageSpeed Insights visite le site depuis les serveurs de Google, donc le filtrage ne s'applique pas. Le quota anonyme était épuisé, une tâche de fond attend sa réinitialisation à 7h UTC et relance seule.</span>
+      <span>PageSpeed Insights visite le site depuis les serveurs de Google, donc le filtrage ne s'y applique pas. Douze tentatives entre 3h25 et 10h05 UTC, toutes refusées en <code>429</code> : le quota anonyme est partagé et saturé en permanence. Il faudrait une clé API, gratuite mais qui demande ton compte Google.</span>
     </div>
   </div>
   <div class="ligne">
@@ -660,7 +661,7 @@
     </div>
     <div class="fichier">
       <span class="chemin">scripts/psi-attente.sh</span>
-      <span class="quoi">Attend la réinitialisation du quota Google puis récupère les rapports mobile et ordinateur</span>
+      <span class="quoi">Récupère les rapports mobile et ordinateur en gérant le quota Google. Nécessite une clé <code>PSI_API_KEY</code>, le quota anonyme s'étant révélé inutilisable</span>
     </div>
     <div class="fichier">
       <span class="chemin">.claude/commands/site.md</span>

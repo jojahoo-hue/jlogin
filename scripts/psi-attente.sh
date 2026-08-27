@@ -3,9 +3,18 @@
 # psi-attente.sh — Attend la réinitialisation du quota PageSpeed Insights,
 # puis récupère le rapport du site (mobile et ordinateur).
 #
-# Le quota anonyme de l'API PageSpeed est journalier et se réinitialise à
-# minuit heure du Pacifique, soit 07h00 UTC. Ce script attend cette heure,
+# Le quota anonyme de l'API PageSpeed est journalier et censé se réinitialiser
+# à minuit heure du Pacifique, soit 07h00 UTC. Ce script attend cette heure,
 # puis réessaie régulièrement jusqu'à obtenir un rapport.
+#
+# ATTENTION : sans clé, l'appel est compté sur un quota partagé entre tous les
+# appelants anonymes de la même infrastructure. Constaté le 2026-08-27 depuis
+# l'environnement Claude Code distant : quota saturé en permanence, y compris
+# plus de trois heures après l'heure de réinitialisation. Ce script n'a donc
+# d'intérêt qu'avec une clé :
+#
+#   export PSI_API_KEY=...   (clé gratuite, console Google Cloud,
+#                             API "PageSpeed Insights" à activer)
 #
 # Usage : ./scripts/psi-attente.sh [url] [dossier_sortie]
 
@@ -21,6 +30,12 @@ mkdir -p "$OUT/raw"
 
 journal() { printf '[%s] %s\n' "$(date -u +%H:%M:%S)" "$*" >> "$LOG"; }
 
+if [ -z "${PSI_API_KEY:-}" ]; then
+  journal "Aucune PSI_API_KEY : appels sur le quota anonyme partagé, souvent saturé."
+  echo "Avertissement : PSI_API_KEY non définie. Le quota anonyme est partagé et" >&2
+  echo "souvent indisponible. Voir l'en-tête du script pour obtenir une clé." >&2
+fi
+
 # --- Attente jusqu'à 07h05 UTC (quota réinitialisé à 07h00 UTC) -------------
 CIBLE=$(date -u -d "today 07:05" +%s 2>/dev/null || echo 0)
 MAINTENANT=$(date -u +%s)
@@ -31,8 +46,13 @@ if [ "$CIBLE" -gt 0 ] && [ "$MAINTENANT" -lt "$CIBLE" ]; then
 fi
 
 psi_url() {
-  printf 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=%s&strategy=%s&category=performance&category=seo&category=accessibility&category=best-practices' \
-    "$SITE" "$1"
+  local u
+  u="$(printf 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=%s&strategy=%s&category=performance&category=seo&category=accessibility&category=best-practices' \
+    "$SITE" "$1")"
+  # Sans clé, l'appel passe par le quota anonyme, partagé entre tous les
+  # appelants et souvent saturé toute la journée. Une clé gratuite le règle.
+  [ -n "${PSI_API_KEY:-}" ] && u="$u&key=$PSI_API_KEY"
+  printf '%s' "$u"
 }
 
 recupere() { # recupere <strategie> <fichier> -> 0 si rapport valide

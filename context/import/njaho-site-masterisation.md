@@ -75,9 +75,21 @@ curl -sS "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https:/
 python3 scripts/psi-analyse.py psi.json
 ```
 
-Le quota anonyme est vite épuisé et partagé entre tous les appelants. Une clé
-gratuite obtenue sur la console Google Cloud (API PageSpeed Insights) supprime
-le problème : `export PSI_API_KEY=...`
+**Cette voie de repli demande une clé API.** Testée dans la nuit du 2026-08-27
+depuis l'environnement distant : le quota anonyme est partagé entre tous les
+appelants de la même infrastructure, et il est resté saturé sur douze
+tentatives étalées de 03h25 à 10h05 UTC, soit trois heures après l'heure de
+réinitialisation théorique. Sans clé, l'API répond invariablement :
+
+```
+429 Quota exceeded for quota metric 'Queries' and limit 'Queries per day'
+```
+
+La clé est gratuite et prend cinq minutes : console Google Cloud, activer
+l'API "PageSpeed Insights", créer une clé, puis `export PSI_API_KEY=...`.
+Elle n'est utile que pour contourner un filtrage réseau. Depuis un poste
+personnel, `audit-wordpress.sh` fait le travail sans clé, et PageSpeed est
+accessible directement sur pagespeed.web.dev.
 
 Puis, dans Claude Code :
 
@@ -306,3 +318,9 @@ réécrire, c'est du travail perdu deux fois.
 - Création de la commande `/site` (audit, plan, refonte, seo, secu, contenu)
 - Audit du site impossible depuis l'environnement distant : domaine bloqué par
   la politique réseau. À lancer depuis le poste local.
+- Tentative de contournement par l'API PageSpeed Insights (service Google qui
+  visite le site lui-même, donc insensible au filtrage) : douze essais entre
+  03h25 et 10h05 UTC, tous refusés en 429. Le quota anonyme est partagé et
+  saturé en permanence. Voie utilisable uniquement avec une clé API.
+- Conclusion : **aucune mesure n'a pu être prise sur le site.** Le premier
+  audit reste à faire depuis le poste de Njaho.
