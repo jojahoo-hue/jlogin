@@ -4,6 +4,18 @@ import argparse
 import sys
 import os
 
+SITE_URL = "https://jojahoo-hue.github.io/jlogin"
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def _web_url(file_path):
+    """Convert a local file path to its GitHub Pages URL, only for files inside the repo."""
+    abs_path = os.path.abspath(file_path)
+    rel = os.path.relpath(abs_path, REPO_ROOT).replace(os.sep, "/")
+    if rel.startswith(".."):
+        return None
+    return f"{SITE_URL}/{rel}"
+
 
 def cmd_sacred(args):
     from mathart.sacred import GENERATORS
@@ -17,6 +29,8 @@ def cmd_sacred(args):
         kwargs["mode"] = args.mode
     out = fn(**kwargs)
     print(f"Saved: {out}")
+    if _web_url(out):
+        print(f"  Web: {_web_url(out)}")
 
 
 def cmd_plot(args):
@@ -27,6 +41,8 @@ def cmd_plot(args):
         sys.exit(1)
     out = PLOTS[name](size=args.size, out_dir=args.out)
     print(f"Saved: {out}")
+    if _web_url(out):
+        print(f"  Web: {_web_url(out)}")
 
 
 def cmd_render(args):
@@ -41,6 +57,8 @@ def cmd_render(args):
         kwargs["width"] = args.width
     out = fn(**kwargs)
     print(f"Saved: {out}")
+    if _web_url(out):
+        print(f"  Web: {_web_url(out)}")
 
 
 def cmd_trace(args):
@@ -54,6 +72,8 @@ def cmd_trace(args):
         save_formula=getattr(args, "save_formula", False),
     )
     print(f"Saved: {out}")
+    if _web_url(out):
+        print(f"  Web: {_web_url(out)}")
 
 
 def cmd_site(args):
@@ -89,6 +109,7 @@ def cmd_site(args):
         json.dump(manifest, fh, indent=2)
         fh.write(";\n")
     print(f"Site updated: {len(artefacts)} artefacts indexed → manifest.json + manifest.js")
+    print(f"  Gallery: {SITE_URL}/")
 
 
 def cmd_list(args):
