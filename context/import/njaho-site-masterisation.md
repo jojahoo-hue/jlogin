@@ -62,7 +62,22 @@ Ce qu'il mesure :
 - titre, méta description, canonical, og:image, hiérarchie des titres,
   images sans texte alternatif, nombre de fichiers JS et CSS
 - robots.txt, sitemap XML, liste complète des URL publiées
-- scores PageSpeed Insights mobile et Core Web Vitals
+- scores PageSpeed Insights mobile et ordinateur, Core Web Vitals, poids par
+  type de ressource, extensions les plus lourdes, images à optimiser
+  (analyse produite par `scripts/psi-analyse.py`, dans `PAGESPEED.md`)
+
+Astuce si le domaine est inaccessible depuis la machine : l'API PageSpeed
+Insights est un service Google qui va lui-même visiter le site. Elle fonctionne
+donc même derrière un filtrage réseau, tant que googleapis.com est joignable.
+
+```bash
+curl -sS "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://njaho.com&strategy=mobile&category=performance&category=seo&category=accessibility&category=best-practices" -o psi.json
+python3 scripts/psi-analyse.py psi.json
+```
+
+Le quota anonyme est vite épuisé et partagé entre tous les appelants. Une clé
+gratuite obtenue sur la console Google Cloud (API PageSpeed Insights) supprime
+le problème : `export PSI_API_KEY=...`
 
 Puis, dans Claude Code :
 

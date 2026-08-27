@@ -213,39 +213,31 @@ fi
 # ---------------------------------------------------------------------------
 say "6. PageSpeed Insights"
 
-PSI="https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=$SITE&strategy=mobile&category=performance&category=seo&category=accessibility&category=best-practices"
-[ -n "${PSI_API_KEY:-}" ] && PSI="$PSI&key=$PSI_API_KEY"
+psi_url() { # psi_url <strategy>
+  local u="https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=$SITE&strategy=$1&category=performance&category=seo&category=accessibility&category=best-practices"
+  [ -n "${PSI_API_KEY:-}" ] && u="$u&key=$PSI_API_KEY"
+  printf '%s' "$u"
+}
 
-if curl -sS --max-time 90 "$PSI" -o "$OUT/raw/psi-mobile.json" 2>/dev/null \
+curl -sS --max-time 120 "$(psi_url desktop)" -o "$OUT/raw/psi-desktop.json" 2>/dev/null &
+PSI_DESKTOP_PID=$!
+
+if curl -sS --max-time 120 "$(psi_url mobile)" -o "$OUT/raw/psi-mobile.json" 2>/dev/null \
    && [ -s "$OUT/raw/psi-mobile.json" ]; then
-  if command -v python3 >/dev/null 2>&1; then
-    python3 - "$OUT/raw/psi-mobile.json" <<'PY'
-import json, sys
-d = json.load(open(sys.argv[1], encoding='utf-8'))
-if 'error' in d:
-    print("  [!]    PageSpeed indisponible :", d['error'].get('message', '')[:120])
-    raise SystemExit
-lh = d.get('lighthouseResult', {})
-for k, c in lh.get('categories', {}).items():
-    s = c.get('score')
-    print(f"  score {k:16s}: {int(s * 100) if s is not None else '?'}/100")
-audits = lh.get('audits', {})
-for k, label in (('largest-contentful-paint', 'LCP'),
-                 ('cumulative-layout-shift', 'CLS'),
-                 ('total-blocking-time', 'TBT'),
-                 ('speed-index', 'Speed Index')):
-    a = audits.get(k, {})
-    if a.get('displayValue'):
-        print(f"  {label:19s}: {a['displayValue']}")
-print("\n  Principales opportunités :")
-opps = [(a.get('details', {}).get('overallSavingsMs', 0), a.get('title', ''))
-        for a in audits.values()
-        if a.get('details', {}).get('type') == 'opportunity']
-for ms, title in sorted(opps, reverse=True)[:6]:
-    if ms > 50:
-        print(f"    - {title} (~{int(ms)} ms)")
-PY
+  wait "$PSI_DESKTOP_PID" 2>/dev/null
+
+  # Analyse détaillée si l'analyseur dédié est disponible
+  if command -v python3 >/dev/null 2>&1 && [ -f "$ROOT/scripts/psi-analyse.py" ]; then
+    ARGS=("$OUT/raw/psi-mobile.json")
+    [ -s "$OUT/raw/psi-desktop.json" ] && ARGS+=("$OUT/raw/psi-desktop.json")
+    if python3 "$ROOT/scripts/psi-analyse.py" "${ARGS[@]}" > "$OUT/PAGESPEED.md" 2>&1; then
+      ok "analyse détaillée : $OUT/PAGESPEED.md"
+      sed -n '1,60p' "$OUT/PAGESPEED.md" | sed 's/^/  /'
+    else
+      warn "$(head -2 "$OUT/PAGESPEED.md")"
+    fi
   fi
+
 else
   warn "PageSpeed injoignable (quota anonyme ?). Réessaie avec PSI_API_KEY."
 fi
@@ -309,6 +301,8 @@ fi
   echo '```'
   echo
   echo "---"
+  echo
+  [ -s "$OUT/PAGESPEED.md" ] && echo "Scores, Core Web Vitals, extensions et images : voir \`PAGESPEED.md\`."
   echo
   echo "Données brutes dans \`raw/\`. Pour l'analyse et le plan d'action : \`/site audit\`."
 } > "$OUT/RAPPORT.md"
