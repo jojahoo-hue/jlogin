@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-26T23:57:38",
+ "generated": "2026-08-27T13:06:53",
  "count": 643,
  "types": [
   "pochoir",
@@ -79,9 +79,7 @@
   "2026-06-21",
   "2026-06-19",
   "2026-06-18",
-  "2026-06-17",
-  "2026-06-05",
-  "2026-05-31"
+  "2026-06-17"
  ],
  "families": {
   "horse": 142,
@@ -112,12 +110,62 @@
   "turbines_exact": 1
  },
  "report": {
-  "name": "routine-2026-08-27T02-33.md",
-  "path": "reports/routine-2026-08-27T02-33.md",
-  "text": "# Routine Report — 2026-08-27T02-33\n\n## Test Results\n\n**All 20 tests passed** (`PYTHONPATH=. python tests/test_engine.py`)\n\n```\nRan 20 tests in 0.900s\nOK\n```\n\nTests covered: CliList, EquilateralTriangle, FourierTrace, PlotGenerators, Rk4, SacredGenerators, SvgUtils.\n\n---\n\n## Créations du 2026-08-27 — Accès au site\n\nGalerie complète : [https://jojahoo-hue.github.io/jlogin](https://jojahoo-hue.github.io/jlogin)\n\n| Fichier | Lien direct |\n|---------|-------------|\n| `flower.svg` | [voir](https://jojahoo-hue.github.io/jlogin/gallery/routine/2026-08-27/flower.svg) |\n| `horse.png` | [voir](https://jojahoo-hue.github.io/jlogin/gallery/routine/2026-08-27/horse.png) |\n| `horse.svg` | [voir](https://jojahoo-hue.github.io/jlogin/gallery/routine/2026-08-27/horse.svg) |\n| `sri-yantra.svg` | [voir](https://jojahoo-hue.github.io/jlogin/gallery/routine/2026-08-27/sri-yantra.svg) |\n| `streamlines.svg` | [voir](https://jojahoo-hue.github.io/jlogin/gallery/routine/2026-08-27/streamlines.svg) |\n| `superformula.svg` | [voir](https://jojahoo-hue.github.io/jlogin/gallery/routine/2026-08-27/superformula.svg) |\n\n**Formules JSON sauvegardées :**\n- [`horse-formula.json`](https://jojahoo-hue.github.io/jlogin/gallery/routine/2026-08-27/horse-formula.json)\n\n## Artefacts Generated\n\nOutput directory: `gallery/routine/2026-08-27/`\n\n| File | Generator | Notes |\n|---|---|---|\n| `sri-yantra.svg` | `sacred sri-yantra --size 1400 --mode silhouette` | HD silhouette |\n| `flower.svg` | `sacred flower --size 1400` | Flower of Life outline |\n| `streamlines.svg` | `plot streamlines --size 1400` | Vector field streamlines |\n| `superformula.svg` | `plot superformula --size 1400` | Superformula polar curve |\n| `horse.png` | `render horse --width 1600` | Reference image render |\n| `horse.svg` | `trace horse.png --harmonics 80 --size 1400 --save-formula` | Fourier trace → SVG + formula JSON |\n| `horse-formula.json` | (saved by trace) | Reusable Fourier formula |\n\n**6 artefacts** generated (5 SVG + 1 PNG + 1 formula JSON).\n\n### Skipped (motifs not yet implemented)\n- `sacred metatron` — not in GENERATORS (only: sri-yantra, flower)\n- `sacred mandala` — not in GENERATORS\n- `plot harmonograph` — not in PLOTS (only: streamlines, superformula)\n- `plot spirograph` — not in PLOTS\n- `render forest` — not in render targets (only: horse)\n\n---\n\n## Site Manifest\n\n```\nSite updated: 333 artefacts indexed → manifest.json + manifest.js\n```\n\nTotal: **333 artefacts** on the site (280 SVG + 53 PNG before this run).\n\n---\n\n## Inventory\n\n### Sacred generators\n- `sri-yantra`\n- `flower`\n\n### Plot generators\n- `streamlines`\n- `superformula`\n\n### Render targets\n- `horse`\n\n### Recent commits\n```\n87c044c chore(routine): HD renders + site refresh + report 2026-08-26T13-22\nceeeee8 chore(routine): HD renders + site refresh + report 2026-08-26T13-00\n9141554 chore(routine): HD renders + site refresh + report 2026-08-22T02-33\nb44e359 chore(routine): HD renders + site refresh + report 2026-08-21T13-02\ne512e4b chore(routine): HD renders + site refresh + report 2026-08-20T02-33\n```\n\n---\n\n## What Remains / Next Ideas\n\n1. **Add missing generators** — metatron's cube, mandala (n-petal/n-ring), harmonograph (Lissajous-based), spirograph (hypotrochoid/epitrochoid), and fractal forest render. These were called for in the task spec but don't yet exist in `mathart.sacred.GENERATORS` or `mathart.plot.PLOTS`.\n2. **CLI `--petals`/`--rings` flags** — the task spec references `sacred mandala --petals 12 --rings 4`, suggesting a parametric mandala generator with those arguments is planned.\n3. **Render targets beyond horse** — a `forest` fractal render would enable the image→Fourier pipeline with a richer source image.\n4. **Gallery diversification** — every run produces the same 5 motifs with no variation. Randomized parameters (superformula `m`, `n1`, `n2`; streamlines field type) would generate distinct artefacts each session.\n5. **PNG previews for SVGs** — the web gallery only has PNG thumbnails for the horse render; auto-converting SVGs to PNGs would improve the visual gallery experience.\n",
+  "name": "routine-2026-08-27T13-02.md",
+  "path": "reports/routine-2026-08-27T13-02.md",
+  "text": "# Routine Run — 2026-08-27T13-02\n\n## Test Results\n\nAll **20 tests PASSED** (`PYTHONPATH=. python tests/test_engine.py`):\n- `TestCliList` (1)\n- `TestEquilateralTriangle` (2)\n- `TestFourierTrace` (2)\n- `TestPlotGenerators` (4)\n- `TestRk4` (2)\n- `TestSacredGenerators` (3)\n- `TestSvgUtils` (5)\n\nNo failures, no errors.\n\n## Artefacts Generated\n\nOutput directory: `gallery/routine/2026-08-27/`\n\n| File | Command | Status |\n|------|---------|--------|\n| `sri-yantra.svg` | `sacred sri-yantra --size 1400 --mode silhouette` | OK |\n| `flower.svg` | `sacred flower --size 1400` | OK |\n| `streamlines.svg` | `plot streamlines --size 1400` | OK |\n| `superformula.svg` | `plot superformula --size 1400` | OK |\n| `horse.png` | `render horse --width 1600` | OK |\n| `horse.svg` | `trace horse.png --harmonics 80 --size 1400 --save-formula` | OK |\n| `horse-formula.json` | (saved alongside trace) | OK |\n\n**7 files produced** (5 SVG + 1 PNG + 1 formula JSON).\n\n## Manifest / Site\n\nSite regenerated: **333 artefacts indexed** (280 SVG + 53 PNG).\n- Manifest: `manifest.json` + `manifest.js` updated at repo root.\n- Gallery URL: https://jojahoo-hue.github.io/jlogin/\n\n## Inventory\n\n```\nSacred generators : sri-yantra, flower\nPlot generators   : streamlines, superformula\nRender targets    : horse\nTrace             : any PNG/JPEG via FFT contour reconstruction\n```\n\nGallery totals from `mathart list`: 280 SVG, 53 PNG (333 total).\n\n## Recent Git Log\n\n```\n8b74980 feat(cli): add GitHub Pages URLs to all generation commands\n87c044c chore(routine): HD renders + site refresh + report 2026-08-26T13-22\nceeeee8 chore(routine): HD renders + site refresh + report 2026-08-26T13-00\n9141554 chore(routine): HD renders + site refresh + report 2026-08-22T02-33\nb44e359 chore(routine): HD renders + site refresh + report 2026-08-21T13-02\n```\n\n## What Remains / Next Ideas\n\n- **New generator types**: Consider adding Lissajous curves, Spirograph, or Voronoi pattern generators to expand the sacred/plot vocabulary beyond the current 4 generators.\n- **Color themes**: The current SVG output is monochrome. Adding optional colour fill/gradient parameters (especially for flower-of-life, superformula) would enrich the gallery.\n- **Batch trace**: A command to trace multiple input images at once and add them all to the gallery in one pass would reduce manual steps.\n- **Gallery UI**: The static `index.html` shows all runs — adding date-based filtering or category tabs (sacred / plot / trace) would improve navigation as the artefact count grows past 300.\n- **Additional render targets**: Only `horse` is available; adding other reference silhouettes (bird, face, tree) would diversify the trace workflow demonstration.\n",
   "truncated": false
  },
  "items": [
+  {
+   "id": "gallery/stencils/wheel-silhouette.svg",
+   "name": "wheel-silhouette",
+   "path": "gallery/stencils/wheel-silhouette.svg",
+   "type": "sacré",
+   "family": "wheel",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 13466
+  },
+  {
+   "id": "gallery/stencils/wheel-negative.svg",
+   "name": "wheel-negative",
+   "path": "gallery/stencils/wheel-negative.svg",
+   "type": "sacré",
+   "family": "wheel",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 13469
+  },
+  {
+   "id": "gallery/turbines_exact.png",
+   "name": "turbines_exact",
+   "path": "gallery/turbines_exact.png",
+   "type": "render",
+   "family": "turbines_exact",
+   "format": "png",
+   "date": "2026-08-27",
+   "bytes": 25897
+  },
+  {
+   "id": "gallery/turbines.png",
+   "name": "turbines",
+   "path": "gallery/turbines.png",
+   "type": "render",
+   "family": "turbines",
+   "format": "png",
+   "date": "2026-08-27",
+   "bytes": 110429
+  },
+  {
+   "id": "gallery/scribes/superformula-silhouette.svg",
+   "name": "superformula-silhouette",
+   "path": "gallery/scribes/superformula-silhouette.svg",
+   "type": "scribe",
+   "family": "superformula",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 17512
+  },
   {
    "id": "gallery/routine/2026-08-27/superformula.svg",
    "name": "superformula",
@@ -127,6 +175,16 @@
    "format": "svg",
    "date": "2026-08-27",
    "bytes": 244876
+  },
+  {
+   "id": "gallery/scribes/streamlines-silhouette.svg",
+   "name": "streamlines-silhouette",
+   "path": "gallery/scribes/streamlines-silhouette.svg",
+   "type": "scribe",
+   "family": "streamlines",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 59607
   },
   {
    "id": "gallery/routine/2026-08-27/streamlines.svg",
@@ -139,6 +197,16 @@
    "bytes": 401934
   },
   {
+   "id": "gallery/stencils/sri-yantra-silhouette.svg",
+   "name": "sri-yantra-silhouette",
+   "path": "gallery/stencils/sri-yantra-silhouette.svg",
+   "type": "sacré",
+   "family": "sri-yantra",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 22607
+  },
+  {
    "id": "gallery/routine/2026-08-27/sri-yantra.svg",
    "name": "sri-yantra",
    "path": "gallery/routine/2026-08-27/sri-yantra.svg",
@@ -149,6 +217,106 @@
    "bytes": 5981
   },
   {
+   "id": "gallery/scribes/spirograph-silhouette.svg",
+   "name": "spirograph-silhouette",
+   "path": "gallery/scribes/spirograph-silhouette.svg",
+   "type": "scribe",
+   "family": "spirograph",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 54501
+  },
+  {
+   "id": "gallery/stencils/spiral-silhouette.svg",
+   "name": "spiral-silhouette",
+   "path": "gallery/stencils/spiral-silhouette.svg",
+   "type": "sacré",
+   "family": "spiral",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 3393
+  },
+  {
+   "id": "gallery/stencils/seal-silhouette.svg",
+   "name": "seal-silhouette",
+   "path": "gallery/stencils/seal-silhouette.svg",
+   "type": "sacré",
+   "family": "seal",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 7645
+  },
+  {
+   "id": "gallery/scribes/rose-silhouette.svg",
+   "name": "rose-silhouette",
+   "path": "gallery/scribes/rose-silhouette.svg",
+   "type": "scribe",
+   "family": "rose",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 28025
+  },
+  {
+   "id": "gallery/stencils/metatron-silhouette.svg",
+   "name": "metatron-silhouette",
+   "path": "gallery/stencils/metatron-silhouette.svg",
+   "type": "sacré",
+   "family": "metatron",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 25684
+  },
+  {
+   "id": "gallery/stencils/mandala-silhouette.svg",
+   "name": "mandala-silhouette",
+   "path": "gallery/stencils/mandala-silhouette.svg",
+   "type": "sacré",
+   "family": "mandala",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 30956
+  },
+  {
+   "id": "gallery/stencils/horse-silhouette.svg",
+   "name": "horse-silhouette",
+   "path": "gallery/stencils/horse-silhouette.svg",
+   "type": "pochoir",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 2800
+  },
+  {
+   "id": "gallery/stencils/horse-negative.svg",
+   "name": "horse-negative",
+   "path": "gallery/stencils/horse-negative.svg",
+   "type": "pochoir",
+   "family": "horse",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 2910
+  },
+  {
+   "id": "gallery/horse-formule-silhouette.svg",
+   "name": "horse-formule-silhouette",
+   "path": "gallery/horse-formule-silhouette.svg",
+   "type": "pochoir",
+   "family": "horse-formule",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 4750
+  },
+  {
+   "id": "gallery/horse-formule.json",
+   "name": "horse-formule",
+   "path": "gallery/horse-formule.json",
+   "type": "render",
+   "family": "horse-formule",
+   "format": "json",
+   "date": "2026-08-27",
+   "bytes": 9011
+  },
+  {
    "id": "gallery/routine/2026-08-27/horse-formula.json",
    "name": "horse-formula",
    "path": "gallery/routine/2026-08-27/horse-formula.json",
@@ -157,6 +325,16 @@
    "format": "json",
    "date": "2026-08-27",
    "bytes": 7380
+  },
+  {
+   "id": "gallery/horse.png",
+   "name": "horse",
+   "path": "gallery/horse.png",
+   "type": "render",
+   "family": "horse",
+   "format": "png",
+   "date": "2026-08-27",
+   "bytes": 8905
   },
   {
    "id": "gallery/routine/2026-08-27/horse.png",
@@ -179,6 +357,36 @@
    "bytes": 15910
   },
   {
+   "id": "gallery/scribes/harmonograph-silhouette.svg",
+   "name": "harmonograph-silhouette",
+   "path": "gallery/scribes/harmonograph-silhouette.svg",
+   "type": "scribe",
+   "family": "harmonograph",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 9414
+  },
+  {
+   "id": "gallery/forest.png",
+   "name": "forest",
+   "path": "gallery/forest.png",
+   "type": "render",
+   "family": "forest",
+   "format": "png",
+   "date": "2026-08-27",
+   "bytes": 90038
+  },
+  {
+   "id": "gallery/stencils/flower-silhouette.svg",
+   "name": "flower-silhouette",
+   "path": "gallery/stencils/flower-silhouette.svg",
+   "type": "sacré",
+   "family": "flower",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 29693
+  },
+  {
    "id": "gallery/routine/2026-08-27/flower.svg",
    "name": "flower",
    "path": "gallery/routine/2026-08-27/flower.svg",
@@ -187,6 +395,26 @@
    "format": "svg",
    "date": "2026-08-27",
    "bytes": 4151
+  },
+  {
+   "id": "gallery/stencils/enneagram-silhouette.svg",
+   "name": "enneagram-silhouette",
+   "path": "gallery/stencils/enneagram-silhouette.svg",
+   "type": "sacré",
+   "family": "enneagram",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 11582
+  },
+  {
+   "id": "gallery/scribes/attractor-silhouette.svg",
+   "name": "attractor-silhouette",
+   "path": "gallery/scribes/attractor-silhouette.svg",
+   "type": "scribe",
+   "family": "attractor",
+   "format": "svg",
+   "date": "2026-08-27",
+   "bytes": 10779
   },
   {
    "id": "gallery/routine/2026-08-25/superformula.svg",
@@ -2217,26 +2445,6 @@
    "format": "svg",
    "date": "2026-07-31",
    "bytes": 5981
-  },
-  {
-   "id": "gallery/horse-formule-silhouette.svg",
-   "name": "horse-formule-silhouette",
-   "path": "gallery/horse-formule-silhouette.svg",
-   "type": "pochoir",
-   "family": "horse-formule",
-   "format": "svg",
-   "date": "2026-07-31",
-   "bytes": 4750
-  },
-  {
-   "id": "gallery/horse-formule.json",
-   "name": "horse-formule",
-   "path": "gallery/horse-formule.json",
-   "type": "render",
-   "family": "horse-formule",
-   "format": "json",
-   "date": "2026-07-31",
-   "bytes": 9011
   },
   {
    "id": "gallery/routine/2026-07-31/horse-formula.json",
@@ -6337,216 +6545,6 @@
    "format": "svg",
    "date": "2026-06-17",
    "bytes": 34461
-  },
-  {
-   "id": "gallery/stencils/wheel-silhouette.svg",
-   "name": "wheel-silhouette",
-   "path": "gallery/stencils/wheel-silhouette.svg",
-   "type": "sacré",
-   "family": "wheel",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 13466
-  },
-  {
-   "id": "gallery/stencils/wheel-negative.svg",
-   "name": "wheel-negative",
-   "path": "gallery/stencils/wheel-negative.svg",
-   "type": "sacré",
-   "family": "wheel",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 13469
-  },
-  {
-   "id": "gallery/scribes/superformula-silhouette.svg",
-   "name": "superformula-silhouette",
-   "path": "gallery/scribes/superformula-silhouette.svg",
-   "type": "scribe",
-   "family": "superformula",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 17512
-  },
-  {
-   "id": "gallery/scribes/streamlines-silhouette.svg",
-   "name": "streamlines-silhouette",
-   "path": "gallery/scribes/streamlines-silhouette.svg",
-   "type": "scribe",
-   "family": "streamlines",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 59607
-  },
-  {
-   "id": "gallery/stencils/sri-yantra-silhouette.svg",
-   "name": "sri-yantra-silhouette",
-   "path": "gallery/stencils/sri-yantra-silhouette.svg",
-   "type": "sacré",
-   "family": "sri-yantra",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 22607
-  },
-  {
-   "id": "gallery/scribes/spirograph-silhouette.svg",
-   "name": "spirograph-silhouette",
-   "path": "gallery/scribes/spirograph-silhouette.svg",
-   "type": "scribe",
-   "family": "spirograph",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 54501
-  },
-  {
-   "id": "gallery/stencils/spiral-silhouette.svg",
-   "name": "spiral-silhouette",
-   "path": "gallery/stencils/spiral-silhouette.svg",
-   "type": "sacré",
-   "family": "spiral",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 3393
-  },
-  {
-   "id": "gallery/stencils/seal-silhouette.svg",
-   "name": "seal-silhouette",
-   "path": "gallery/stencils/seal-silhouette.svg",
-   "type": "sacré",
-   "family": "seal",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 7645
-  },
-  {
-   "id": "gallery/scribes/rose-silhouette.svg",
-   "name": "rose-silhouette",
-   "path": "gallery/scribes/rose-silhouette.svg",
-   "type": "scribe",
-   "family": "rose",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 28025
-  },
-  {
-   "id": "gallery/stencils/metatron-silhouette.svg",
-   "name": "metatron-silhouette",
-   "path": "gallery/stencils/metatron-silhouette.svg",
-   "type": "sacré",
-   "family": "metatron",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 25684
-  },
-  {
-   "id": "gallery/stencils/mandala-silhouette.svg",
-   "name": "mandala-silhouette",
-   "path": "gallery/stencils/mandala-silhouette.svg",
-   "type": "sacré",
-   "family": "mandala",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 30956
-  },
-  {
-   "id": "gallery/stencils/horse-silhouette.svg",
-   "name": "horse-silhouette",
-   "path": "gallery/stencils/horse-silhouette.svg",
-   "type": "pochoir",
-   "family": "horse",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 2800
-  },
-  {
-   "id": "gallery/stencils/horse-negative.svg",
-   "name": "horse-negative",
-   "path": "gallery/stencils/horse-negative.svg",
-   "type": "pochoir",
-   "family": "horse",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 2910
-  },
-  {
-   "id": "gallery/scribes/harmonograph-silhouette.svg",
-   "name": "harmonograph-silhouette",
-   "path": "gallery/scribes/harmonograph-silhouette.svg",
-   "type": "scribe",
-   "family": "harmonograph",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 9414
-  },
-  {
-   "id": "gallery/stencils/flower-silhouette.svg",
-   "name": "flower-silhouette",
-   "path": "gallery/stencils/flower-silhouette.svg",
-   "type": "sacré",
-   "family": "flower",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 29693
-  },
-  {
-   "id": "gallery/stencils/enneagram-silhouette.svg",
-   "name": "enneagram-silhouette",
-   "path": "gallery/stencils/enneagram-silhouette.svg",
-   "type": "sacré",
-   "family": "enneagram",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 11582
-  },
-  {
-   "id": "gallery/scribes/attractor-silhouette.svg",
-   "name": "attractor-silhouette",
-   "path": "gallery/scribes/attractor-silhouette.svg",
-   "type": "scribe",
-   "family": "attractor",
-   "format": "svg",
-   "date": "2026-06-05",
-   "bytes": 10779
-  },
-  {
-   "id": "gallery/turbines_exact.png",
-   "name": "turbines_exact",
-   "path": "gallery/turbines_exact.png",
-   "type": "render",
-   "family": "turbines_exact",
-   "format": "png",
-   "date": "2026-05-31",
-   "bytes": 25897
-  },
-  {
-   "id": "gallery/turbines.png",
-   "name": "turbines",
-   "path": "gallery/turbines.png",
-   "type": "render",
-   "family": "turbines",
-   "format": "png",
-   "date": "2026-05-31",
-   "bytes": 110429
-  },
-  {
-   "id": "gallery/horse.png",
-   "name": "horse",
-   "path": "gallery/horse.png",
-   "type": "render",
-   "family": "horse",
-   "format": "png",
-   "date": "2026-05-31",
-   "bytes": 8905
-  },
-  {
-   "id": "gallery/forest.png",
-   "name": "forest",
-   "path": "gallery/forest.png",
-   "type": "render",
-   "family": "forest",
-   "format": "png",
-   "date": "2026-05-31",
-   "bytes": 90038
   }
  ]
 }
