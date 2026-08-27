@@ -112,6 +112,12 @@ Une fois que je confirme, Claude met à jour le fichier en question et ajoute un
 
 Claude va effectuer une veille des actualités du jour, filtrée selon mon contexte personnel (mes objectifs, mes projets), et me proposer un focus pour la journée. Cette commande utilise la skill `recherche-actualites-contextualisees`.
 
+### /apple-notes
+
+**Objectif :** Migrer mes notes Apple vers Notion.
+
+Je dépose un export de mes notes Apple (Markdown ou texte) dans `context/import/apple-notes/`, puis Claude les convertit en pages Notion via `scripts/apple-notes-to-notion.py`. La migration est rejouable : une note déjà migrée n'est jamais dupliquée, une note modifiée est mise à jour en place. Voir `context/import/apple-notes/README.md` pour la procédure d'export.
+
 ---
 
 ## Skills disponibles

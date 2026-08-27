@@ -1,5 +1,20 @@
 {
   "last_sync": null,
+  "apple_notes": {
+    "source": "context/import/apple-notes",
+    "state_file": "apple-notes-sync-state.json",
+    "target": {
+      "type": "database",
+      "id": "REMPLACER_PAR_ID_BASE_NOTION_APPLE_NOTES",
+      "description": "Base Notion qui recevra les notes migrées. Mettre type=page et l'ID d'une page pour créer des sous-pages à la place."
+    },
+    "properties": {
+      "folder": "Dossier",
+      "source": "Source",
+      "path": "Chemin",
+      "modified": "Date"
+    }
+  },
   "sources": [
     {
       "id": "2d892f894f8c81f789f8e1fcfcb851cd",
