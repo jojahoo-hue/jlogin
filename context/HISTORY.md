@@ -5,6 +5,20 @@
 
 ---
 
+## 2026-08-27
+
+### Ouverture du chantier livre — Mbawu, les vingt-et-un jours
+
+- Nouveau projet de livre lancé à partir du projet Notion Nza Ngai dia Nzayi
+- Constat : la commande `/livre` existante sert à digérer une lecture, pas à écrire. Création de la commande `/ecrire-livre`, pipeline d'écriture en 6 phases avec Phase 0 de collecte des sources bloquante
+- Chantier créé dans `livres/mbawu-21-jours/` : README de pilotage, PLAN.md de cadrage, glossaire, dossier notes-sources
+- Architecture proposée à valider : 21 chapitres, un par jour, regroupés en 3 cycles de 7. Hypothèse structurelle, à confirmer ou à jeter après lecture des notes
+- Blocage confirmé : Notion inaccessible depuis le cloud Claude Code (`api.notion.com` filtré, aucun `NOTION_TOKEN`). Aucun chapitre ne sera écrit avant import des notes
+- Source `Nza Ngai dia Nzayi` ajoutée dans `notion-config.json`, ID à renseigner pour la sync depuis le Mac
+- Prochaine étape : importer les notes dans `livres/mbawu-21-jours/notes-sources/`, puis trancher les 5 questions de cadrage éditorial
+
+---
+
 ## 2026-06-06
 
 ### Mise à jour de session — Configuration Jarvis et intégration Notion

@@ -28,6 +28,13 @@
       "label": "Projets Dozzy et autres",
       "destination": "context/import/notion-projets.md",
       "description": "Pages de projets actifs dans Notion, notamment le projet Dozzy"
+    },
+    {
+      "id": "REMPLACER_PAR_ID_PAGE_NZA_NGAI_DIA_NZAYI",
+      "type": "projets",
+      "label": "Nza Ngai dia Nzayi — Mbawu, les vingt-et-un jours",
+      "destination": "livres/mbawu-21-jours/notes-sources/notion-nza-ngai-mbawu.md",
+      "description": "Notes et conversations du projet Nza Ngai dia Nzayi, matière source du livre sur les vingt-et-un jours de Mbawu"
     }
   ]
 }
