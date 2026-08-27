@@ -1,0 +1,685 @@
+<title>Masterisation njaho.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root {
+    --ground:   #F1F3F6;
+    --surface:  #FFFFFF;
+    --sunken:   #E7EAEF;
+    --ink:      #161A22;
+    --muted:    #5A6373;
+    --line:     #D5DAE2;
+    --accent:   #1B4D8C;
+    --accent-soft: #E3EBF5;
+    --sun:      #B8860F;
+    --ok:       #1F6F4A;
+    --warn:     #9A5407;
+    --crit:     #A32B2B;
+    --shadow:   0 1px 2px rgba(22, 26, 34, .06), 0 8px 24px rgba(22, 26, 34, .05);
+
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
+    --body: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  :root:not([data-theme="light"]) {
+    color-scheme: light dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:   #101319;
+      --surface:  #181C24;
+      --sunken:   #1F242E;
+      --ink:      #E6E9EF;
+      --muted:    #98A2B3;
+      --line:     #2C323D;
+      --accent:   #7FB0E8;
+      --accent-soft: #1C2A3C;
+      --sun:      #E0B84A;
+      --ok:       #5DBF8E;
+      --warn:     #D99A4E;
+      --crit:     #E07B7B;
+      --shadow:   0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .22);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground:   #101319;
+    --surface:  #181C24;
+    --sunken:   #1F242E;
+    --ink:      #E6E9EF;
+    --muted:    #98A2B3;
+    --line:     #2C323D;
+    --accent:   #7FB0E8;
+    --accent-soft: #1C2A3C;
+    --sun:      #E0B84A;
+    --ok:       #5DBF8E;
+    --warn:     #D99A4E;
+    --crit:     #E07B7B;
+    --shadow:   0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .22);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 20px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+  /* ---------- En-tête ---------- */
+  header {
+    padding: 56px 0 32px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 40px;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    align-items: center;
+  }
+
+  .eyebrow .dot { color: var(--line); }
+
+  h1 {
+    font-family: var(--display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(2.1rem, 6vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -.015em;
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+
+  .lede {
+    font-size: 1.08rem;
+    color: var(--muted);
+    margin: 0;
+    max-width: 62ch;
+  }
+
+  /* ---------- Sections ---------- */
+  section { margin-bottom: 52px; }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: -.01em;
+    line-height: 1.25;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+
+  .sub {
+    color: var(--muted);
+    font-size: .94rem;
+    margin: 0 0 22px;
+    max-width: 62ch;
+  }
+
+  h3 {
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 8px;
+  }
+
+  p { margin: 0 0 14px; max-width: 66ch; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  code, .mono { font-family: var(--mono); font-size: .855em; }
+
+  code {
+    background: var(--sunken);
+    padding: .12em .38em;
+    border-radius: 3px;
+    word-break: break-word;
+  }
+
+  pre {
+    background: var(--sunken);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    margin: 0 0 16px;
+  }
+
+  pre code { background: none; padding: 0; font-size: .82rem; line-height: 1.7; }
+
+  /* ---------- Bandeau d'état ---------- */
+  .statut {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 4px 22px;
+    margin-bottom: 44px;
+  }
+
+  .ligne {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .ligne:last-child { border-bottom: none; }
+
+  .pastille {
+    flex: none;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    border: 1px solid currentColor;
+    width: 88px;
+    text-align: center;
+  }
+
+  .p-fait     { color: var(--ok); }
+  .p-attente  { color: var(--warn); }
+  .p-bloque   { color: var(--crit); }
+  .p-vous     { color: var(--accent); }
+
+  .ligne div { flex: 1; }
+  .ligne strong { font-weight: 600; }
+  .ligne span { display: block; color: var(--muted); font-size: .9rem; }
+
+  /* ---------- Chantiers ---------- */
+  .chantier {
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    gap: 0 18px;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .chantier:last-of-type { border-bottom: 1px solid var(--line); }
+
+  .num {
+    font-family: var(--display);
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--sun);
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .chantier .duree {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .chantier p { margin: 0 0 10px; }
+
+  .chantier ul { margin: 8px 0 0; padding-left: 18px; }
+  .chantier li { margin-bottom: 5px; color: var(--muted); }
+  .chantier li strong { color: var(--ink); font-weight: 500; }
+
+  /* ---------- Scénarios ---------- */
+  .scenarios {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+    margin-bottom: 20px;
+  }
+
+  .scenario {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 18px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .scenario.reco { border-color: var(--accent); background: var(--accent-soft); }
+
+  .scenario .cle {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .scenario.reco .cle { color: var(--accent); }
+
+  .scenario h3 { font-size: .98rem; margin: 0; }
+  .scenario p { font-size: .88rem; color: var(--muted); margin: 0; }
+
+  .arbo {
+    font-family: var(--mono);
+    font-size: .76rem;
+    line-height: 1.75;
+    color: var(--muted);
+    white-space: pre;
+    overflow-x: auto;
+    margin: 2px 0 0;
+  }
+
+  /* ---------- Tableau ---------- */
+  .tableau { overflow-x: auto; margin-bottom: 12px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .91rem;
+    min-width: 460px;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 10px 14px 10px 0;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  th {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    border-bottom-color: var(--ink);
+  }
+
+  td:first-child { font-weight: 500; white-space: nowrap; padding-right: 20px; }
+  td.eviter { color: var(--muted); }
+
+  /* ---------- Encart ---------- */
+  .encart {
+    border-left: 3px solid var(--sun);
+    background: var(--surface);
+    border-radius: 0 6px 6px 0;
+    padding: 16px 20px;
+    margin: 0 0 22px;
+  }
+
+  .encart p:last-child { margin-bottom: 0; }
+
+  .encart .titre {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--sun);
+    margin: 0 0 8px;
+  }
+
+  /* ---------- Livrables ---------- */
+  .fichiers { display: flex; flex-direction: column; gap: 2px; margin-bottom: 18px; }
+
+  .fichier {
+    display: grid;
+    grid-template-columns: minmax(0, auto) 1fr;
+    gap: 4px 18px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+
+  .fichier .chemin {
+    font-family: var(--mono);
+    font-size: .8rem;
+    color: var(--accent);
+    word-break: break-all;
+  }
+
+  .fichier .quoi { color: var(--muted); font-size: .9rem; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+    color: var(--muted);
+    font-size: .86rem;
+  }
+
+  @media (max-width: 560px) {
+    .ligne { flex-direction: column; gap: 8px; }
+    .pastille { width: auto; display: inline-block; }
+    .fichier { grid-template-columns: 1fr; }
+    .chantier { grid-template-columns: 34px 1fr; gap: 0 12px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">
+    <span>Bilan de nuit</span>
+    <span class="dot">/</span>
+    <span>27 août 2026</span>
+    <span class="dot">/</span>
+    <span>WordPress sur Hostinger</span>
+  </p>
+  <h1>Masterisation njaho.com</h1>
+  <p class="lede">
+    Le site n'a pas pu être audité cette nuit : le domaine est bloqué par le
+    filtrage réseau de l'environnement distant. Tout le reste a été préparé pour
+    que l'audit prenne cinq minutes demain matin.
+  </p>
+</header>
+
+<div class="statut">
+  <div class="ligne">
+    <span class="pastille p-bloque">Bloqué</span>
+    <div>
+      <strong>Accès au site depuis cette session</strong>
+      <span><code>CONNECT njaho.com:443</code> refusé par le proxy, code 403. Aucune mesure n'a donc été prise sur le site réel.</span>
+    </div>
+  </div>
+  <div class="ligne">
+    <span class="pastille p-fait">Livré</span>
+    <div>
+      <strong>Outillage d'audit complet</strong>
+      <span>Quatre fichiers créés, testés et poussés sur la branche <code>claude/wordpress-site-update-8wq3wx</code>.</span>
+    </div>
+  </div>
+  <div class="ligne">
+    <span class="pastille p-attente">En cours</span>
+    <div>
+      <strong>Contournement par l'API Google</strong>
+      <span>PageSpeed Insights visite le site depuis les serveurs de Google, donc le filtrage ne s'applique pas. Le quota anonyme était épuisé, une tâche de fond attend sa réinitialisation à 7h UTC et relance seule.</span>
+    </div>
+  </div>
+  <div class="ligne">
+    <span class="pastille p-vous">À toi</span>
+    <div>
+      <strong>Une décision de fond</strong>
+      <span>À qui parle njaho.com. Rien de sérieux ne peut être décidé sur le design ou l'arborescence avant cette réponse.</span>
+    </div>
+  </div>
+</div>
+
+<section>
+  <h2>Au réveil, deux commandes</h2>
+  <p class="sub">
+    Depuis Claude Code sur ton poste, dans le dossier du workspace. Le script est
+    en lecture seule : il ne se connecte pas à l'administration WordPress et ne
+    modifie rien.
+  </p>
+  <pre><code>git pull origin claude/wordpress-site-update-8wq3wx
+./scripts/audit-wordpress.sh https://njaho.com</code></pre>
+  <p>Puis, dans Claude Code :</p>
+  <pre><code>/site audit</code></pre>
+  <p>
+    Le script mesure le temps de réponse, le poids de la page, le thème actif,
+    les extensions visibles, les fichiers sensibles exposés, les en-têtes de
+    sécurité, le cache, les balises SEO, les images sans texte alternatif, le
+    sitemap et les scores PageSpeed. La commande <code>/site audit</code> lit le
+    rapport et en tire un diagnostic priorisé.
+  </p>
+</section>
+
+<section>
+  <h2>La décision à prendre</h2>
+  <p class="sub">
+    Design, arborescence, textes, référencement : tout en découle. Trois
+    scénarios, compte tenu de tes casquettes de peintre, d'auteur et de porteur
+    d'une association culturelle.
+  </p>
+
+  <div class="scenarios">
+    <div class="scenario reco">
+      <p class="cle">Scénario A · recommandé</p>
+      <h3>Le site de l'artiste</h3>
+      <p>Collectionneurs, galeries, acheteurs NFT. Message limpide, référencement facile à cibler.</p>
+      <p class="arbo">Accueil
+├ Oeuvres
+│ ├ Congo / Soleil
+│ └ Géo-mathématique
+├ Démarche
+├ Collectionner
+└ Contact</p>
+    </div>
+    <div class="scenario">
+      <p class="cle">Scénario B</p>
+      <h3>Le site de l'auteur</h3>
+      <p>Lecteurs et cheminement. Un blog nourrit le référencement dans la durée, ce qu'une galerie d'images ne fait pas.</p>
+      <p class="arbo">Accueil
+├ Livres
+├ Écrits
+├ Recherche
+├ Rencontres
+└ Contact</p>
+    </div>
+    <div class="scenario">
+      <p class="cle">Scénario C</p>
+      <h3>Le personnage complet</h3>
+      <p>Trois portes dès l'accueil. Le plus fidèle à ton parcours, et de loin le plus difficile à réussir.</p>
+      <p class="arbo">Accueil
+├ L'oeuvre
+├ Les écrits
+├ La transmission
+├ À propos
+└ Contact</p>
+    </div>
+  </div>
+
+  <p>
+    Je recommande le <strong>scénario A</strong> parce que ton objectif des six
+    prochains mois, tel qu'il est écrit dans ton contexte, est de lancer le site
+    de promotion de tes oeuvres et la série géo-mathématique. Un site qui vise
+    une seule cible convertit mieux qu'un site qui présente une personne.
+  </p>
+  <p>
+    Le scénario C ne se défend que si le site doit servir l'association dès
+    maintenant. Dans ce cas, sache qu'une page d'accueil à trois portes rate sa
+    cible si elle hésite, et qu'un module de prise de rendez-vous pour les
+    ateliers alourdit un site vitrine d'artiste. L'association mérite son propre
+    site, à son heure.
+  </p>
+
+  <div class="encart">
+    <p class="titre">Ce qui manque pour trancher</p>
+    <p>
+      Je n'ai pas vu le site. S'il présente déjà tes oeuvres et fonctionne, on
+      parle d'une remise à niveau. S'il est vide ou hors sujet, on parle d'une
+      refonte, et le temps à prévoir n'est pas le même.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>Les quatre chantiers</h2>
+  <p class="sub">
+    L'ordre n'est pas décoratif : optimiser la vitesse d'une page qu'on va
+    réécrire, c'est faire le travail deux fois.
+  </p>
+
+  <div class="chantier">
+    <div>
+      <div class="num">0</div>
+      <div class="duree">30 min</div>
+    </div>
+    <div>
+      <h3>Filet de sécurité</h3>
+      <p>Rien ne se touche tant que ce n'est pas fait.</p>
+      <ul>
+        <li><strong>Sauvegarde complète</strong>, fichiers et base de données, téléchargée en local, pas seulement chez l'hébergeur</li>
+        <li>Vérifier que l'archive s'ouvre et que le fichier SQL n'est pas vide. Une sauvegarde non testée n'est pas une sauvegarde</li>
+        <li>Créer un environnement de préproduction si ton offre Hostinger le permet</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chantier">
+    <div>
+      <div class="num">1</div>
+      <div class="duree">2 h</div>
+    </div>
+    <div>
+      <h3>Socle technique</h3>
+      <p>Sécurité et maintenance. Le socle sur lequel tout le reste tient.</p>
+      <ul>
+        <li>Version de PHP à jour, puis coeur WordPress, extensions, thème, une catégorie à la fois avec vérification entre chaque lot</li>
+        <li><strong>Supprimer</strong> les extensions inutilisées, pas seulement les désactiver : un fichier présent reste attaquable</li>
+        <li>Cible : moins de 15 extensions actives</li>
+        <li>Aucun compte nommé <code>admin</code>, double authentification sur les comptes administrateurs</li>
+        <li>Une extension de sécurité, une seule. Deux se neutralisent</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chantier">
+    <div>
+      <div class="num">2</div>
+      <div class="duree">4 à 8 h</div>
+    </div>
+    <div>
+      <h3>Structure et contenu</h3>
+      <p>Le chantier le plus long, et le seul que les visiteurs remarqueront vraiment.</p>
+      <ul>
+        <li>Arborescence cible écrite noir sur blanc, deux niveaux maximum</li>
+        <li>Chaque page existante : garder, fusionner, réécrire ou supprimer</li>
+        <li><strong>Redirections 301</strong> pour toute URL supprimée, sinon erreurs 404 et référencement perdu</li>
+        <li>Fiches oeuvres : titre, année, technique, dimensions, série, statut</li>
+        <li>La page Démarche est le texte le plus important du site, celui qui distingue un peintre d'un autre</li>
+        <li>Mentions légales et confidentialité, souvent absentes ou périmées</li>
+        <li>Tester le formulaire de contact. C'est la panne la plus fréquente et la plus invisible</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chantier">
+    <div>
+      <div class="num">3</div>
+      <div class="duree">3 h</div>
+    </div>
+    <div>
+      <h3>Performance</h3>
+      <p>Sur un site d'artiste, tout se joue sur les images.</p>
+      <ul>
+        <li>Cache serveur activé. LiteSpeed Cache est inclus chez Hostinger et suffit</li>
+        <li>Images en WebP, <strong>redimensionnées à leur taille d'affichage réelle</strong>. Une photo de 4000 px affichée en 800 px, c'est 90 % du poids jeté par la fenêtre</li>
+        <li>Polices hébergées localement plutôt que chargées chez Google : plus rapide, et conforme au RGPD</li>
+        <li>Cible réaliste : score mobile au-dessus de 70, LCP sous 2,5 s, accueil sous 1,5 Mo</li>
+        <li>Mesurer avant et après, sinon on optimise à l'aveugle</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chantier">
+    <div>
+      <div class="num">4</div>
+      <div class="duree">2 h</div>
+    </div>
+    <div>
+      <h3>Référencement et visibilité</h3>
+      <p>Une fois que le contenu est juste et que le site est rapide.</p>
+      <ul>
+        <li>Titre et méta description propres sur chaque page, un seul H1</li>
+        <li><strong>Texte alternatif sur chaque oeuvre</strong>, descriptif et précis. C'est ce qui fait remonter tes tableaux dans la recherche par images, et ce que lisent les personnes non voyantes</li>
+        <li>Sitemap soumis dans la Search Console</li>
+        <li>Données structurées : Person, VisualArtwork, Book</li>
+        <li>Vérifier l'aperçu au partage sur les réseaux</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Stack recommandée</h2>
+  <p class="sub">
+    Sur un site d'artiste, le bon réflexe est de retirer, pas d'ajouter. Une
+    fonction, une extension.
+  </p>
+  <div class="tableau">
+    <table>
+      <thead>
+        <tr><th>Besoin</th><th>Choix</th><th>À éviter</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Thème</td><td>Kadence, Blocksy ou GeneratePress</td><td class="eviter">Les thèmes surchargés des places de marché</td></tr>
+        <tr><td>Mise en page</td><td>Éditeur de blocs natif</td><td class="eviter">Un constructeur empilé sur le thème</td></tr>
+        <tr><td>Cache</td><td>LiteSpeed Cache, inclus chez Hostinger</td><td class="eviter">Deux extensions de cache</td></tr>
+        <tr><td>Images</td><td>ShortPixel ou Imagify</td><td class="eviter">Téléverser des JPEG de 5 Mo</td></tr>
+        <tr><td>SEO</td><td>Rank Math ou Yoast</td><td class="eviter">Les deux ensemble</td></tr>
+        <tr><td>Sécurité</td><td>Wordfence ou Solid Security</td><td class="eviter">Les deux ensemble</td></tr>
+        <tr><td>Sauvegarde</td><td>Hostinger plus UpdraftPlus en second filet</td><td class="eviter">Se fier au seul hébergeur</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Ce qui a été livré cette nuit</h2>
+  <p class="sub">
+    Quatre fichiers, sur la branche <code class="mono">claude/wordpress-site-update-8wq3wx</code>.
+  </p>
+  <div class="fichiers">
+    <div class="fichier">
+      <span class="chemin">scripts/audit-wordpress.sh</span>
+      <span class="quoi">Collecte technique en lecture seule : performance, stack, surface de sécurité, SEO, poids des ressources, sitemap</span>
+    </div>
+    <div class="fichier">
+      <span class="chemin">scripts/psi-analyse.py</span>
+      <span class="quoi">Transforme le rapport PageSpeed en diagnostic lisible et déduit le thème, les extensions et les domaines tiers à partir des ressources chargées</span>
+    </div>
+    <div class="fichier">
+      <span class="chemin">scripts/psi-attente.sh</span>
+      <span class="quoi">Attend la réinitialisation du quota Google puis récupère les rapports mobile et ordinateur</span>
+    </div>
+    <div class="fichier">
+      <span class="chemin">.claude/commands/site.md</span>
+      <span class="quoi">Commande <code>/site</code> : audit, plan, refonte, seo, secu, contenu</span>
+    </div>
+    <div class="fichier">
+      <span class="chemin">context/import/njaho-site-masterisation.md</span>
+      <span class="quoi">Le plan directeur complet, dont ce bilan est le résumé</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>
+    Aucune donnée technique de njaho.com n'a été mesurée à l'heure où ce bilan
+    est écrit. Tout ce qui précède est une méthode et un cadre, pas un
+    diagnostic. Le diagnostic viendra du premier audit, et cette page sera mise
+    à jour avec les chiffres réels.
+  </p>
+</footer>
+
+</div>
