@@ -57,38 +57,13 @@ def cmd_trace(args):
 
 
 def cmd_site(args):
-    import json
+    # Delegates to mathart.site.build_manifest so the manifest schema
+    # (items / types / families / report) matches what index.html reads.
+    from mathart.site import build_manifest
     repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    gallery = os.path.join(repo_root, "gallery")
-    artefacts = []
-    excluded = {"input"}
-    for root, dirs, files in os.walk(gallery):
-        dirs[:] = [d for d in dirs if d not in excluded]
-        for f in sorted(files):
-            if not f.endswith((".svg", ".png")):
-                continue
-            fp = os.path.join(root, f)
-            rel = os.path.relpath(fp, repo_root).replace(os.sep, "/")
-            parts = rel.split("/")
-            # date from path segment like routine/YYYY-MM-DD
-            date = ""
-            for p in parts:
-                if len(p) == 10 and p.count("-") == 2:
-                    date = p
-                    break
-            name, ext = os.path.splitext(f)
-            artefacts.append({"path": rel, "name": name, "ext": ext.lstrip("."), "date": date})
-    artefacts.sort(key=lambda a: (a["date"], a["name"]))
-    manifest = {"total": len(artefacts), "artefacts": artefacts}
-    manifest_path = os.path.join(repo_root, "manifest.json")
-    with open(manifest_path, "w") as fh:
-        json.dump(manifest, fh, indent=2)
-    js_path = os.path.join(repo_root, "manifest.js")
-    with open(js_path, "w") as fh:
-        fh.write("const MANIFEST = ")
-        json.dump(manifest, fh, indent=2)
-        fh.write(";\n")
-    print(f"Site updated: {len(artefacts)} artefacts indexed → manifest.json + manifest.js")
+    res = build_manifest(root=repo_root)
+    print(f"Site updated: {res['count']} artefacts indexed "
+          f"→ manifest.json + manifest.js")
 
 
 def cmd_list(args):

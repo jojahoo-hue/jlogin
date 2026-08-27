@@ -69,6 +69,28 @@
     border:1px solid var(--line);border-radius:6px}
   .mini:hover{border-color:var(--accent);color:var(--ink)}
   .empty{color:var(--dim);text-align:center;padding:60px 20px}
+  /* timeline */
+  .timeline{display:flex;gap:4px;overflow-x:auto;padding:10px 2px 2px;margin-top:10px}
+  .tl{flex:none;display:flex;flex-direction:column;align-items:center;gap:3px;
+    cursor:pointer;padding:4px 6px;border-radius:8px;min-width:34px}
+  .tl:hover{background:var(--panel2)}
+  .tl.on{background:var(--chipon)}
+  .tl .bar{width:8px;background:var(--accent);border-radius:3px;opacity:.75}
+  .tl .d{font-size:9.5px;color:var(--dim);white-space:nowrap;transform:rotate(0)}
+  .tl .c{font-size:9px;color:var(--dim)}
+  /* print sheet — hidden on screen, shown only when printing */
+  #sheet{display:none}
+  @media print{
+    header,aside,main>.layout>div>#out,.lb,#timeline{display:none !important}
+    body{background:#fff}
+    #sheet{display:block !important}
+    .sheet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10mm;padding:8mm}
+    .sheet-item{break-inside:avoid;text-align:center;border:1px solid #ccc;
+      border-radius:6px;padding:6px}
+    .sheet-item img{width:100%;height:auto;max-height:80mm;object-fit:contain}
+    .sheet-item .lbl{font:10px sans-serif;margin-top:4px;color:#333}
+    .sheet-h{font:600 14px sans-serif;padding:6mm 8mm 0}
+  }
   /* collections sidebar */
   .layout{display:flex;gap:20px;align-items:flex-start}
   aside{width:230px;flex:none;position:sticky;top:150px}
@@ -118,7 +140,9 @@
     </select>
     <button class="btn" id="favonly">☆ Favoris</button>
     <button class="btn" id="reportbtn" title="dernier rapport d'avancement">📄 Rapport</button>
+    <button class="btn" id="sheetbtn" title="planche imprimable (PDF) des pochoirs affichés">🖨 Planche</button>
   </div>
+  <div id="timeline" class="timeline"></div>
   <div class="chips" id="typechips"></div>
   <div class="chips" id="fmtchips"></div>
 </header>
@@ -160,9 +184,11 @@
     color:var(--ink);border-radius:12px;padding:22px 26px" id="repbody"></div>
 </div>
 
+<div id="sheet"></div>
+
 <script>
 const LS_FAV="mathart.favs", LS_COLL="mathart.collections";
-let DATA=null, FILT={types:new Set(),fmts:new Set(),q:"",favonly:false,coll:null,family:null};
+let DATA=null, FILT={types:new Set(),fmts:new Set(),q:"",favonly:false,coll:null,family:null,date:null};
 let favs=new Set(JSON.parse(localStorage.getItem(LS_FAV)||"[]"));
 let colls=JSON.parse(localStorage.getItem(LS_COLL)||"{}"); // {name:[ids]}
 const $=s=>document.querySelector(s);
@@ -180,7 +206,27 @@ async function load(){
     '<div class="empty">Aucun <code>manifest.json</code>. Lancez '+
     '<code>python -m mathart.cli site</code> puis rechargez.</div>'; return; }
   $("#meta").textContent=`${DATA.count} créations · maj ${DATA.generated?.replace("T"," ")||"?"}`;
-  buildChips(); render();
+  buildChips(); renderTimeline(); render();
+}
+function renderTimeline(){
+  const el=$("#timeline"); if(!el)return;
+  const counts={}; DATA.items.forEach(i=>counts[i.date]=(counts[i.date]||0)+1);
+  const dates=Object.keys(counts).sort();               // chronological →
+  const max=Math.max(1,...Object.values(counts));
+  el.innerHTML="";
+  const mk=(lbl,date,c,active)=>{
+    const d=document.createElement("div");
+    d.className="tl"+(active?" on":"");
+    const h=6+Math.round(28*Math.min(1,c/max));
+    d.innerHTML=`<div class="bar" style="height:${h}px"></div>`+
+      `<div class="d">${lbl}</div><div class="c">${c}</div>`;
+    d.onclick=()=>{FILT.date=(FILT.date===date?null:date);renderTimeline();render();
+      window.scrollTo({top:0,behavior:"smooth"});};
+    return d;
+  };
+  el.appendChild(mk("tout",null,DATA.count,!FILT.date));
+  dates.forEach(dt=>el.appendChild(
+    mk(dt.slice(5),dt,counts[dt],FILT.date===dt)));      // MM-DD label
 }
 function buildChips(){
   const tc=$("#typechips"); tc.innerHTML="";
@@ -208,6 +254,7 @@ function filtered(){
   if(FILT.favonly) it=it.filter(i=>favs.has(i.id));
   if(FILT.coll) it=it.filter(i=>(colls[FILT.coll]||[]).includes(i.id));
   if(FILT.family) it=it.filter(i=>i.family===FILT.family);
+  if(FILT.date) it=it.filter(i=>i.date===FILT.date);
   const s=$("#sort").value;
   it.sort((a,b)=>{
     if(s==="date-asc")return a.date.localeCompare(b.date)||a.name.localeCompare(b.name);
@@ -364,6 +411,20 @@ $("#reportbtn").onclick=()=>{
 };
 $("#repx").onclick=()=>$("#rep").classList.remove("on");
 $("#rep").onclick=e=>{if(e.target.id==="rep")$("#rep").classList.remove("on");};
+
+/* printable stencil sheet — the current selection's cuttable images -> PDF via print */
+$("#sheetbtn").onclick=()=>{
+  const imgs=filtered().filter(i=>i.format==="svg"||i.format==="png");
+  if(!imgs.length){alert("Aucun pochoir/image dans la sélection courante.");return;}
+  const scope=[FILT.date&&("jour "+FILT.date),FILT.family,FILT.coll,
+    FILT.favonly&&"favoris"].filter(Boolean).join(" · ")||"toute la galerie";
+  $("#sheet").innerHTML=
+    `<div class="sheet-h">mathart — planche pochoirs · ${scope} · ${imgs.length} pièces</div>`+
+    '<div class="sheet-grid">'+imgs.map(i=>
+      `<div class="sheet-item"><img src="${i.path}"><div class="lbl">${i.name}</div></div>`
+    ).join("")+"</div>";
+  setTimeout(()=>window.print(),60);   // let images attach before the dialog
+};
 
 /* controls */
 $("#q").oninput=e=>{FILT.q=e.target.value.toLowerCase().trim();render();};
