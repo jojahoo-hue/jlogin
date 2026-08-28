@@ -228,6 +228,10 @@ identité. [Lien vers la méthode des quatre niveaux]
 
 ## Articles 2, 3 et 4 : plans
 
+> **Rédigés en entier**, avec la page cadre, dans
+> `njaho-site-textes-ki-tuni.md`. Les plans ci-dessous restent la table des
+> matières de ces textes.
+
 ### Article 2 — Intuition n'est pas certitude
 
 - **Accroche :** le rêve qui semblait annoncer quelque chose.
@@ -276,8 +280,9 @@ identité. [Lien vers la méthode des quatre niveaux]
 
 ## Prochaines étapes possibles
 
-- Rédiger les articles 2, 3 et 4 en entier à partir des plans.
-- Rédiger la page cadre Ki TUNI.
+- Compléter les passages entre crochets de la page cadre : l'origine du cadre,
+  l'étymologie des cinq mouvements, le rythme Kala / Tukula / Luvemba. Seul
+  Njaho peut les écrire.
 - Préparer la version PDF de la traversée.
 - Écrire les textes alternatifs des images qui accompagneront ces pages, en
   reprenant la direction visuelle du storyboard.
