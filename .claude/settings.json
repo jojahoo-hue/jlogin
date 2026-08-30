@@ -6,6 +6,10 @@
       "env": {
         "OPENAPI_MCP_HEADERS": "{\"Authorization\": \"Bearer ${NOTION_TOKEN}\", \"Notion-Version\": \"2022-06-28\"}"
       }
+    },
+    "plaud": {
+      "command": "npx",
+      "args": ["-y", "@plaud-ai/mcp@latest"]
     }
   },
   "hooks": {
