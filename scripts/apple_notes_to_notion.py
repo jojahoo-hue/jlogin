@@ -501,6 +501,53 @@ def chunked(items: list, size: int):
         yield items[i:i + size]
 
 
+DEFAULT_TITLE_PROPERTY = "Nom"
+PROPERTY_TYPES = {
+    "folder": "select",
+    "source": "multi_select",
+    "path": "rich_text",
+    "modified": "date",
+}
+
+
+def build_database_schema(mapping: dict, title_property: str = DEFAULT_TITLE_PROPERTY) -> dict:
+    """Schéma de la base Notion cible, déduit du mapping de propriétés.
+
+    Les noms viennent de la config : la base créée est donc toujours cohérente
+    avec ce que la migration ira écrire.
+    """
+    schema: dict = {title_property: {"title": {}}}
+    for key, prop_name in mapping.items():
+        prop_type = PROPERTY_TYPES.get(key)
+        if prop_type and prop_name != title_property:
+            schema[prop_name] = {prop_type: {}}
+    return schema
+
+
+def update_config_target(config_file: Path, database_id: str) -> None:
+    """Inscrit l'ID de la base créée dans notion-config.json."""
+    config = json.loads(config_file.read_text(encoding="utf-8"))
+    apple_notes = config.setdefault("apple_notes", {})
+    target = apple_notes.setdefault("target", {})
+    target["type"] = "database"
+    target["id"] = database_id
+    config_file.write_text(json.dumps(config, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def property_type(prop: dict) -> str | None:
+    """Type d'une propriété Notion.
+
+    L'API renvoie `{"type": "select", "select": {...}}` en lecture, alors qu'un
+    schéma de création s'écrit simplement `{"select": {}}`. Les deux formes sont
+    acceptées ici.
+    """
+    if not isinstance(prop, dict):
+        return None
+    if "type" in prop:
+        return prop["type"]
+    return next(iter(prop), None)
+
+
 def build_properties(schema: dict, title_property: str, note: Note, mapping: dict) -> dict:
     """Construit les propriétés Notion à partir de la note et du mapping config."""
     properties = {title_property: {"title": [_text_object(note.title[:MAX_TEXT_LENGTH], {})]}}
@@ -516,7 +563,7 @@ def build_properties(schema: dict, title_property: str, note: Note, mapping: dic
         value = values.get(key) or note.meta.get(key)
         if not prop or not value:
             continue
-        prop_type = prop.get("type")
+        prop_type = property_type(prop)
         if prop_type == "select":
             properties[prop_name] = {"select": {"name": str(value)[:100]}}
         elif prop_type == "multi_select":
@@ -674,7 +721,7 @@ def main(argv=None) -> int:
 
     if database_id:
         schema = notion.databases.retrieve(database_id=database_id).get("properties", {})
-        title_property = next((n for n, p in schema.items() if p.get("type") == "title"), None)
+        title_property = next((n for n, p in schema.items() if property_type(p) == "title"), None)
         if not title_property:
             print(f"Aucune propriété titre dans la base {database_id}.")
             return 1

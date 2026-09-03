@@ -307,5 +307,63 @@ class TestBuildProperties(unittest.TestCase):
         self.assertEqual(props["Dossier"]["select"]["name"], "Sans dossier")
 
 
+class TestCreationBase(unittest.TestCase):
+    def setUp(self):
+        from apple_notes_to_notion import build_database_schema, update_config_target
+        self.build_database_schema = build_database_schema
+        self.update_config_target = update_config_target
+        self.mapping = {"folder": "Dossier", "source": "Source", "path": "Chemin", "modified": "Date"}
+
+    def test_schema_complet(self):
+        schema = self.build_database_schema(self.mapping)
+        self.assertEqual(schema["Nom"], {"title": {}})
+        self.assertEqual(schema["Dossier"], {"select": {}})
+        self.assertEqual(schema["Source"], {"multi_select": {}})
+        self.assertEqual(schema["Chemin"], {"rich_text": {}})
+        self.assertEqual(schema["Date"], {"date": {}})
+
+    def test_schema_suit_les_noms_de_la_config(self):
+        schema = self.build_database_schema({"folder": "Carnet"}, title_property="Titre")
+        self.assertEqual(sorted(schema), ["Carnet", "Titre"])
+        self.assertEqual(schema["Carnet"], {"select": {}})
+
+    def test_cle_inconnue_ignoree(self):
+        schema = self.build_database_schema({"inconnue": "Bidule"})
+        self.assertNotIn("Bidule", schema)
+
+    def test_titre_non_ecrase_par_le_mapping(self):
+        schema = self.build_database_schema({"folder": "Nom"})
+        self.assertEqual(schema["Nom"], {"title": {}})
+
+    def test_schema_cree_est_compatible_avec_la_migration(self):
+        # Le schéma produit doit être exploitable tel quel par build_properties.
+        from apple_notes_to_notion import Note
+        schema = self.build_database_schema(self.mapping)
+        note = Note(path=Path("x.md"), relative_path="Travail/x.md", folder="Travail",
+                    title="Ma note", body="", modified="2026-05-03")
+        props = build_properties(schema, "Nom", note, self.mapping)
+        self.assertEqual(sorted(props), ["Chemin", "Date", "Dossier", "Nom", "Source"])
+
+    def test_ecriture_de_l_id_dans_la_config(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            config = Path(tmp) / "notion-config.json"
+            config.write_text('{"last_sync": null, "apple_notes": {"target": '
+                              '{"type": "database", "id": "REMPLACER"}}}', encoding="utf-8")
+            self.update_config_target(config, "abc123")
+            written = __import__("json").loads(config.read_text(encoding="utf-8"))
+            self.assertEqual(written["apple_notes"]["target"]["id"], "abc123")
+            self.assertEqual(written["apple_notes"]["target"]["type"], "database")
+            self.assertIsNone(written["last_sync"])  # le reste de la config est préservé
+
+    def test_ecriture_dans_une_config_sans_bloc_apple_notes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            config = Path(tmp) / "notion-config.json"
+            config.write_text('{"sources": []}', encoding="utf-8")
+            self.update_config_target(config, "xyz")
+            written = __import__("json").loads(config.read_text(encoding="utf-8"))
+            self.assertEqual(written["apple_notes"]["target"]["id"], "xyz")
+            self.assertEqual(written["sources"], [])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -15,7 +15,7 @@ Regarde le dossier `context/import/apple-notes/`.
 
 Lis le bloc `apple_notes` de `notion-config.json` :
 
-- `target.id` doit être renseigné (pas de `REMPLACER_...`). Sinon, demande à Njaho l'ID de la base Notion cible, ou propose de créer la base via les outils MCP Notion avec les propriétés `Dossier` (select), `Source` (multi-select), `Chemin` (texte), `Date` (date).
+- `target.id` doit être renseigné (pas de `REMPLACER_...`). Sinon, propose de créer la base : `python3 scripts/create-notion-database.py --parent-page <ID>`, en demandant à Njaho l'ID de la page Notion qui doit la contenir. Ce script crée la base avec les bonnes propriétés et renseigne la config tout seul.
 - Vérifie que `NOTION_TOKEN` existe dans `.env`. Sinon, signale-le sans jamais afficher la valeur du jeton.
 
 ### Étape 3 : Simulation obligatoire

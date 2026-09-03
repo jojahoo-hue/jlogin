@@ -54,7 +54,39 @@ Les listes imbriquées sont conservées sur trois niveaux, ce qui est le maximum
 
 Les pièces jointes locales (photos, PDF, croquis) ne peuvent pas être poussées par l'API : elles sont signalées dans la page Notion par un encadré avec leur chemin, à réimporter à la main si besoin.
 
-## 3. Migrer vers Notion
+## 3. Préparer la base Notion cible
+
+### Le plus simple : laisser le script la créer
+
+```bash
+# Voir la structure qui sera créée
+python3 scripts/create-notion-database.py --dry-run
+
+# Créer la base dans une page Notion existante
+python3 scripts/create-notion-database.py --parent-page <ID_DE_LA_PAGE>
+```
+
+L'ID de page se lit dans son URL Notion : `notion.so/Mes-notes-2d892f894f8c81f789f8e1fcfcb851cd` donne `2d892f894f8c81f789f8e1fcfcb851cd`. Cette page doit d'abord être partagée avec l'intégration (menu `...` de la page → Connexions → choisir l'intégration).
+
+Le script crée la base et inscrit son identifiant dans `notion-config.json`. Rien à recopier à la main.
+
+### En manuel, si tu préfères cliquer
+
+Créer une base de données Notion avec exactement ces propriétés :
+
+| Propriété | Type | Contenu |
+|-----------|------|---------|
+| `Nom` | Titre | Titre de la note |
+| `Dossier` | Sélection | Dossier Apple Notes d'origine |
+| `Source` | Sélection multiple | Toujours « Apple Notes » |
+| `Chemin` | Texte | Chemin du fichier d'origine |
+| `Date` | Date | Date de modification |
+
+Puis partager la base avec l'intégration Notion, copier son ID depuis l'URL, et le coller dans `notion-config.json` → `apple_notes.target.id`.
+
+Les noms de propriétés se changent librement dans `notion-config.json` (bloc `properties` et `title_property`), le script s'y adapte. Une propriété absente de la base est simplement ignorée à la migration, elle ne provoque pas d'erreur.
+
+## 4. Migrer vers Notion
 
 ```bash
 # Vérifier ce qui sera migré, sans rien écrire
@@ -71,6 +103,6 @@ Prérequis : `NOTION_TOKEN` dans `.env`, la base cible renseignée dans `notion-
 
 La migration est rejouable sans risque : chaque note migrée est tracée dans `apple-notes-sync-state.json`. Une note inchangée est ignorée, une note modifiée est mise à jour en place, jamais dupliquée.
 
-## 4. Après la migration
+## 5. Après la migration
 
 Une fois les notes dans Notion et vérifiées, ce dossier peut être vidé. Garde `apple-notes-sync-state.json` si tu comptes refaire des exports Apple Notes plus tard.

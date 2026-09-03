@@ -8,6 +8,7 @@
       "id": "REMPLACER_PAR_ID_BASE_NOTION_APPLE_NOTES",
       "description": "Base Notion qui recevra les notes migrées. Mettre type=page et l'ID d'une page pour créer des sous-pages à la place."
     },
+    "title_property": "Nom",
     "properties": {
       "folder": "Dossier",
       "source": "Source",
