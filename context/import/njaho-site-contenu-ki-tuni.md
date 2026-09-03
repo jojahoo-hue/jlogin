@@ -283,6 +283,9 @@ identité. [Lien vers la méthode des quatre niveaux]
 - Compléter les passages entre crochets de la page cadre : l'origine du cadre,
   l'étymologie des cinq mouvements, le rythme Kala / Tukula / Luvemba. Seul
   Njaho peut les écrire.
-- Préparer la version PDF de la traversée.
+- ~~Préparer la version PDF de la traversée.~~ Fait :
+  `reports/site/la-traversee.pdf`, regénérable par
+  `python3 scripts/traversee-pdf.py`. Six pages A4, imprimable en recto seul,
+  dernière page à remplir à la main.
 - Écrire les textes alternatifs des images qui accompagneront ces pages, en
   reprenant la direction visuelle du storyboard.
