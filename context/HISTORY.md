@@ -17,6 +17,11 @@
 - Source `Nza Ngai dia Nzayi` ajoutée dans `notion-config.json`, ID à renseigner pour la sync depuis le Mac
 - Prochaine étape : importer les notes dans `livres/mbawu-21-jours/notes-sources/`, puis trancher les 5 questions de cadrage éditorial
 
+### Mise à jour de contexte
+
+- `CONTEXT.md` enrichi sur validation de Njaho : ajout du projet de livre "Mbawu, les vingt-et-un jours" dans les projets en cours
+- Ajout d'une note durable sur l'accès Notion depuis Claude Code : connecteur installé et activé mais non authentifié, flux OAuth impossible en session non interactive, et `api.notion.com` filtré par le proxy réseau. Seules voies fiables : sync depuis le Mac ou export Markdown manuel
+
 ---
 
 ## 2026-06-06

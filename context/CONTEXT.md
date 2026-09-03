@@ -73,6 +73,7 @@ Responsable d'exploitation et responsable du service des formations dans un opé
 - **Terminer la série Congo / Soleil** : finaliser les tableaux en cours
 - **Formation sur les énergies élémentaires** : formation sur les êtres de feu, énergies du couple, énergies atomiques, capitalisation dans Notion
 - **Écriture de livres** : vulgariser le cheminement spirituel et les initiations pour partage collectif
+- **Livre "Mbawu, les vingt-et-un jours"** : troisième livre, issu du projet Notion Nza Ngai dia Nzayi. Chantier ouvert dans `livres/mbawu-21-jours/`, piloté par la commande `/ecrire-livre`. Architecture proposée : 21 chapitres, un par jour, en 3 cycles de 7, à confirmer après lecture des notes. En attente de l'import des notes Notion dans `notes-sources/`
 - **Migration ChatGPT vers Claude** : transfert de tous les projets et fichiers Notion vers cet environnement
 
 ---
@@ -107,3 +108,12 @@ Apprentissage et formation, notamment améliorer la lecture efficace et applique
 ## Notes importantes
 
 > Cette section se remplira au fil du temps avec les éléments de contexte qui émergent naturellement dans les sessions.
+
+### Accès Notion depuis Claude Code
+
+Depuis une session cloud (claude.ai/code), Notion n'est pas lisible :
+
+- Le connecteur Notion est installé et activé, mais non authentifié. La session étant non interactive, le flux OAuth ne peut pas être lancé depuis Claude Code. Réautorisation à faire sur claude.ai, Réglages puis Connecteurs
+- `api.notion.com` est filtré par le proxy réseau, donc `scripts/sync-notion.py` ne fonctionne pas non plus depuis le cloud
+
+Les deux voies fiables restent la sync depuis le Mac (`python3 scripts/sync-notion.py` puis push git) et l'export manuel Notion au format Markdown & CSV déposé dans `context/import/` ou dans le dossier `notes-sources/` du livre concerné.
