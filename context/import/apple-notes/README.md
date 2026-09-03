@@ -14,27 +14,19 @@ L'app **Exporter** (Mac App Store, gratuite pour l'export Markdown) sort un doss
 2. Cocher "Preserve folder structure"
 3. Exporter vers `context/import/apple-notes/`
 
-### Option B : Script AppleScript (aucune app tierce)
+### Option B : Le script fourni (aucune app tierce)
 
-Coller ce script dans **Éditeur de script** sur le Mac, puis l'exécuter. Il écrit un `.md` par note dans le dossier d'export.
+Le dépôt contient `scripts/export-apple-notes.applescript`. Sur le Mac, dans le Terminal, à la racine du workspace :
 
-```applescript
-set destination to (path to home folder as text) & "apple-notes-export:"
-do shell script "mkdir -p " & quoted form of POSIX path of destination
-tell application "Notes"
-  repeat with theNote in notes
-    set noteName to name of theNote
-    set noteBody to plaintext of theNote
-    set safeName to do shell script "echo " & quoted form of noteName & " | tr '/:' '--' | cut -c1-80"
-    set filePath to POSIX path of destination & safeName & ".md"
-    do shell script "cat > " & quoted form of filePath & " <<'EOF'
-" & noteBody & "
-EOF"
-  end repeat
-end tell
+```bash
+osascript scripts/export-apple-notes.applescript ~/Documents/jlogin/context/import/apple-notes
 ```
 
-Puis copier le dossier `~/apple-notes-export/` dans `context/import/apple-notes/`.
+Adapter le chemin à l'emplacement réel du workspace. Le chemin doit être absolu : `osascript` ignore le dossier courant du Terminal.
+
+Le script écrit un fichier `.md` par note, un sous-dossier par dossier Apple Notes, en UTF-8 (accents et emojis préservés). Il ignore la corbeille, gère les titres en doublon et n'interrompt pas l'export si une note est illisible. Il affiche à la fin le nombre de notes exportées et ignorées.
+
+Au premier lancement, macOS demande l'autorisation de piloter Notes. En cas d'erreur `-1743`, autoriser le Terminal dans Réglages Système → Confidentialité et sécurité → Automatisation → Notes.
 
 ### Option C : Copier-coller
 
