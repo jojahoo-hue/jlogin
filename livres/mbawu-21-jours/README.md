@@ -10,13 +10,25 @@
 | Phase | Statut | Détail |
 |-------|--------|--------|
 | 0. Collecte des sources | **Bloquée** | Notes dans Notion, non accessibles depuis le cloud Claude Code |
-| 1. Cadrage éditorial | En attente | 5 questions à trancher, voir `PLAN.md` |
+| 1. Cadrage éditorial | Partiel | Question 5 tranchée par défaut, voir `PLAN.md` section 2. Questions 1 à 4 en attente de Njaho |
 | 2. Architecture | Ébauche | Squelette proposé dans `PLAN.md`, à valider |
 | 3. Rédaction | Non démarrée | |
 | 4. Relecture | Non démarrée | |
 | 5. Export | Non démarrée | |
 
-Dernière mise à jour : 2026-08-27
+Dernière mise à jour : 2026-09-03
+
+---
+
+## Alerte : le dépôt est public
+
+`jojahoo-hue/jlogin` est un dépôt **public** depuis sa création. Tout ce qui y est commité
+est lisible par n'importe qui et reste dans l'historique après suppression.
+
+Aucune note initiatique n'y sera versionnée. `livres/*/notes-sources/**` est exclu par le
+`.gitignore`. Action recommandée à Njaho : passer le dépôt en privé, dans GitHub, Settings,
+Change repository visibility. Le `CONTEXT.md` du workspace, qui contient prénom, ville,
+employeur et projets, est aujourd'hui public lui aussi.
 
 ---
 

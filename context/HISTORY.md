@@ -17,6 +17,18 @@
 - Source `Nza Ngai dia Nzayi` ajoutée dans `notion-config.json`, ID à renseigner pour la sync depuis le Mac
 - Prochaine étape : importer les notes dans `livres/mbawu-21-jours/notes-sources/`, puis trancher les 5 questions de cadrage éditorial
 
+### Périmètre de non-divulgation tranché
+
+- Njaho a délégué la question 5 du cadrage. Périmètre par défaut retenu, volontairement restrictif et desserrable : règle du seuil, le livre dit ce qui se joue et ce que cela transforme, jamais comment l'exécuter seul
+- Sept catégories exclues : secret explicite, détail opératoire du rite, noms de personnes, lieux précis, vécu d'autrui, noms sacrés réglés, pratiques corporelles reproductibles sans encadrement
+- Doctrine reportée dans la commande `/ecrire-livre` pour les livres suivants
+
+### Découverte : le dépôt jojahoo-hue/jlogin est public
+
+- Vérifié le 2026-09-03 via l'API GitHub. Le dépôt est public depuis sa création en février 2026, `CONTEXT.md` compris (prénom, ville, employeur, projets)
+- `livres/*/notes-sources/**` ajouté au `.gitignore` : aucune note initiatique ne partira sur GitHub
+- Action recommandée à Njaho, non effectuée : passer le dépôt en privé
+
 ### Mise à jour de contexte
 
 - `CONTEXT.md` enrichi sur validation de Njaho : ajout du projet de livre "Mbawu, les vingt-et-un jours" dans les projets en cours

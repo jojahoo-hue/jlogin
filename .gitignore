@@ -1,4 +1,11 @@
 .env
+
+# Matiere source des livres : notes initiatiques, transcriptions, exports Notion.
+# Le depot est public. Rien de tout cela ne doit partir sur GitHub.
+# A rouvrir seulement si le depot passe en prive, et apres tri.
+livres/*/notes-sources/**
+!livres/*/notes-sources/README.md
+
 __pycache__/
 *.pyc
 .DS_Store

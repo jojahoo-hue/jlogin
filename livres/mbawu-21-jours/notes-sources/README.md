@@ -38,12 +38,14 @@ Nommer les fichiers clairement, par exemple :
 pip install notion-client python-dotenv   # une seule fois
 echo "NOTION_TOKEN=secret_xxxx" > .env    # une seule fois, .env est gitignoré
 python3 scripts/sync-notion.py
-git add livres/ context/ notion-config.json
-git commit -m "notes: import Notion Nza Ngai dia Nzayi / Mbawu"
-git push -u origin claude/mbawu-notes-book-writing-snh51r
 ```
 
 Le script écrit dans `livres/mbawu-21-jours/notes-sources/notion-nza-ngai-mbawu.md`.
+
+Ce fichier est ignoré par Git tant que le dépôt est public, donc il ne part pas sur
+GitHub. Il reste lisible en local par Claude Code lancé depuis le Mac. Pour travailler
+dessus depuis une session cloud, il faut d'abord passer le dépôt en privé, puis retirer
+les deux lignes correspondantes du `.gitignore`.
 
 ### Option B — Export Notion manuel
 
@@ -63,7 +65,21 @@ et les classe. Adapté si le volume est modeste, quelques milliers de mots.
 
 ## Note sur le secret initiatique
 
-Ce dossier est versionné dans un dépôt Git. Avant de déposer des notes, trier ce qui peut
-y figurer. Ce qui ne doit pas sortir du cercle n'a rien à faire ici, même dans un dépôt
-privé. Le périmètre de non-divulgation se décide en Phase 1 du cadrage et se consigne
-dans `PLAN.md`.
+**Le dépôt `jojahoo-hue/jlogin` est public.** Vérifié le 2026-09-03. Tout ce qui y est
+commité devient lisible par n'importe qui, indexable, forkable, et reste récupérable dans
+l'historique Git même après suppression.
+
+Ce dossier est donc exclu de Git : `.gitignore` bloque `livres/*/notes-sources/**`, seul
+ce README est versionné. Les notes que tu déposes ici restent sur ta machine.
+
+Deux conséquences pratiques :
+
+1. **Passe le dépôt en privé** avant d'envisager de versionner quoi que ce soit de la
+   matière. GitHub, page du dépôt, Settings, tout en bas, Change repository visibility.
+   Tant que ce n'est pas fait, ne retire pas les lignes du `.gitignore`
+2. **Une session Claude Code cloud est éphémère.** Des notes non commitées disparaissent
+   quand le conteneur est recyclé. Tant que le dépôt est public, garde donc l'original de
+   tes notes chez toi, sur le Mac ou dans Notion, et considère ce dossier comme un cache
+   de travail, pas comme un lieu de conservation
+
+Le périmètre de ce qui ne s'écrit pas est défini en section 2 de `PLAN.md`.

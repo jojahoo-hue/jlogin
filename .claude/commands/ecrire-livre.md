@@ -88,6 +88,26 @@ Cadrage :
 La question 5 est obligatoire pour tout contenu initiatique. Consigner la réponse dans
 `livres/[projet]/PLAN.md` et la respecter sans exception dans toute la rédaction.
 
+**Si Njaho délègue la question 5**, appliquer le périmètre par défaut, volontairement
+restrictif, et le lui signaler comme desserrable :
+
+- **Règle du seuil** : le livre dit ce qui se joue et ce que cela transforme, jamais
+  comment l'exécuter seul. En cas de doute, l'élément sort du livre
+- Ne s'écrivent pas : ce qui fut transmis sous secret explicite, le détail opératoire du
+  rite (formules mot pour mot, gestes, matières, dosages, horaires), les noms de
+  personnes sans accord écrit, les lieux précis, le vécu d'autrui, les noms sacrés dont
+  l'énonciation est réglée, toute pratique corporelle reproductible sans encadrement
+- S'écrivent sans réserve : le récit intérieur, le sens et la cosmologie, les effets sur
+  la vie d'après, et la littérature ethnographique publiée citée comme telle avec sa
+  source, jamais présentée comme transmission personnelle
+- Marquer les cas limites par `> [RÉSERVÉ : ...]` et les soumettre à Njaho un par un
+
+Le modèle complet est dans `livres/mbawu-21-jours/PLAN.md`, section 2.
+
+**Vérifier aussi la visibilité du dépôt** avant de proposer de versionner des notes. Si le
+dépôt est public, exclure `livres/*/notes-sources/**` du Git et le dire clairement : un
+commit public reste récupérable dans l'historique même après suppression.
+
 ---
 
 ## Phase 2 : Architecture
