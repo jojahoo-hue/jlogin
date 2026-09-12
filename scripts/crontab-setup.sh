@@ -5,6 +5,7 @@
 # Crons installés :
 #   07:00 chaque jour  → briefing matinal (Claude API + Telegram)
 #   toutes les 2h      → sync Plaud/Notion
+#   toutes les 6h      → archivage Notes Apple → Notion
 #   22:00 chaque jour  → rappel /done via Telegram
 
 JLOGIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -17,7 +18,7 @@ crontab -l 2>/dev/null > /tmp/current-crontab || true
 # Vérifier si les crons Jarvis sont déjà installés
 if grep -q "jarvis\|jlogin" /tmp/current-crontab 2>/dev/null; then
     echo "Crons Jarvis déjà installés. Mise à jour..."
-    grep -v "jarvis\|jlogin\|morning-briefing\|plaud-auto-sync" /tmp/current-crontab > /tmp/new-crontab || true
+    grep -v "jarvis\|jlogin\|morning-briefing\|plaud-auto-sync\|apple-notes-sync" /tmp/current-crontab > /tmp/new-crontab || true
 else
     cp /tmp/current-crontab /tmp/new-crontab 2>/dev/null || touch /tmp/new-crontab
 fi
@@ -31,6 +32,9 @@ cat >> /tmp/new-crontab << EOF
 
 # Sync Plaud/Notion toutes les 2h
 0 */2 * * * "$JLOGIN_DIR/scripts/plaud-auto-sync.sh" >> scripts/sync.log 2>&1
+
+# Archivage Notes Apple → Notion toutes les 6h
+0 */6 * * * "$JLOGIN_DIR/scripts/apple-notes-sync.sh" >> scripts/apple-notes-sync.log 2>&1
 
 # Rappel /done à 22h via Telegram
 0 22 * * * cd "$JLOGIN_DIR" && python3 -c "
@@ -55,6 +59,11 @@ echo ""
 echo "✓ Crons Jarvis installés :"
 echo "  07:00 → Briefing matinal (Claude + Telegram)"
 echo "  */2h  → Sync Plaud/Notion"
+echo "  */6h  → Archivage Notes Apple → Notion"
 echo "  22:00 → Rappel /done (Telegram)"
 echo ""
 echo "Vérifier avec : crontab -l"
+echo ""
+echo "Note : la première exécution de l'archivage Notes Apple demandera l'autorisation"
+echo "d'accès à Notes.app. Lancer une fois à la main pour l'accorder :"
+echo "  python3 scripts/apple-notes-to-notion.py --limit 1"

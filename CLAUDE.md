@@ -70,6 +70,7 @@ Une fois que je confirme, Claude met à jour le fichier en question et ajoute un
 │   └── import/                  # Documents externes à analyser
 ├── .claude/
 │   ├── commands/
+│   │   ├── archive-notes.md     # /archive-notes pour archiver mes notes Apple dans Notion
 │   │   ├── prime.md             # /prime pour démarrer une session
 │   │   ├── update.md            # /update pour mettre à jour le contexte
 │   │   └── morning.md           # /morning pour démarrer la journée
@@ -105,6 +106,14 @@ Une fois que je confirme, Claude met à jour le fichier en question et ajoute un
 **Objectif :** Mettre à jour mes fichiers de contexte avec les derniers changements.
 
 À utiliser quand quelque chose d'important a changé et que je veux que Claude reflète cette information dans les fichiers, ou pour faire une mise à jour générale après une session productive.
+
+### /archive-notes
+
+**Objectif :** Archiver mes notes Apple, photos comprises, dans Notion.
+
+Lance le pipeline `Notes.app -> AppleScript -> Notion`. Incrémental : seules les notes
+nouvelles ou modifiées sont traitées. Tourne uniquement sur mon Mac.
+Détail technique et dépannage dans `scripts/README-apple-notes.md`.
 
 ### /morning
 
