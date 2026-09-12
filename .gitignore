@@ -5,3 +5,9 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+
+# Corpus : transcriptions personnelles, non versionnées par défaut
+# Voir corpus/README.md pour les trois options possibles
+corpus/fiches/
+livres/*/chapitres/
+corpus/plaud-listing.json

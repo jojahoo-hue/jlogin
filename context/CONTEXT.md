@@ -42,6 +42,13 @@ Responsable d'exploitation et responsable du service des formations dans un opé
 - Élévation de conscience, spiritualité, énergies élémentaires et atomiques
 - Participation à des formations et initiations, capitalisation par l'écriture
 - Auteur de 2 livres déjà écrits
+- 6 manuscrits en cours de rédaction dans Notion (base `📖 Manuscrits`), environ 663 000 mots
+  cumulés au 2026-09-12 : Thot Mfumu TuTi dia Tiya, Nza Nga dia KiTuni, Nza Ngai dia Ndosi,
+  Nza Ngai dia Nzayi, Tablette de Thot, Nza Nga dia Mbazi
+- 3 titres supplémentaires ouverts mais sans chapitre : Nza ngai Sono Zi Tiya,
+  Leadership Totémique, Mpévé Ya Bakala
+- Matière première : 1 577 enregistrements Plaud, dont 620 heures de sessions
+  initiatiques, archivés et transcrits dans la base Notion `🎙️ Plaud Archive`
 
 **Père / Transmission**
 - Travail sur la transmission au niveau des enfants

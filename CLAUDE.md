@@ -72,9 +72,19 @@ Une fois que je confirme, Claude met à jour le fichier en question et ajoute un
 │   ├── commands/
 │   │   ├── prime.md             # /prime pour démarrer une session
 │   │   ├── update.md            # /update pour mettre à jour le contexte
-│   │   └── morning.md           # /morning pour démarrer la journée
+│   │   ├── morning.md           # /morning pour démarrer la journée
+│   │   ├── corpus.md            # /corpus pour gérer la matière première Plaud
+│   │   └── manuscrit.md         # /manuscrit pour écrire les livres
 │   └── skills/
 │       └── recherche-actualites/ # Skill veille personnalisée
+├── corpus/
+│   ├── taxonomie.yaml           # 40 thèmes contrôlés, source de vérité
+│   ├── INDEX.md                 # inventaire lisible du corpus
+│   ├── index.json               # inventaire machine
+│   └── fiches/                  # transcriptions locales (non versionnées)
+├── livres/
+│   └── <livre>/chapitres/       # chapitres rédigés
+├── scripts/                     # chaîne Plaud vers Notion vers corpus
 └── module-installs/
     └── jarvis-install/          # Module d'installation initial
 ```
@@ -85,6 +95,9 @@ Une fois que je confirme, Claude met à jour le fichier en question et ajoute un
 | `context/import/` | Documents externes (PDFs, exports, notes) à analyser |
 | `.claude/commands/` | Commandes personnalisées de mon Jarvis |
 | `.claude/skills/` | Skills (super-pouvoirs) de mon Jarvis |
+| `corpus/` | Matière première issue de Plaud, base de la rédaction |
+| `livres/` | Manuscrits en cours, un dossier par livre |
+| `scripts/` | Chaîne d'export et de maintenance Plaud, Notion, corpus |
 | `module-installs/` | Modules d'installation (initial et futurs) |
 
 ---
@@ -105,6 +118,23 @@ Une fois que je confirme, Claude met à jour le fichier en question et ajoute un
 **Objectif :** Mettre à jour mes fichiers de contexte avec les derniers changements.
 
 À utiliser quand quelque chose d'important a changé et que je veux que Claude reflète cette information dans les fichiers, ou pour faire une mise à jour générale après une session productive.
+
+### /corpus
+
+**Objectif :** Gérer la matière première : 1 577 enregistrements Plaud, 1 205 heures
+d'audio transcrites, archivées dans Notion et copiées en local pour la rédaction.
+
+Sous-commandes : `export`, `listing`, `rattrapage`, `themes`.
+
+Règle : on ne rédige jamais depuis Notion. Lire une transcription de 50 ko via le MCP
+coûte environ 15 000 tokens, un grep sur le fichier local en coûte 500.
+
+### /manuscrit
+
+**Objectif :** Écrire les livres à partir du corpus, chapitre par chapitre, en citant
+les sources. À ne pas confondre avec `/livre`, qui sert à digérer un livre lu.
+
+Sous-commandes : `plan`, `chapitre <N>`, `revue`, `export`.
 
 ### /morning
 

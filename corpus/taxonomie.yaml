@@ -1,0 +1,210 @@
+# Taxonomie contrôlée du corpus Njaho
+#
+# Remplace la propriété Notion "Sujets" (5081 options libres, ingérable).
+# Deux niveaux seulement :
+#   - dossier : 10 valeurs, inchangées (déjà en place dans Plaud Archive)
+#   - theme   : 40 valeurs maximum, contrôlées, orientées chapitres de livre
+# Les mots-clés libres partent dans une propriété texte, pas dans un multi-select.
+#
+# Règle d'or : on n'ajoute JAMAIS une valeur à ce fichier sans en retirer une autre.
+# C'est ce qui empêche la réexplosion de la taxonomie.
+
+version: 1
+maj: 2026-09-12
+
+dossiers:
+  - Spiritualité & Développement personnel
+  - Formations & Ateliers
+  - Télécom – Réseau & Déploiement
+  - Télécom – Incidents & Énergie
+  - HSE & Prévention
+  - Réunions & Coordination
+  - Consultations & Clients
+  - Personnel & Famille
+  - Divers
+  - Non classé (sans titre)
+
+themes:
+
+  # --- Corpus initiatique (620 h, matière première des livres) ---
+  - id: cosmologie-kongo
+    label: Cosmologie Kongo
+    livre: Nza Ngai dia Nzayi
+    alias: [Tradition Kongo, Sagesse Kongo, Kongo dia Mona, Bisimbi, Nzambi, quatre éléments, Ntoto, Masa, Mumpepe, Siya, Makuku Matatu, Kisombe]
+
+  - id: kalunga-mort
+    label: Kalunga et univers de la mort
+    livre: Nza Nga dia KiTuni
+    alias: [Ngalu Fwa, NgaluFwa, Kilufwa, Livre de la sortie au jour, Technologie funéraire, Immortalité, rituels funéraires, transition post-mortem, Kituni]
+
+  - id: sceaux-cartouches
+    label: Sceaux et cartouches
+    livre: Nza ngai Sono Zi Tiya
+    alias: [Ki Bakala, Ki Kento, Ki Mahungu, Ki Mpeve, Ki Mwama, Ki Sinsu, Ki Wisu, Sonizitiya, cartouche spirituel, sceau Leadership, sceau, cartouche]
+
+  - id: sono-zi-tiya
+    label: Sono-zi-tiya, écriture de feu
+    livre: Nza ngai Sono Zi Tiya
+    alias: [sonozitya, sonozitiya, écriture sacrée, écriture spirituelle, Sunzitsya, TuTi dia Tiya, Sonosithia, Sonozitya, Sono Zi Tiya, écriture de feu]
+
+  - id: geometrie-sacree
+    label: Géométrie sacrée
+    livre: Thot Mfumu TuTi dia Tiya
+    alias: [Fleur de Vie, MERKABA, Vessica Piscis, Pilier Djed, Dinkenga, Kin-Shin-Su, Kin-Séhinsu, Katara]
+
+  - id: numerologie
+    label: Numérologie et arithmosophie
+    livre: Thot Mfumu TuTi dia Tiya
+    alias: [Numérologie sacrée, Gematria, Arithmosophie kongo, numérologie 2-8-5, géométrie du son]
+
+  - id: totems
+    label: Totems et Kinkoko
+    livre: Leadership Totémique
+    alias: [Kinkoko, Kintuni, totémisme, Ngo zulu, aigle, dragon, serpents, Ndjan Koko]
+
+  - id: meditation
+    label: Méditation guidée
+    livre: Mpévé Ya Bakala
+    alias: [Méditation guidée, Visualisation, relaxation, transe stable, recalibrage énergétique, auto-hypnose]
+
+  - id: protection-energetique
+    label: Protection énergétique
+    livre: Nza Nga dia Mbazi
+    alias: [Sphère Sacrée Kimuntu, bouclier énergétique, purification, flammes sacrées, protection astrale, purification au sel]
+
+  - id: retraites
+    label: Retraites initiatiques RIK et RSK
+    livre: Nza Ngai dia Ndosi
+    alias: [RIK, RSK, Retraite Initiatique, Kabula, Sambila, Nkosi, RIK GP, RIK ALL, retraite initiatique, retraite spirituelle, Kilufwa]
+
+  - id: longo-polarites
+    label: Longo et polarités
+    livre: Nza Nga dia Mbazi
+    alias: [Longo, Verbe sacré Longo, polarités solaire-lunaire, couple cosmique, masculin sacré, Bakala Kento]
+
+  - id: lignees
+    label: Lignées et transgénérationnel
+    livre: Nza Nga dia KiTuni
+    alias: [guérison des lignées, mémoires transgénérationnelles, dettes karmiques, alliances ancestrales, auto-envoûtement]
+
+  - id: ancetres
+    label: Ancêtres et libations
+    livre: Nza Nga dia KiTuni
+    alias: [libations, ordre ancestral, cérémonie ancestrale, canalisation, Mpambu Ngila]
+
+  - id: muntu
+    label: Muntu et multidimensionnalité
+    livre: Nza Ngai dia Nzayi
+    alias: [Muntu, 12 sens du Muntu, 12 attitudes, être multidimensionnel, anatomie multidimensionnelle, 12 brins ADN, Bumuntu, Ubuntu]
+
+  - id: kemet
+    label: Kemet, Égypte et Nubie
+    livre: Tablette de Thot
+    alias: [Égypte, Nubie, Ptah, Thot, Khemenu, Textes des pyramides, Maât, Livre des morts, Congo-égyptien]
+
+  - id: leadership-totemique
+    label: Leadership totémique
+    livre: Leadership Totémique
+    alias: [leadership, métaphore de l'aigle, leadership entrepreneurial, innovation continue, posture]
+
+  - id: abondance
+    label: Abondance et magnétisme financier
+    livre: Leadership Totémique
+    alias: [abondance financière, magnétisme financier, énergie dorée, transmission patrimoniale, richesse, Nzadi]
+
+  - id: couple-sexualite
+    label: Couple et sexualité sacrée
+    livre: Nza Nga dia Mbazi
+    alias: [relations de couple, sexualité énergétique, magie sexuelle, purification sexuelle, Kima Wongu]
+
+  - id: reve-decorporation
+    label: Rêve, décorporation et plans
+    livre: Nza Ngai dia Ndosi
+    alias: [projection onirique, maîtrise des rêves, voyage temporel, décorporation, plan astral, plan mental, interprétation de rêve]
+
+  - id: ethique-communautaire
+    label: Éthique et structuration communautaire
+    livre: Nza Ngai dia Nzayi
+    alias: [éthique communautaire, gouvernance du cercle, projets communautaires, Simo University, École Kemundu, Projet Kimontou]
+
+  # --- Corpus professionnel ---
+  - id: noc-supervision
+    label: NOC et supervision
+    alias: [NOC, supervision H24, Oracle Unified Assurance, OUA, PRTG, alarmes, corrélation, escalades N1 N2 N3]
+
+  - id: incidents-energie
+    label: Incidents et énergie
+    alias: [coupure EDF, batteries, IDCPD, LVD, groupe électrogène, test de décharge, délestage, Peak Shifting]
+
+  - id: deploiement-5g
+    label: Déploiement 5G et réseau
+    alias: [5G, fibre optique, bras de déport, antennes, FH, pylône, Moran Light, Bébèche, rehab]
+
+  - id: contrats
+    label: Contrats, réversibilité et gouvernance
+    alias: [réversibilité, Eiffage, Axians, Synecty, VINCI, fin de contrat, RFP, RFQ, comité de gestion, point de gestion, gouvernance, pilotage, comité opérationnel, infogérance contrat]
+
+  - id: itsm
+    label: ServiceNow et ITSM
+    alias: [ServiceNow, ITSM, CMDB, Data Fabric, IntegrationHub, RPA, base de connaissances, tickets, work order]
+
+  - id: qhse
+    label: QHSE et prévention
+    alias: [plan de prévention, PPA, PDP, QHSE, HSE, travail en hauteur, habilitation, Socotec, Apave, sécurité routière, risques électriques, hurricane, PCA, continuité d'activité, checklist technique, conformité électrique]
+
+  - id: kpi-pilotage
+    label: KPI et pilotage de la performance
+    alias: [KPI, tableaux de bord, Power BI, analyse statistiques, bilan annuel, revue budget, OPEX, bilan mensuel, reporting]
+
+  - id: cybersecurite
+    label: Infogérance et cybersécurité
+    alias: [PKI, firewall, Fortinet, infogérance, cyberassurance, audit SSA, sécurité SI, C2i, Madiacom]
+
+  - id: equipes
+    label: Équipes, compétences et organisation
+    alias: [montée en compétences, rotation techniciens, organisation des équipes, entretien annuel, recrutement, retour de congés]
+
+  # --- Transverse ---
+  - id: pedagogie
+    label: Formation et pédagogie
+    alias: [cadre pédagogique, suivi pédagogique, knowledge transfer, atelier de formation, session de formation, cours magistral, séance pédagogique]
+
+  - id: crypto
+    label: Crypto et investissement
+    alias: [Cryptomonnaies, DCA, DeFi, MetaMask, NFT, RWA, Club Mawon, stablecoins, KYC AML, Layer 1, Layer 2]
+
+  - id: ia-automatisation
+    label: IA et automatisation
+    alias: [Claude Code, intelligence artificielle, automatisation, machine learning, chatbot, agent IA]
+
+  - id: politique-martinique
+    label: Politique et territoire Martinique
+    alias: [commune du François, François en Action, souveraineté alimentaire, smartville, campagne, Antilles-Guyane]
+
+  - id: art-creation
+    label: Art et création
+    alias: [peinture, atelier de peinture, galerie, art-thérapie, univers artistique, géo-mathématique, mathart, artiste peintre, oeuvre]
+
+  - id: apprentissage
+    label: Neurosciences et apprentissage
+    alias: [lecture rapide, mémorisation, flashcards, Readwise, apprendre vite, neurosciences]
+
+  - id: astrologie
+    label: Astrologie
+    alias: [astrologie, thème astral, progression solaire, éclipse, nouvelle lune, Jean-Yves Espié]
+
+  - id: sante
+    label: Santé et équilibre
+    alias: [bien-être, stress, libération neuroémotionnelle, psychothérapie, attachement, TDI, neuroémotionnel]
+
+  - id: famille
+    label: Famille et vie personnelle
+    alias: [famille, enfants, mariage, dynamique familiale, voyage, expatriés, scolarité]
+
+  - id: veille
+    label: Veille, médias et conférences externes
+    alias: [podcast, webinaire, YouTube, conférence publique, interview, Bernard de Montréal, Castaneda, Garnier Malet]
+
+  - id: divers
+    label: Divers et non qualifié
+    alias: [mémo, note de terrain, sans titre, import]
