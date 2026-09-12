@@ -5,3 +5,9 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+
+# Archives ChatGPT : donnees personnelles et professionnelles sensibles.
+# Elles restent en local, jamais dans le depot (voir .github/workflows/pages.yml).
+context/import/chatgpt-archives/
+conversations.json
+*.zip

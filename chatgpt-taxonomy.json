@@ -1,0 +1,59 @@
+{
+  "_doc": "Taxonomie de classification des conversations ChatGPT. Ajuster librement : les mots-cles sont cherches en minuscules, sans accents, sur le titre (poids fort) et le corps (poids faible). 'min_score' est le seuil sous lequel un tag n'est pas applique.",
+  "min_score": 4,
+  "title_weight": 3,
+  "body_weight": 1,
+  "body_cap_per_keyword": 4,
+  "max_tags": 3,
+  "fallback_tag": "Non classe",
+  "categories": {
+    "Supervision": [
+      "alarme", "supervision", "noc", "kpi", "sla", "monitoring", "incident",
+      "astreinte", "correlation", "oss", "ticket", "gtr", "indisponibilite",
+      "seuil", "sonde", "escalade", "qualification", "severite", "criticite",
+      "centre de supervision", "5g", "fault", "supervis"
+    ],
+    "Exploitation": [
+      "exploitation", "transmission", "fibre", "reseau", "maintenance",
+      "intervention", "energie", "climatisation", "preventive", "curative",
+      "bts", "liaison", "backbone", "equipement", "infrastructure", "site",
+      "deploiement", "capacite", "bande passante", "routeur", "commutateur",
+      "tx ip", "fon", "operateur"
+    ],
+    "Contrats": [
+      "contrat", "devis", "facture", "prestataire", "appel d'offres", "axians",
+      "marche", "penalite", "avenant", "commande", "budget", "prestation",
+      "litige", "prejudice", "rgpd", "audit", "dpo", "conformite", "clause",
+      "sous-traitant", "negociation", "bon de commande", "reglement", "juridique"
+    ],
+    "Formation": [
+      "formation", "apprentissage", "pedagogie", "cours", "module", "e-learning",
+      "neuroscience", "lecture", "memorisation", "competence", "tuteur",
+      "certification", "quiz", "apprendre", "enseigner", "support de cours",
+      "referentiel", "montee en competence", "didactique"
+    ],
+    "Artistique": [
+      "peinture", "tableau", "toile", "nft", "galerie", "exposition", "oeuvre",
+      "dessin", "geometrie sacree", "motif", "vernissage", "artiste", "pigment",
+      "serie artistique", "collection", "atelier", "esthetique", "composition",
+      "palette", "acrylique"
+    ],
+    "Recherche": [
+      "civilisation", "afrique", "africain", "kongo", "congo", "spiritualite",
+      "conscience", "initiation", "symbolique", "cosmogonie", "ancestral",
+      "nza", "rituel", "astrologie", "reve", "esoterique", "livre", "manuscrit",
+      "chapitre", "tradition", "mythe", "sagesse", "ontologie", "dogon", "bantou"
+    ],
+    "Crypto": [
+      "crypto", "bitcoin", "ethereum", "dca", "wallet", "blockchain", "trading",
+      "portefeuille", "token", "exchange", "staking", "altcoin", "binance",
+      "ledger", "defi", "cours du bitcoin"
+    ],
+    "Perso": [
+      "famille", "enfant", "ecole", "scolaire", "sante", "vacances", "conges",
+      "maison", "voiture", "administratif", "retraite", "impots", "whatsapp",
+      "anniversaire", "medecin", "assurance", "banque", "demenagement",
+      "bulletin", "caf", "cnav", "mutuelle"
+    ]
+  }
+}
