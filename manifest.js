@@ -1,5 +1,5 @@
 const MANIFEST = {
-  "total": 700,
+  "total": 724,
   "artefacts": [
     {
       "path": "gallery/scribes/attractor-silhouette.svg",
@@ -3842,6 +3842,42 @@ const MANIFEST = {
       "date": "2026-08-31"
     },
     {
+      "path": "gallery/routine/2026-09-01/flower.svg",
+      "name": "flower",
+      "ext": "svg",
+      "date": "2026-09-01"
+    },
+    {
+      "path": "gallery/routine/2026-09-01/horse.png",
+      "name": "horse",
+      "ext": "png",
+      "date": "2026-09-01"
+    },
+    {
+      "path": "gallery/routine/2026-09-01/horse.svg",
+      "name": "horse",
+      "ext": "svg",
+      "date": "2026-09-01"
+    },
+    {
+      "path": "gallery/routine/2026-09-01/sri-yantra.svg",
+      "name": "sri-yantra",
+      "ext": "svg",
+      "date": "2026-09-01"
+    },
+    {
+      "path": "gallery/routine/2026-09-01/streamlines.svg",
+      "name": "streamlines",
+      "ext": "svg",
+      "date": "2026-09-01"
+    },
+    {
+      "path": "gallery/routine/2026-09-01/superformula.svg",
+      "name": "superformula",
+      "ext": "svg",
+      "date": "2026-09-01"
+    },
+    {
       "path": "gallery/routine/2026-09-02/flower.svg",
       "name": "flower",
       "ext": "svg",
@@ -4130,8 +4166,86 @@ const MANIFEST = {
       "date": "2026-09-09"
     },
     {
+      "path": "gallery/routine/2026-09-10/flower.svg",
+      "name": "flower",
+      "ext": "svg",
+      "date": "2026-09-10"
+    },
+    {
+      "path": "gallery/routine/2026-09-10/horse.png",
+      "name": "horse",
+      "ext": "png",
+      "date": "2026-09-10"
+    },
+    {
+      "path": "gallery/routine/2026-09-10/horse.svg",
+      "name": "horse",
+      "ext": "svg",
+      "date": "2026-09-10"
+    },
+    {
+      "path": "gallery/routine/2026-09-10/sri-yantra.svg",
+      "name": "sri-yantra",
+      "ext": "svg",
+      "date": "2026-09-10"
+    },
+    {
+      "path": "gallery/routine/2026-09-10/streamlines.svg",
+      "name": "streamlines",
+      "ext": "svg",
+      "date": "2026-09-10"
+    },
+    {
+      "path": "gallery/routine/2026-09-10/superformula.svg",
+      "name": "superformula",
+      "ext": "svg",
+      "date": "2026-09-10"
+    },
+    {
+      "path": "gallery/routine/2026-09-11/flower.svg",
+      "name": "flower",
+      "ext": "svg",
+      "date": "2026-09-11"
+    },
+    {
+      "path": "gallery/routine/2026-09-11/horse.png",
+      "name": "horse",
+      "ext": "png",
+      "date": "2026-09-11"
+    },
+    {
+      "path": "gallery/routine/2026-09-11/horse.svg",
+      "name": "horse",
+      "ext": "svg",
+      "date": "2026-09-11"
+    },
+    {
+      "path": "gallery/routine/2026-09-11/sri-yantra.svg",
+      "name": "sri-yantra",
+      "ext": "svg",
+      "date": "2026-09-11"
+    },
+    {
+      "path": "gallery/routine/2026-09-11/streamlines.svg",
+      "name": "streamlines",
+      "ext": "svg",
+      "date": "2026-09-11"
+    },
+    {
+      "path": "gallery/routine/2026-09-11/superformula.svg",
+      "name": "superformula",
+      "ext": "svg",
+      "date": "2026-09-11"
+    },
+    {
       "path": "gallery/routine/2026-09-12/flower.svg",
       "name": "flower",
+      "ext": "svg",
+      "date": "2026-09-12"
+    },
+    {
+      "path": "gallery/routine/2026-09-12/forest.svg",
+      "name": "forest",
       "ext": "svg",
       "date": "2026-09-12"
     },
@@ -4139,12 +4253,6 @@ const MANIFEST = {
       "path": "gallery/routine/2026-09-12/horse.png",
       "name": "horse",
       "ext": "png",
-      "date": "2026-09-12"
-    },
-    {
-      "path": "gallery/routine/2026-09-12/horse.svg",
-      "name": "horse",
-      "ext": "svg",
       "date": "2026-09-12"
     },
     {
@@ -4172,15 +4280,15 @@ const MANIFEST = {
       "date": "2026-09-13"
     },
     {
-      "path": "gallery/routine/2026-09-13/forest.svg",
-      "name": "forest",
-      "ext": "svg",
-      "date": "2026-09-13"
-    },
-    {
       "path": "gallery/routine/2026-09-13/horse.png",
       "name": "horse",
       "ext": "png",
+      "date": "2026-09-13"
+    },
+    {
+      "path": "gallery/routine/2026-09-13/horse.svg",
+      "name": "horse",
+      "ext": "svg",
       "date": "2026-09-13"
     },
     {
@@ -4200,6 +4308,42 @@ const MANIFEST = {
       "name": "superformula",
       "ext": "svg",
       "date": "2026-09-13"
+    },
+    {
+      "path": "gallery/routine/2026-09-14/flower.svg",
+      "name": "flower",
+      "ext": "svg",
+      "date": "2026-09-14"
+    },
+    {
+      "path": "gallery/routine/2026-09-14/horse.png",
+      "name": "horse",
+      "ext": "png",
+      "date": "2026-09-14"
+    },
+    {
+      "path": "gallery/routine/2026-09-14/horse.svg",
+      "name": "horse",
+      "ext": "svg",
+      "date": "2026-09-14"
+    },
+    {
+      "path": "gallery/routine/2026-09-14/sri-yantra.svg",
+      "name": "sri-yantra",
+      "ext": "svg",
+      "date": "2026-09-14"
+    },
+    {
+      "path": "gallery/routine/2026-09-14/streamlines.svg",
+      "name": "streamlines",
+      "ext": "svg",
+      "date": "2026-09-14"
+    },
+    {
+      "path": "gallery/routine/2026-09-14/superformula.svg",
+      "name": "superformula",
+      "ext": "svg",
+      "date": "2026-09-14"
     }
   ]
 };
