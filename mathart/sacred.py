@@ -162,7 +162,87 @@ def generate_flower(size=800, out_dir="."):
     return save_svg(svg, out_dir, "flower.svg")
 
 
+def generate_metatron(size=800, mode="outline", out_dir="."):
+    """Metatron's Cube: Fruit of Life (13 circles) with all connecting lines."""
+    cx = cy = size / 2
+    stroke = "white" if mode == "silhouette" else "#1a1a1a"
+    bg = "black" if mode == "silhouette" else "white"
+    stroke_w = max(1.0, size * 0.0015)
+
+    # unit = spacing so outer circles just reach 0.46*size from center
+    unit = size * 0.46 / 5
+
+    centers = [(cx, cy)]
+    for k in range(6):
+        angle = k * math.pi / 3
+        centers.append((cx + 2 * unit * math.cos(angle), cy - 2 * unit * math.sin(angle)))
+    for k in range(6):
+        angle = k * math.pi / 3
+        centers.append((cx + 4 * unit * math.cos(angle), cy - 4 * unit * math.sin(angle)))
+
+    elems = []
+    line_w = max(0.5, stroke_w * 0.5)
+    for i in range(len(centers)):
+        for j in range(i + 1, len(centers)):
+            x1, y1 = centers[i]
+            x2, y2 = centers[j]
+            elems.append(path(f"M{x1:.3f},{y1:.3f}L{x2:.3f},{y2:.3f}",
+                               fill="none", stroke=stroke, stroke_width=f"{line_w:.2f}"))
+    for px, py in centers:
+        elems.append(circle(px, py, unit, fill="none", stroke=stroke,
+                             stroke_width=f"{stroke_w:.2f}"))
+
+    svg = svg_doc(size, elems, bg=bg)
+    return save_svg(svg, out_dir, "metatron.svg")
+
+
+def generate_mandala(size=800, petals=12, rings=4, out_dir="."):
+    """Mandala: concentric rings with radial petal ornaments."""
+    cx = cy = size / 2
+    r_max = size * 0.46
+    stroke = "#1a1a1a"
+    stroke_w = max(1.5, size * 0.002)
+
+    elems = []
+
+    # Radial spokes
+    thin = max(0.5, stroke_w * 0.4)
+    for k in range(petals):
+        angle = k * 2 * math.pi / petals
+        x2 = cx + r_max * math.cos(angle)
+        y2 = cy - r_max * math.sin(angle)
+        elems.append(path(f"M{cx:.3f},{cy:.3f}L{x2:.3f},{y2:.3f}",
+                           fill="none", stroke=stroke, stroke_width=f"{thin:.2f}"))
+
+    for ring_i in range(1, rings + 1):
+        ring_r = r_max * ring_i / rings
+        petal_len = r_max / rings * 0.85
+        petal_width = petal_len * 0.3
+        elems.append(circle(cx, cy, ring_r, fill="none", stroke=stroke,
+                             stroke_width=f"{stroke_w:.2f}"))
+        for p in range(petals):
+            angle = p * 2 * math.pi / petals
+            px = cx + ring_r * math.cos(angle)
+            py = cy - ring_r * math.sin(angle)
+            rot = math.degrees(angle) + 90
+            elems.append(
+                f'<ellipse cx="{px:.3f}" cy="{py:.3f}"'
+                f' rx="{petal_len * 0.5:.3f}" ry="{petal_width * 0.5:.3f}"'
+                f' transform="rotate({rot:.2f},{px:.3f},{py:.3f})"'
+                f' fill="none" stroke="{stroke}" stroke-width="{stroke_w:.2f}"/>'
+            )
+
+    elems.append(circle(cx, cy, r_max, fill="none", stroke=stroke,
+                         stroke_width=f"{stroke_w * 1.5:.2f}"))
+    elems.append(circle(cx, cy, r_max * 0.05, fill=stroke, stroke="none"))
+
+    svg = svg_doc(size, elems, bg="white")
+    return save_svg(svg, out_dir, "mandala.svg")
+
+
 GENERATORS = {
     "sri-yantra": generate_sri_yantra,
     "flower": generate_flower,
+    "metatron": generate_metatron,
+    "mandala": generate_mandala,
 }

@@ -25,8 +25,11 @@ def cmd_sacred(args):
         sys.exit(1)
     fn = GENERATORS[name]
     kwargs = {"size": args.size, "out_dir": args.out}
-    if name == "sri-yantra":
+    if name in ("sri-yantra", "metatron"):
         kwargs["mode"] = args.mode
+    if name == "mandala":
+        kwargs["petals"] = args.petals
+        kwargs["rings"] = args.rings
     out = fn(**kwargs)
     print(f"Saved: {out}")
     if _web_url(out):
@@ -157,22 +160,24 @@ def main():
 
     # sacred
     p_sacred = sub.add_parser("sacred", help="Generate sacred geometry SVG")
-    p_sacred.add_argument("name", help="Design name (sri-yantra, flower)")
+    p_sacred.add_argument("name", help="Design name (sri-yantra, flower, metatron, mandala)")
     p_sacred.add_argument("--size", type=int, default=800)
     p_sacred.add_argument("--mode", default="outline", choices=["outline", "silhouette"])
+    p_sacred.add_argument("--petals", type=int, default=12)
+    p_sacred.add_argument("--rings", type=int, default=4)
     p_sacred.add_argument("--out", default="gallery")
     p_sacred.set_defaults(func=cmd_sacred)
 
     # plot
     p_plot = sub.add_parser("plot", help="Generate mathematical plot SVG")
-    p_plot.add_argument("name", help="Plot name (streamlines, superformula)")
+    p_plot.add_argument("name", help="Plot name (streamlines, superformula, harmonograph, spirograph)")
     p_plot.add_argument("--size", type=int, default=800)
     p_plot.add_argument("--out", default="gallery")
     p_plot.set_defaults(func=cmd_plot)
 
     # render
     p_render = sub.add_parser("render", help="Render reference image as PNG")
-    p_render.add_argument("name", help="Render target (horse)")
+    p_render.add_argument("name", help="Render target (horse, forest)")
     p_render.add_argument("--width", type=int, default=1600)
     p_render.add_argument("--out", default="gallery")
     p_render.set_defaults(func=cmd_render)

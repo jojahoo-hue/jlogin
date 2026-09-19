@@ -121,7 +121,81 @@ def generate_superformula(size=800, out_dir="."):
     return save_svg(svg, out_dir, "superformula.svg")
 
 
+def generate_harmonograph(size=800, out_dir="."):
+    """Harmonograph: overlapping damped-pendulum Lissajous curves."""
+    cx = cy = size / 2
+    scale = size * 0.44
+    stroke_w = max(0.8, size * 0.0012)
+
+    configs = [
+        (3, 2, 3, 2, 0, math.pi/2, math.pi/4, 0, 0.004, 0.005, 0.004, 0.003, "#2c3e50", "0.90"),
+        (5, 4, 5, 4, 0, math.pi/3, math.pi/6, 0, 0.003, 0.004, 0.003, 0.004, "#8e44ad", "0.85"),
+        (4, 3, 4, 3, math.pi/4, 0, 0, math.pi/4, 0.005, 0.004, 0.005, 0.003, "#2980b9", "0.80"),
+        (6, 5, 6, 5, 0, math.pi/2, math.pi/3, 0, 0.004, 0.003, 0.004, 0.005, "#16a085", "0.75"),
+        (7, 6, 7, 6, math.pi/5, 0, 0, math.pi/5, 0.003, 0.005, 0.004, 0.003, "#e74c3c", "0.70"),
+    ]
+
+    n_pts = 5000
+    t_vals = np.linspace(0, 5000 * 0.04, n_pts)
+    elems = []
+    for f1, f2, f3, f4, p1, p2, p3, p4, d1, d2, d3, d4, color, opacity in configs:
+        xs = (np.sin(f1 * t_vals + p1) * np.exp(-d1 * t_vals) +
+              np.sin(f2 * t_vals + p2) * np.exp(-d2 * t_vals))
+        ys = (np.sin(f3 * t_vals + p3) * np.exp(-d3 * t_vals) +
+              np.sin(f4 * t_vals + p4) * np.exp(-d4 * t_vals))
+        mx = float(np.abs(xs).max()) or 1.0
+        my = float(np.abs(ys).max()) or 1.0
+        pts = [(cx + x / mx * scale, cy - y / my * scale)
+               for x, y in zip(xs.tolist(), ys.tolist())]
+        d = pts_to_path(pts, close=False)
+        elems.append(path(d, fill="none", stroke=color,
+                           stroke_width=f"{stroke_w:.2f}", opacity=opacity))
+
+    svg = svg_doc(size, elems, bg="white")
+    return save_svg(svg, out_dir, "harmonograph.svg")
+
+
+def generate_spirograph(size=800, out_dir="."):
+    """Spirograph: overlapping hypotrochoid curves."""
+    from math import gcd
+    cx = cy = size / 2
+    scale = size * 0.44
+    stroke_w = max(0.8, size * 0.0012)
+
+    configs = [
+        (7, 3, 4.5, "#2c3e50", "0.90"),
+        (5, 2, 3.0, "#8e44ad", "0.85"),
+        (9, 4, 6.0, "#e74c3c", "0.80"),
+        (8, 3, 5.0, "#2980b9", "0.75"),
+        (6, 1, 4.5, "#27ae60", "0.70"),
+        (10, 7, 3.5, "#e67e22", "0.65"),
+    ]
+
+    n_pts = 5000
+    elems = []
+    for R, r, d_mult, color, opacity in configs:
+        d = d_mult * r
+        lcm = R * r // gcd(R, r)
+        t_end = 2 * math.pi * lcm / r
+        t_vals = np.linspace(0, t_end, n_pts)
+        ratio = (R - r) / r
+        xs = (R - r) * np.cos(t_vals) + d * np.cos(ratio * t_vals)
+        ys = (R - r) * np.sin(t_vals) - d * np.sin(ratio * t_vals)
+        max_r = max(float(np.abs(xs).max()), float(np.abs(ys).max()), 1e-9)
+        xs = xs / max_r
+        ys = ys / max_r
+        pts = [(cx + x * scale, cy - y * scale) for x, y in zip(xs.tolist(), ys.tolist())]
+        dattr = pts_to_path(pts, close=True)
+        elems.append(path(dattr, fill="none", stroke=color,
+                           stroke_width=f"{stroke_w:.2f}", opacity=opacity))
+
+    svg = svg_doc(size, elems, bg="white")
+    return save_svg(svg, out_dir, "spirograph.svg")
+
+
 PLOTS = {
     "streamlines": generate_streamlines,
     "superformula": generate_superformula,
+    "harmonograph": generate_harmonograph,
+    "spirograph": generate_spirograph,
 }

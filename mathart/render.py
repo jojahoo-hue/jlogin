@@ -89,6 +89,18 @@ def render_horse(width=1600, out_dir="."):
     return out_path
 
 
+def render_forest(width=1600, out_dir="."):
+    """Render the Misty Forest scene as a PNG."""
+    from mathart.works.misty_forest import render as _render_forest
+    height = int(width * 0.7)
+    img = _render_forest(width=width, height=height)
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(out_dir, "forest.png")
+    img.save(out_path)
+    return out_path
+
+
 RENDERS = {
     "horse": render_horse,
+    "forest": render_forest,
 }
