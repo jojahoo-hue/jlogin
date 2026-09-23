@@ -124,6 +124,26 @@ L'avantage : pas de bruit. Seulement ce qui me concerne vraiment, vu mes objecti
 
 ---
 
+## Intégrations MCP
+
+Les serveurs MCP sont configurés dans `.claude/settings.json` (section `mcpServers`) et versionnés dans le dépôt.
+
+### notion
+
+Accès à mon espace Notion (bases de données, pages). Nécessite `NOTION_TOKEN` dans `.env`.
+
+### plaud
+
+Accès à mes enregistrements et transcriptions Plaud via le serveur officiel `@plaud-ai/mcp`.
+
+- **Authentification :** OAuth via navigateur, pas de clé API ni de variable d'environnement.
+- **Activation (à faire une fois, en local) :** lancer `npx -y @plaud-ai/mcp@latest install`, autoriser Plaud dans le navigateur, se connecter, puis redémarrer Claude Code complètement.
+- **Note :** l'étape OAuth ne peut pas se faire depuis un environnement distant (Claude Code sur le web), elle doit être réalisée sur ma machine.
+
+Ce serveur complète le pipeline de transcriptions déjà en place (source `transcriptions_plaud` dans `notion-config.json` et skill `/transcription`).
+
+---
+
 ## Notes importantes
 
 - Les fichiers de contexte doivent rester synthétiques mais suffisants. Si une section devient trop longue, créez un fichier dédié dans `context/import/`
