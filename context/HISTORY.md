@@ -5,6 +5,23 @@
 
 ---
 
+## 2026-09-23
+
+### Écriture du livre à partir des notes de la RIK GP
+
+- Livre rédigé à partir du corpus de la Rencontre Initiatique Kongo de Guadeloupe (13 au 24 juillet 2026) : 22 comptes rendus et transcriptions du dossier Drive `RIK / RIK Guadeloupe 2026 / RIK Transcription`, et les synthèses Notion du projet `Nza Ngai dia Nzila RIK GP` (12 attitudes de la maîtrise du Muntu, 12 sens du Muntu, semaine d'intégration, takia du jour 1)
+- Titre de travail retenu : **LA GRAINE ET LES RACINES**, carnet initiatique, environ 27 700 mots (110 à 140 pages)
+- Architecture choisie : les douze attitudes de la maîtrise du Muntu en quatre niveaux comme colonne vertébrale, plutôt que la chronologie des ateliers. Cinquième partie consacrée au retour et à l'intégration, épilogue sur le fait de devenir l'ancêtre de demain
+- Pédagogie centrale de cette RIK intégrée au livre : le basculement du cœur vers le ventre, la graine et les racines comme socle de toutes les pratiques
+- Décision éditoriale : aucun protocole réservé aux porteurs de sceau n'est publié (cartouches et calculs du Sonosithia, pentagramme, arbre Kassa, flamme noire hors cadre) ; respect de l'interdit sur le thème, l'autel et la date de naissance
+- Contenus écartés du manuscrit et tracés dans `livre/NOTES-EDITORIALES.md` : accusations non vérifiables sur des campagnes de stérilisation, stéréotype sur un pouvoir financier communautaire, généralisations dévalorisantes, promesses de guérison de maladies incurables
+- Trois thèses de l'enseignement exposées mais discutées dans le texte : la pauvreté comme signe spirituel, la sortie du salariat, la programmation des naissances selon les signes d'incarnation
+- Livrables dans `livre/` : manuscrit assemblé, 18 fichiers de chapitres, 4 annexes (lexique, gabarit de takia, tableaux de synthèse, ce qui a été écarté), notes de dépouillement des sources
+- Action en attente côté Njaho : remplir les 12 passages `[à enrichir]`, faire relire par Mfumu Nswadi Kimbazi ou un aîné avant publication, valider l'anonymisation des participants, arrêter le titre définitif
+- Projet d'écriture de livres (objectif long terme) désormais amorcé sur une matière concrète
+
+---
+
 ## 2026-06-06
 
 ### Mise à jour de session — Configuration Jarvis et intégration Notion
