@@ -1,4 +1,8 @@
 .env
+# personal source photos — never publish to the site
+input/
+# local preview server config
+.claude/launch.json
 __pycache__/
 *.pyc
 .DS_Store
