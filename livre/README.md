@@ -13,6 +13,17 @@ Manuscrit de travail, version 1, généré à partir des notes de la RIK GP
 | `manuscrit/` | chapitres séparés, dans l'ordre de lecture |
 | `annexes/` | lexique, gabarit de takia, tableaux de synthèse, ce qui a été écarté |
 | `sources/` | dépouillement des sources, journée par journée |
+| `LA-GRAINE-ET-LES-RACINES.docx` | version Word pour relire et annoter, passages à enrichir surlignés |
+| `tools/md-to-docx.js` | régénère le .docx depuis le markdown (`npm install docx` puis `node tools/md-to-docx.js`) |
+
+## Copie de travail dans Notion
+
+Le manuscrit est également publié dans Notion, en page privée avec une page par
+chapitre, pour lire et annoter depuis le téléphone :
+https://app.notion.com/p/3e492f894f8c81d29496f4e21482e4c2
+
+La version de référence reste celle de ce dépôt. En cas de divergence, le markdown
+fait foi.
 
 ## Structure
 
