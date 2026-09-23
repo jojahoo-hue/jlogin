@@ -5,6 +5,19 @@
 
 ---
 
+## 2026-09-23
+
+### Le livre Mbawu existait déjà, et il a été terminé à deux chapitres près
+
+- Accès Notion rétabli dans la session. Découverte majeure : le livre n'était pas à écrire. La base Notion `Manuscrits — Chapitres Rédigés` contient déjà 6 livres et près de 663 000 mots rédigés, dont `Nza Ngai dia Nzayi`
+- Ce livre portait deux manuscrits distincts sous le même titre : 11 chapitres méthode Castaneda (juin 2026, environ 44 400 mots) et 21 textes méthode Transmission Vivante (août 2026, environ 73 600 mots), ces derniers étant le récit des vingt et un jours de Ki-Mbawu
+- Diagnostic : le manuscrit Transmission Vivante s'arrêtait au chapitre 18, qui raconte le **dix-septième** jour. Décalage dû au quatorzième jour, qui occupe deux chapitres
+- Sources vérifiées dans la base `ChatGPT conversations` : les jours 20 et 21 étaient documentés mais non rédigés. Les jours 18 et 19 (jeudi 9 et vendredi 10 juillet 2026) n'ont **aucune source**
+- Deux chapitres écrits et déposés dans Notion, dans la voix et la structure des précédents : **Chapitre 21 — Mon corps est un temple** (jour 20, 3 931 mots) et **Chapitre 22 — À partir d'aujourd'hui, j'incarne** (jour 21, 4 549 mots, clôture du cycle)
+- Les jours 18 et 19 n'ont pas été inventés, conformément à la règle de fidélité de `/ecrire-livre`
+- `.gitignore` étendu : les chapitres rédigés sont exclus du dépôt public, au même titre que les notes sources
+- Reste à faire consigné dans `livres/mbawu-21-jours/README.md` : retrouver les jours 18 et 19, arbitrer un ou deux volumes, écrire la conclusion, relire, exporter
+
 ## 2026-08-27
 
 ### Ouverture du chantier livre — Mbawu, les vingt-et-un jours

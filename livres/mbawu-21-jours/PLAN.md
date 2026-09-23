@@ -1,8 +1,13 @@
 # PLAN — Mbawu, les vingt-et-un jours
 
 > Document de cadrage et d'architecture éditoriale.
-> **Statut : ébauche non validée.** Tout ce qui suit est une proposition de contenant,
-> pas du contenu. Le contenu viendra des notes du projet Nza Ngai dia Nzayi.
+>
+> **Mise à jour du 2026-09-23.** Le livre n'était pas à écrire : il existe déjà dans
+> Notion, base *Manuscrits — Chapitres Rédigés*, sous le titre **Nza Ngai dia Nzayi**.
+> L'architecture proposée en section 4 de ce document était une hypothèse formulée avant
+> d'avoir accès au manuscrit. Elle est fausse, et la vraie structure est décrite dans
+> `README.md`. Les sections 1 et 2, cadrage et périmètre de non-divulgation, restent
+> valables et s'appliquent à la finition.
 
 ---
 
@@ -105,7 +110,10 @@ en supprimant deux lignes du `.gitignore`, une fois le dépôt privé et le tri 
 
 ## 4. Architecture proposée
 
-**Hypothèse de travail, à valider ou à jeter une fois les notes lues.**
+**Caduque.** Hypothèse formulée avant l'accès au manuscrit, conservée pour mémoire.
+La structure réelle est dans `README.md` : préface, introduction, seuil des trois jours
+de jeûne, puis un chapitre par jour, le chapitre N racontant le jour N-1 à partir du
+milieu du cycle. Il n'y a pas de découpage en trois cycles de sept.
 
 La structure la plus évidente est celle que la matière impose déjà : vingt-et-un jours,
 donc vingt-et-un chapitres, un par jour. Trois cycles de sept se dégagent naturellement
