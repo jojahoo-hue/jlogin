@@ -1,5 +1,5 @@
 {
-  "total": 972,
+  "total": 978,
   "artefacts": [
     {
       "path": "gallery/scribes/attractor-silhouette.svg",
@@ -5832,6 +5832,42 @@
       "name": "superformula",
       "ext": "svg",
       "date": "2026-10-07"
+    },
+    {
+      "path": "gallery/routine/2026-10-08/forest.png",
+      "name": "forest",
+      "ext": "png",
+      "date": "2026-10-08"
+    },
+    {
+      "path": "gallery/routine/2026-10-08/forest.svg",
+      "name": "forest",
+      "ext": "svg",
+      "date": "2026-10-08"
+    },
+    {
+      "path": "gallery/routine/2026-10-08/harmonograph.svg",
+      "name": "harmonograph",
+      "ext": "svg",
+      "date": "2026-10-08"
+    },
+    {
+      "path": "gallery/routine/2026-10-08/mandala.svg",
+      "name": "mandala",
+      "ext": "svg",
+      "date": "2026-10-08"
+    },
+    {
+      "path": "gallery/routine/2026-10-08/metatron.svg",
+      "name": "metatron",
+      "ext": "svg",
+      "date": "2026-10-08"
+    },
+    {
+      "path": "gallery/routine/2026-10-08/spirograph.svg",
+      "name": "spirograph",
+      "ext": "svg",
+      "date": "2026-10-08"
     }
   ]
 }
