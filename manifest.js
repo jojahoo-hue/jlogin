@@ -1,5 +1,5 @@
 const MANIFEST = {
-  "total": 1182,
+  "total": 1188,
   "artefacts": [
     {
       "path": "gallery/scribes/attractor-silhouette.svg",
@@ -7058,6 +7058,12 @@ const MANIFEST = {
       "date": "2026-10-26"
     },
     {
+      "path": "gallery/routine/2026-10-27/flower.svg",
+      "name": "flower",
+      "ext": "svg",
+      "date": "2026-10-27"
+    },
+    {
       "path": "gallery/routine/2026-10-27/forest.png",
       "name": "forest",
       "ext": "png",
@@ -7076,6 +7082,18 @@ const MANIFEST = {
       "date": "2026-10-27"
     },
     {
+      "path": "gallery/routine/2026-10-27/horse.png",
+      "name": "horse",
+      "ext": "png",
+      "date": "2026-10-27"
+    },
+    {
+      "path": "gallery/routine/2026-10-27/horse.svg",
+      "name": "horse",
+      "ext": "svg",
+      "date": "2026-10-27"
+    },
+    {
       "path": "gallery/routine/2026-10-27/mandala.svg",
       "name": "mandala",
       "ext": "svg",
@@ -7090,6 +7108,24 @@ const MANIFEST = {
     {
       "path": "gallery/routine/2026-10-27/spirograph.svg",
       "name": "spirograph",
+      "ext": "svg",
+      "date": "2026-10-27"
+    },
+    {
+      "path": "gallery/routine/2026-10-27/sri-yantra.svg",
+      "name": "sri-yantra",
+      "ext": "svg",
+      "date": "2026-10-27"
+    },
+    {
+      "path": "gallery/routine/2026-10-27/streamlines.svg",
+      "name": "streamlines",
+      "ext": "svg",
+      "date": "2026-10-27"
+    },
+    {
+      "path": "gallery/routine/2026-10-27/superformula.svg",
+      "name": "superformula",
       "ext": "svg",
       "date": "2026-10-27"
     }
