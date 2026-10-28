@@ -1,5 +1,5 @@
 const MANIFEST = {
-  "total": 1188,
+  "total": 1194,
   "artefacts": [
     {
       "path": "gallery/scribes/attractor-silhouette.svg",
@@ -7128,6 +7128,42 @@ const MANIFEST = {
       "name": "superformula",
       "ext": "svg",
       "date": "2026-10-27"
+    },
+    {
+      "path": "gallery/routine/2026-10-28/forest.png",
+      "name": "forest",
+      "ext": "png",
+      "date": "2026-10-28"
+    },
+    {
+      "path": "gallery/routine/2026-10-28/forest.svg",
+      "name": "forest",
+      "ext": "svg",
+      "date": "2026-10-28"
+    },
+    {
+      "path": "gallery/routine/2026-10-28/harmonograph.svg",
+      "name": "harmonograph",
+      "ext": "svg",
+      "date": "2026-10-28"
+    },
+    {
+      "path": "gallery/routine/2026-10-28/mandala.svg",
+      "name": "mandala",
+      "ext": "svg",
+      "date": "2026-10-28"
+    },
+    {
+      "path": "gallery/routine/2026-10-28/metatron.svg",
+      "name": "metatron",
+      "ext": "svg",
+      "date": "2026-10-28"
+    },
+    {
+      "path": "gallery/routine/2026-10-28/spirograph.svg",
+      "name": "spirograph",
+      "ext": "svg",
+      "date": "2026-10-28"
     }
   ]
 };
