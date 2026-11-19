@@ -1,5 +1,5 @@
 const MANIFEST = {
-  "total": 1410,
+  "total": 1428,
   "artefacts": [
     {
       "path": "gallery/scribes/attractor-silhouette.svg",
@@ -8460,6 +8460,114 @@ const MANIFEST = {
       "name": "superformula",
       "ext": "svg",
       "date": "2026-11-17"
+    },
+    {
+      "path": "gallery/routine/2026-11-18/flower.svg",
+      "name": "flower",
+      "ext": "svg",
+      "date": "2026-11-18"
+    },
+    {
+      "path": "gallery/routine/2026-11-18/forest.png",
+      "name": "forest",
+      "ext": "png",
+      "date": "2026-11-18"
+    },
+    {
+      "path": "gallery/routine/2026-11-18/forest.svg",
+      "name": "forest",
+      "ext": "svg",
+      "date": "2026-11-18"
+    },
+    {
+      "path": "gallery/routine/2026-11-18/harmonograph.svg",
+      "name": "harmonograph",
+      "ext": "svg",
+      "date": "2026-11-18"
+    },
+    {
+      "path": "gallery/routine/2026-11-18/horse.png",
+      "name": "horse",
+      "ext": "png",
+      "date": "2026-11-18"
+    },
+    {
+      "path": "gallery/routine/2026-11-18/horse.svg",
+      "name": "horse",
+      "ext": "svg",
+      "date": "2026-11-18"
+    },
+    {
+      "path": "gallery/routine/2026-11-18/mandala.svg",
+      "name": "mandala",
+      "ext": "svg",
+      "date": "2026-11-18"
+    },
+    {
+      "path": "gallery/routine/2026-11-18/metatron.svg",
+      "name": "metatron",
+      "ext": "svg",
+      "date": "2026-11-18"
+    },
+    {
+      "path": "gallery/routine/2026-11-18/spirograph.svg",
+      "name": "spirograph",
+      "ext": "svg",
+      "date": "2026-11-18"
+    },
+    {
+      "path": "gallery/routine/2026-11-18/sri-yantra.svg",
+      "name": "sri-yantra",
+      "ext": "svg",
+      "date": "2026-11-18"
+    },
+    {
+      "path": "gallery/routine/2026-11-18/streamlines.svg",
+      "name": "streamlines",
+      "ext": "svg",
+      "date": "2026-11-18"
+    },
+    {
+      "path": "gallery/routine/2026-11-18/superformula.svg",
+      "name": "superformula",
+      "ext": "svg",
+      "date": "2026-11-18"
+    },
+    {
+      "path": "gallery/routine/2026-11-19/forest.png",
+      "name": "forest",
+      "ext": "png",
+      "date": "2026-11-19"
+    },
+    {
+      "path": "gallery/routine/2026-11-19/forest.svg",
+      "name": "forest",
+      "ext": "svg",
+      "date": "2026-11-19"
+    },
+    {
+      "path": "gallery/routine/2026-11-19/harmonograph.svg",
+      "name": "harmonograph",
+      "ext": "svg",
+      "date": "2026-11-19"
+    },
+    {
+      "path": "gallery/routine/2026-11-19/mandala.svg",
+      "name": "mandala",
+      "ext": "svg",
+      "date": "2026-11-19"
+    },
+    {
+      "path": "gallery/routine/2026-11-19/metatron.svg",
+      "name": "metatron",
+      "ext": "svg",
+      "date": "2026-11-19"
+    },
+    {
+      "path": "gallery/routine/2026-11-19/spirograph.svg",
+      "name": "spirograph",
+      "ext": "svg",
+      "date": "2026-11-19"
     }
   ]
 };
