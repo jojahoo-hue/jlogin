@@ -1,5 +1,5 @@
 const MANIFEST = {
-  "total": 960,
+  "total": 972,
   "artefacts": [
     {
       "path": "gallery/scribes/attractor-silhouette.svg",
@@ -5726,6 +5726,12 @@ const MANIFEST = {
       "date": "2026-11-24"
     },
     {
+      "path": "gallery/routine/2026-11-26/flower.svg",
+      "name": "flower",
+      "ext": "svg",
+      "date": "2026-11-26"
+    },
+    {
       "path": "gallery/routine/2026-11-26/forest.png",
       "name": "forest",
       "ext": "png",
@@ -5740,6 +5746,18 @@ const MANIFEST = {
     {
       "path": "gallery/routine/2026-11-26/harmonograph.svg",
       "name": "harmonograph",
+      "ext": "svg",
+      "date": "2026-11-26"
+    },
+    {
+      "path": "gallery/routine/2026-11-26/horse.png",
+      "name": "horse",
+      "ext": "png",
+      "date": "2026-11-26"
+    },
+    {
+      "path": "gallery/routine/2026-11-26/horse.svg",
+      "name": "horse",
       "ext": "svg",
       "date": "2026-11-26"
     },
@@ -5760,6 +5778,60 @@ const MANIFEST = {
       "name": "spirograph",
       "ext": "svg",
       "date": "2026-11-26"
+    },
+    {
+      "path": "gallery/routine/2026-11-26/sri-yantra.svg",
+      "name": "sri-yantra",
+      "ext": "svg",
+      "date": "2026-11-26"
+    },
+    {
+      "path": "gallery/routine/2026-11-26/streamlines.svg",
+      "name": "streamlines",
+      "ext": "svg",
+      "date": "2026-11-26"
+    },
+    {
+      "path": "gallery/routine/2026-11-26/superformula.svg",
+      "name": "superformula",
+      "ext": "svg",
+      "date": "2026-11-26"
+    },
+    {
+      "path": "gallery/routine/2026-11-27/flower.svg",
+      "name": "flower",
+      "ext": "svg",
+      "date": "2026-11-27"
+    },
+    {
+      "path": "gallery/routine/2026-11-27/horse.png",
+      "name": "horse",
+      "ext": "png",
+      "date": "2026-11-27"
+    },
+    {
+      "path": "gallery/routine/2026-11-27/horse.svg",
+      "name": "horse",
+      "ext": "svg",
+      "date": "2026-11-27"
+    },
+    {
+      "path": "gallery/routine/2026-11-27/sri-yantra.svg",
+      "name": "sri-yantra",
+      "ext": "svg",
+      "date": "2026-11-27"
+    },
+    {
+      "path": "gallery/routine/2026-11-27/streamlines.svg",
+      "name": "streamlines",
+      "ext": "svg",
+      "date": "2026-11-27"
+    },
+    {
+      "path": "gallery/routine/2026-11-27/superformula.svg",
+      "name": "superformula",
+      "ext": "svg",
+      "date": "2026-11-27"
     }
   ]
 };
